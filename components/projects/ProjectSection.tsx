@@ -142,6 +142,7 @@ export function Screenshot({
   height,
   fit = 'cover',
   light = false,
+  badge = 'Live · Confidential blur',
 }: {
   src: string;
   alt: string;
@@ -150,6 +151,7 @@ export function Screenshot({
   height: number;
   fit?: 'cover' | 'contain';
   light?: boolean;
+  badge?: string;
 }) {
   return (
     <div className="mb-3 group">
@@ -204,7 +206,7 @@ export function Screenshot({
               className="w-1.5 h-1.5 rounded-full"
               style={{ background: 'var(--gold)', boxShadow: '0 0 6px var(--gold)' }}
             />
-            Live · Confidential blur
+            {badge}
           </div>
         </div>
       </div>
