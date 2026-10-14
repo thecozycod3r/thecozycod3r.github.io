@@ -187,3 +187,11 @@ body::after {
   .aurora-blob,
   .text-gold-shimmer { animation: none !important; }
 }
+
+/* Input-aware wording for scroll hints */
+.hint-touch { display: none; }
+@media (hover: none) and (pointer: coarse) {
+  .hint-pointer { display: none; }
+  .hint-touch { display: inline; }
+}
+

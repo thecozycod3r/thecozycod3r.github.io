@@ -196,6 +196,44 @@ export default function StickyExperience() {
         className="relative"
       >
         <div className="sticky top-0 h-screen overflow-hidden" style={{ background: 'var(--bg)' }}>
+          {/* Scroll / swipe hint: the section advances on vertical scroll, which isn't obvious */}
+          <AnimatePresence>
+            {activeIndex < experiences.length - 1 && (
+              <motion.div
+                key="continue-hint"
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 8 }}
+                transition={{ duration: 0.4 }}
+                className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2.5 px-4 py-2 whitespace-nowrap rounded-full pointer-events-none"
+                style={{
+                  background: 'rgba(11,10,8,0.72)',
+                  border: '1px solid var(--border)',
+                  backdropFilter: 'blur(10px)',
+                  WebkitBackdropFilter: 'blur(10px)',
+                  color: 'var(--muted)',
+                  fontFamily: 'var(--font-mono)',
+                }}
+              >
+                <span className="text-[10px] sm:text-[11px] uppercase tracking-[0.12em] sm:tracking-[0.2em] whitespace-nowrap">
+                  <span className="hint-pointer">Scroll</span>
+                  <span className="hint-touch">Swipe up</span> to continue
+                </span>
+                <motion.span
+                  aria-hidden
+                  animate={{ y: [0, 4, 0] }}
+                  transition={{ duration: 1.4, repeat: Infinity, ease: 'easeInOut' }}
+                  style={{ color: active.color }}
+                >
+                  ↓
+                </motion.span>
+                <span className="text-[11px] tabular-nums" style={{ color: 'var(--tertiary)' }}>
+                  {activeIndex + 1}/{experiences.length}
+                </span>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
           {/* Ambient glow tinted by active company */}
           <AnimatePresence>
             <motion.div
