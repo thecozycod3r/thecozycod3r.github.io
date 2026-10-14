@@ -5,6 +5,8 @@ import Link from 'next/link';
 import { ArrowLeft, ArrowUpRight, FolderGit2, Lock } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 
+const ACCESS_EMAIL = 'dhruv.shricharan@hotmail.com';
+
 const ease = [0.16, 1, 0.3, 1] as [number, number, number, number];
 
 interface Tag { label: string; color: string; bg: string }
@@ -193,27 +195,32 @@ export default function ProjectLayout({ title, subtitle, period, company, tags, 
                 transition={{ duration: 0.5, delay: 0.48, ease }}
                 className="mt-6 flex flex-wrap items-center gap-2.5"
               >
-                {repos.map((r) => (
-                  <a
-                    key={r.url}
-                    href={r.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    title={r.private ? 'Private repository: the code exists on GitHub but is not public' : 'View source on GitHub'}
-                    className="inline-flex items-center gap-2 text-xs px-3 py-1.5 rounded-full transition-colors duration-200"
-                    style={{ color: 'var(--cream)', border: `1px solid ${color}44`, background: accentBg, fontFamily: 'var(--font-mono)' }}
-                  >
-                    <FolderGit2 size={13} style={{ color }} />
-                    {r.label ?? r.url.replace('https://github.com/', '')}
-                    {r.private ? (
-                      <span className="inline-flex items-center gap-1" style={{ color: 'var(--tertiary)' }}>
-                        <Lock size={11} /> private
-                      </span>
-                    ) : (
-                      <ArrowUpRight size={12} style={{ color: 'var(--muted)' }} />
-                    )}
-                  </a>
-                ))}
+                {repos.map((r) => {
+                  const name = r.url.replace('https://github.com/', '');
+                  const href = r.private
+                    ? `mailto:${ACCESS_EMAIL}?subject=${encodeURIComponent(`Code access request: ${name}`)}&body=${encodeURIComponent(`Hi Dhruv,\n\nI saw ${title} on your portfolio and would like to look at the code (${name}). My GitHub username is: \n\nThanks!`)}`
+                    : r.url;
+                  return (
+                    <a
+                      key={r.url}
+                      href={href}
+                      {...(r.private ? {} : { target: '_blank', rel: 'noopener noreferrer' })}
+                      title={r.private ? 'Private repository: email me to request access to the code' : 'View source on GitHub'}
+                      className="inline-flex items-center gap-2 text-xs px-3 py-1.5 rounded-full transition-colors duration-200"
+                      style={{ color: 'var(--cream)', border: `1px solid ${color}44`, background: accentBg, fontFamily: 'var(--font-mono)' }}
+                    >
+                      <FolderGit2 size={13} style={{ color }} />
+                      {r.label ?? name}
+                      {r.private ? (
+                        <span className="inline-flex items-center gap-1" style={{ color: 'var(--tertiary)' }}>
+                          <Lock size={11} /> private · request access
+                        </span>
+                      ) : (
+                        <ArrowUpRight size={12} style={{ color: 'var(--muted)' }} />
+                      )}
+                    </a>
+                  );
+                })}
               </motion.div>
             )}
           </div>
