@@ -1,26 +1,189 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: #0B0A08;
+  --bg-elevated: #141210;
+  --bg-card: #1A1815;
+  --border: #2D2A25;
+  --border-subtle: #201E1A;
+  --cream: #EDE8DC;
+  --muted: #A89F96;
+  --tertiary: #706860;
+  --gold: #C9A96E;
+  --gold-bright: #E4C07A;
+  --gold-dim: #8A6E3E;
+  --hot: #E8432D;
+  --green: #3FBF7F;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-cormorant);
+  --font-sans: var(--font-dm-sans);
+  --font-mono: var(--font-jb-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--bg);
+  color: var(--cream);
+  font-family: var(--font-sans), 'DM Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Grain texture */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.025;
+  pointer-events: none;
+  z-index: 9998;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: var(--gold-dim); }
+
+/* Selection */
+::selection { background: var(--gold); color: var(--bg); }
+
+/* Typography utilities */
+.font-display { font-family: var(--font-display), 'Cormorant Garamond', serif; }
+.font-mono-custom { font-family: var(--font-mono), 'JetBrains Mono', monospace; }
+
+/* Gold gradient text (static) */
+.text-gold-gradient {
+  background: linear-gradient(120deg, #B8924A 0%, #E4C07A 45%, #9A7035 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Gold gradient text with a slow travelling sheen */
+.text-gold-shimmer {
+  background: linear-gradient(
+    110deg,
+    #9A7942 0%,
+    #C9A96E 22%,
+    #F2DCA8 40%,
+    #E4C07A 50%,
+    #C9A96E 62%,
+    #9A7942 82%,
+    #C9A96E 100%
+  );
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine-sweep 7s linear infinite;
+}
+
+@keyframes shine-sweep {
+  to { background-position: -220% center; }
+}
+
+/* Glow effect */
+.glow-gold {
+  box-shadow: 0 0 40px rgba(201, 169, 110, 0.12), 0 0 80px rgba(201, 169, 110, 0.05);
+}
+
+/* Diagonal cut */
+.clip-diagonal {
+  clip-path: polygon(0 0, 100% 0, 100% 88%, 94% 100%, 0 100%);
+}
+
+/* ── Aurora blobs ── */
+.aurora-blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(90px);
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+@keyframes aurora-a {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.5; }
+  33%      { transform: translate(60px, -40px) scale(1.15); opacity: 0.75; }
+  66%      { transform: translate(-40px, 30px) scale(0.95); opacity: 0.45; }
+}
+
+@keyframes aurora-b {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.35; }
+  50%      { transform: translate(-70px, -50px) scale(1.2); opacity: 0.6; }
+}
+
+/* ── Marquee ── */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee var(--marquee-duration, 30s) linear infinite;
+}
+
+.marquee-track:hover { animation-play-state: paused; }
+
+.marquee-mask {
+  overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent, black 12%, black 88%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, black 12%, black 88%, transparent);
+}
+
+/* ── Gentle float ── */
+@keyframes float-y {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-10px); }
+}
+
+/* ── Slow rotation (conic glow rings) ── */
+@keyframes spin-slow {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Button shine sweep ── */
+.btn-shine { position: relative; overflow: hidden; }
+.btn-shine::after {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  left: -150%;
+  width: 60%;
+  background: linear-gradient(105deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+  transform: skewX(-20deg);
+  transition: left 0.6s ease;
+  pointer-events: none;
+}
+.btn-shine:hover::after { left: 150%; }
+
+/* ── Gradient hairline ── */
+.hairline-gold {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201, 169, 110, 0.5), transparent);
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes pulse-dot {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(63, 191, 127, 0.5); }
+  50%      { box-shadow: 0 0 0 5px rgba(63, 191, 127, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track,
+  .aurora-blob,
+  .text-gold-shimmer { animation: none !important; }
 }
