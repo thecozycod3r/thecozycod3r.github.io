@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dhruv Shricharan - Resume</title>
+  <!--
+    ATS-friendly by design:
+    - one column, document order = reading order (no flex/grid/absolute positioning, no tables)
+    - real <ul> bullets, standard section headings, no letter-spacing on headings
+    - system font (Arial/Helvetica) so the PDF embeds TrueType, not Type 3 glyphs
+    - contact details in the body, not in a page header/footer
+  -->
+  <style>
+    @page { size: A4; margin: 14mm 16mm; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 9.6pt;
+      line-height: 1.38;
+      color: #111;
+    }
+    h1 { font-size: 20pt; margin: 0; line-height: 1.1; }
+    .headline { font-size: 11pt; font-weight: bold; color: #1D4ED8; margin: 2px 0 4px; }
+    .contact { margin: 0 0 4px; font-size: 9.2pt; }
+    h2 {
+      font-size: 10.5pt; text-transform: uppercase; color: #1D4ED8;
+      border-bottom: 1px solid #9CA3AF; padding-bottom: 2px; margin: 12px 0 6px;
+    }
+    h3 { font-size: 10pt; margin: 9px 0 0; }
+    .meta { margin: 0 0 3px; color: #374151; }
+    p { margin: 0 0 4px; }
+    ul { margin: 2px 0 0; padding-left: 15px; }
+    li { margin: 0 0 3px; }
+    .skills p { margin: 0 0 3px; }
+  </style>
+</head>
+<body>
+
+  <h1>Dhruv Shricharan</h1>
+  <p class="headline">Founders' Office Growth Analyst</p>
+  <p class="contact">Bangalore, India | +91 81052 57006 | dhruv.shricharan@hotmail.com | linkedin.com/in/dhruv-shricharan-798b40186</p>
+
+  <h2>Professional Summary</h2>
+  <p>Founders' Office Growth Analyst who builds the systems a growing company runs on, then operates them. Owned the full B2B sales cycle from cold outbound to contract close, rolled out company-wide operating cadence and governance, and shipped data and AI products now used across 28 client accounts. Pairs two years of decision science for Mars Inc. with hands-on execution in a founder-led environment: structuring ambiguous problems, driving cross-functional programs to delivery, and turning metrics into decisions.</p>
+
+  <h2>Core Competencies</h2>
+  <p>Program Management | Cross-Functional Execution | Business Strategy | Go-to-Market and B2B Sales | Financial Modelling and P&amp;L | Data Analytics and Dashboards | Process Design and Automation | Stakeholder Management | Executive Reporting | Product Management (PRDs) | AI Product Development</p>
+
+  <h2>Professional Experience</h2>
+
+  <h3>Founders' Office Growth Analyst</h3>
+  <p class="meta">Digital Advantage Media | Bangalore, India | Oct 2025 - Present</p>
+  <ul>
+    <li><strong>Full-Cycle B2B Sales:</strong> Built and ran the outbound engine using Apollo, AmpleLeads and BetterContact. Launched email campaigns (ZAP Mail, Sending.ac) at 1,000+ prospects per day, achieving a 5% positive reply rate and converting leads to paying clients. Handled cold calls and nurtured leads through the CRM across the full pipeline.</li>
+    <li><strong>Deal Negotiation and Contracting:</strong> Led LinkedIn Sales Navigator outreach via the founders' profiles, securing deals worth over Rs. 5 lakh per month in recurring revenue (MRR). Drafted client contracts and negotiated deals through to close.</li>
+    <li><strong>Strategic Repositioning:</strong> Repositioned the company from a digital marketing agency to a strategic growth partner. Built productised offerings for Real Estate and Hospitality, launching conversion rate optimisation (CRO) via conversational AI (WhatsApp and website chatbots) and SEO/GEO services.</li>
+    <li><strong>Performance Analytics Platform:</strong> Designed and shipped a nightly cloud data pipeline joining Meta Ads and Google Ads spend with client CRM lead outcomes for 28 client accounts. Powers a leadership triage view, client dashboards, threshold-based insights, one-click monthly client reports (21 clients, figures reconciled 58/58 against raw data) and overnight Slack anomaly alerts. Cut nightly build time by about 40% with identical output.</li>
+    <li><strong>AI Creative Studio:</strong> Wrote the product requirements document (PRD) and shipped an internal generative AI studio unifying 7 image and video models behind Google SSO, role-based access, upfront cost estimates, budget controls and asset approvals, plus a UGC video ad workflow. Ran live QA across all models that caught two production bugs before rollout.</li>
+    <li><strong>Financial Modelling:</strong> Built a centralised P&amp;L dashboard in BigQuery and Looker Studio tracking actuals vs. forecast, opex ratios and revenue streams. Identified cost-sink areas to target 10%+ cost optimisation and moved leadership reporting from monthly to weekly.</li>
+    <li><strong>Operational Excellence:</strong> Led the company-wide transition to Asana with automated task assignment, due-date logic and Slack/email notifications, removing silos between creative, ads and account management teams. Built project and assignee workload dashboards for resource rebalancing.</li>
+    <li><strong>Product Engineering:</strong> Built a social media planning tool (Supabase, Vercel) that replaced Slack and WhatsApp approval chains with a 6-stage tracked workflow and automated Meta API posting to Instagram and Facebook.</li>
+    <li><strong>People and Client Experience:</strong> Built a leave management tool with managerial approval and payroll built in; launched an NPS program with 72-hour detractor follow-up.</li>
+  </ul>
+
+  <h3>Decision Scientist</h3>
+  <p class="meta">Mu Sigma (Contractor at Mars Inc.) | Bangalore, India | Jul 2023 - Oct 2025</p>
+  <ul>
+    <li>Built and maintained Power BI dashboards for Material Requirement Planning, inventory visibility (Magpie) and long-term demand forecasting, delivering insights to supply planners across Asia, Australia and Europe.</li>
+    <li>Optimised PySpark pipelines in Databricks (1-hour runtime reduction) and enhanced the SQL Server backend of the customer-order management system, rolled out across Serbia and Croatia.</li>
+    <li>Reduced MTTR by 30% through proactive discrepancy resolution and integrated 3 new global markets into the reporting ecosystem. Authored BRDs, FRDs and user stories to align cross-functional teams.</li>
+  </ul>
+
+  <h3>Machine Learning Intern</h3>
+  <p class="meta">Tata Consultancy Services (TCS) | 2022</p>
+  <ul>
+    <li>Built predictive maintenance models using Python (LSTM), improving accuracy by 15%. Presented client-facing insight decks to drive model adoption.</li>
+  </ul>
+
+  <h3>Research Intern</h3>
+  <p class="meta">NASSCOM Centre of Excellence for Data Science | 2021</p>
+  <ul>
+    <li>Researched 500+ AI and data science start-ups for EdTech trend analysis; supported Xperience AI industry-startup collaboration events.</li>
+  </ul>
+
+  <h2>Skills</h2>
+  <div class="skills">
+    <p><strong>Growth and Sales:</strong> Apollo, LinkedIn Sales Navigator, ZAP Mail, Sending.ac, Cold Calling, CRM Management, Contract Drafting, Deal Negotiation, ICP Frameworks</p>
+    <p><strong>Operations and Automation:</strong> Asana, Zapier, Zoho People, Slack Integrations, NPS Programs, Onboarding Design</p>
+    <p><strong>Data and Analytics:</strong> SQL, Python, pandas, PySpark, Databricks, BigQuery, Looker Studio, Power BI, Financial Modelling, Demand Forecasting</p>
+    <p><strong>Engineering and AI:</strong> Next.js, React, PostgreSQL, Supabase, Vercel, GitHub Actions, Meta Ads API, Google Ads API, LLM APIs (Claude, Gemini), AI-Assisted Development</p>
+  </div>
+
+  <h2>Education</h2>
+  <p><strong>Bachelor of Engineering, Information Engineering</strong> | The Chinese University of Hong Kong</p>
+  <p><strong>ISC (Class 12)</strong> | St. Joseph's Boys' High School, Bangalore</p>
+
+  <h2>Interests</h2>
+  <p>Tennis (club and university-level winner) | Basketball (captained university team to a championship) | Travelled to 15+ countries | Poker and card magic</p>
+
+</body>
+</html>
