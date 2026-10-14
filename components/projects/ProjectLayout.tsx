@@ -21,10 +21,11 @@ interface Props {
   color: string;
   accentBg: string;
   repos?: Repo[];
+  back?: { href: string; label: string };
   children: React.ReactNode;
 }
 
-export default function ProjectLayout({ title, subtitle, period, company, tags, color, accentBg, repos, children }: Props) {
+export default function ProjectLayout({ title, subtitle, period, company, tags, color, accentBg, repos, back = { href: '/', label: 'Back to portfolio' }, children }: Props) {
   const words = title.split(' ');
 
   return (
@@ -80,7 +81,7 @@ export default function ProjectLayout({ title, subtitle, period, company, tags, 
               className="mb-10"
             >
               <Link
-                href="/"
+                href={back.href}
                 className="inline-flex items-center gap-2 text-sm px-3.5 py-2 rounded-full transition-all duration-200 group backdrop-blur-sm"
                 style={{
                   color: 'var(--muted)',
@@ -99,7 +100,7 @@ export default function ProjectLayout({ title, subtitle, period, company, tags, 
                 }}
               >
                 <ArrowLeft size={14} className="transition-transform duration-150 group-hover:-translate-x-0.5" />
-                Back to portfolio
+                {back.label}
               </Link>
             </motion.div>
 
