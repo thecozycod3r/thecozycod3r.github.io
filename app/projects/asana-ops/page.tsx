@@ -2,8 +2,8 @@ import Image from 'next/image';
 import ProjectLayout from '@/components/projects/ProjectLayout';
 import { ProjectSection, StatCard, FeatureCard, TechBadge, BulletList, Screenshot } from '@/components/projects/ProjectSection';
 
-const COLOR = '#60A5FA';
-const BG = 'rgba(96,165,250,0.07)';
+const COLOR = '#2343F5';
+const BG = 'rgba(35,67,245,0.07)';
 
 export const metadata = {
   title: 'Asana Operations Overhaul — Dhruv Shricharan',
@@ -20,14 +20,14 @@ export default function AsanaOpsPage() {
       accentBg={BG}
       tags={[
         { label: 'Operations', color: COLOR, bg: BG },
-        { label: 'Automation', color: '#C9A96E', bg: 'rgba(201,169,110,0.07)' },
-        { label: 'Project Management', color: '#3FBF7F', bg: 'rgba(63,191,127,0.07)' },
+        { label: 'Automation', color: '#A86A00', bg: 'rgba(168,106,0,0.07)' },
+        { label: 'Project Management', color: '#0F8A5C', bg: 'rgba(15,138,92,0.07)' },
       ]}
     >
       {/* The problem */}
       <ProjectSection label="The Problem" title="Four teams, zero coordination.">
         <p className="text-base leading-relaxed mb-6" style={{ color: 'var(--muted)', maxWidth: 680 }}>
-          When I audited DAM's operations, every function was running in isolation. The creatives didn't know what Google Ads needed. Account managers didn't know what the designers were working on. Deadlines were tracked in personal to-do apps, WhatsApp chats, and memory. Requirements were being missed. People were overloaded in silence while others had capacity.
+          When I audited DAM&apos;s operations, every function was running in isolation. The creatives didn&apos;t know what Google Ads needed. Account managers didn&apos;t know what the designers were working on. Deadlines were tracked in personal to-do apps, WhatsApp chats, and memory. Requirements were being missed. People were overloaded in silence while others had capacity.
         </p>
         <p className="text-base leading-relaxed mb-8" style={{ color: 'var(--muted)', maxWidth: 680 }}>
           There was no single place to see who was working on what, when things were due, or how loaded each person was. Management was reactive — firefighting instead of planning.
@@ -79,22 +79,22 @@ export default function AsanaOpsPage() {
             icon="📊"
             title="Dual Workload Dashboards"
             desc="Two dashboards built: one showing tasks by project (project workload view), one showing tasks by person (assignee workload view). Managers can rebalance in real time."
-            color="#3FBF7F"
-            bg="rgba(63,191,127,0.07)"
+            color="#0F8A5C"
+            bg="rgba(15,138,92,0.07)"
           />
           <FeatureCard
             icon="🔔"
             title="Slack + Email Notifications"
             desc="Automated notifications triggered by task status changes — team members know immediately when something lands in their queue or moves to the next stage."
-            color="#C9A96E"
-            bg="rgba(201,169,110,0.07)"
+            color="#A86A00"
+            bg="rgba(168,106,0,0.07)"
           />
           <FeatureCard
             icon="📅"
             title="Zapier Leave Tracker"
             desc="Employees submit leave via a Zapier-triggered form. Manager approves in one click. Approval triggers an email notification and the leave appears in a shared calendar — tied to project planning."
-            color="#A78BFA"
-            bg="rgba(167,139,250,0.07)"
+            color="#6A3FD6"
+            bg="rgba(106,63,214,0.07)"
           />
         </div>
 
@@ -112,7 +112,7 @@ export default function AsanaOpsPage() {
         {/* User journey */}
         <div className="p-6 rounded-2xl mb-6" style={{ background: 'var(--bg-card)', border: '1px solid var(--border-subtle)' }}>
           <p className="text-xs tracking-widest uppercase mb-6" style={{ color: 'var(--tertiary)', fontFamily: 'var(--font-mono)' }}>The employee experience — five steps end-to-end</p>
-          <div className="flex items-start gap-3 overflow-x-auto pb-2">
+          <div className="flex flex-wrap items-start gap-x-3 gap-y-5 pb-2">
             {[
               { step: '01', icon: '📝', label: 'Employee submits', detail: 'Zapier form with dates + reason' },
               { step: '02', icon: '📬', label: 'Manager notified', detail: 'Email + Slack message sent' },
@@ -173,14 +173,14 @@ export default function AsanaOpsPage() {
       <ProjectSection label="Tech Stack" title="No-code automation on top of Asana.">
         <div className="flex flex-wrap gap-2 mb-6">
           <TechBadge name="Asana" color={COLOR} />
-          <TechBadge name="Zapier" color="#C9A96E" />
-          <TechBadge name="Slack" color="#A78BFA" />
+          <TechBadge name="Zapier" color="#A86A00" />
+          <TechBadge name="Slack" color="#6A3FD6" />
           <TechBadge name="Asana Rules (native automation)" />
           <TechBadge name="Email (SMTP via Zapier)" />
-          <TechBadge name="Google Calendar" color="#3FBF7F" />
+          <TechBadge name="Google Calendar" color="#0F8A5C" />
         </div>
         <p className="text-sm leading-relaxed" style={{ color: 'var(--muted)', maxWidth: 640 }}>
-          The entire system was built without writing a single line of code. Asana's native rules engine handled task auto-assignment and status-triggered notifications. Zapier connected the leave form to Asana, Slack, and email. The workload dashboards were built using Asana's reporting tools with custom filters.
+          The entire system was built without writing a single line of code. Asana&apos;s native rules engine handled task auto-assignment and status-triggered notifications. Zapier connected the leave form to Asana, Slack, and email. The workload dashboards were built using Asana&apos;s reporting tools with custom filters.
         </p>
       </ProjectSection>
 
@@ -188,9 +188,9 @@ export default function AsanaOpsPage() {
       <ProjectSection label="Outcomes" title="A team that actually runs together.">
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
           <StatCard value="0" label="Missed requirements" sub="Since go-live" color={COLOR} />
-          <StatCard value="Real-time" label="Workload visibility" sub="Rebalance instantly" color="#3FBF7F" />
-          <StatCard value="4" label="Teams unified" sub="Creatives, Ads, Accounts, Mgmt" color="#C9A96E" />
-          <StatCard value="Automated" label="Leave management" sub="No WhatsApp, no guesswork" color="#A78BFA" />
+          <StatCard value="Real-time" label="Workload visibility" sub="Rebalance instantly" color="#0F8A5C" />
+          <StatCard value="4" label="Teams unified" sub="Creatives, Ads, Accounts, Mgmt" color="#A86A00" />
+          <StatCard value="Automated" label="Leave management" sub="No WhatsApp, no guesswork" color="#6A3FD6" />
         </div>
         <BulletList color={COLOR} items={[
           'Cross-team silos eliminated — all four functions now operate from a single workspace with shared visibility.',

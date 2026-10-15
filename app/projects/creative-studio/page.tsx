@@ -1,8 +1,8 @@
 import ProjectLayout from '@/components/projects/ProjectLayout';
 import { ProjectSection, StatCard, FeatureCard, TechBadge, BulletList } from '@/components/projects/ProjectSection';
 
-const COLOR = '#A78BFA';
-const BG = 'rgba(167,139,250,0.07)';
+const COLOR = '#6A3FD6';
+const BG = 'rgba(106,63,214,0.07)';
 
 export const metadata = {
   title: 'DAM Creative Studio — Dhruv Shricharan',
@@ -19,8 +19,8 @@ export default function CreativeStudioPage() {
       accentBg={BG}
       tags={[
         { label: 'Product', color: COLOR, bg: BG },
-        { label: 'Generative AI', color: '#E8432D', bg: 'rgba(232,67,45,0.07)' },
-        { label: 'Full-Stack', color: '#60A5FA', bg: 'rgba(96,165,250,0.07)' },
+        { label: 'Generative AI', color: '#D2361F', bg: 'rgba(210,54,31,0.07)' },
+        { label: 'Full-Stack', color: '#2343F5', bg: 'rgba(35,67,245,0.07)' },
       ]}
     >
       {/* The problem */}
@@ -56,13 +56,13 @@ export default function CreativeStudioPage() {
         {/* Generation lifecycle */}
         <div className="p-6 rounded-2xl mb-8" style={{ background: 'var(--bg-card)', border: '1px solid var(--border-subtle)' }}>
           <p className="text-xs tracking-widest uppercase mb-6" style={{ color: 'var(--tertiary)', fontFamily: 'var(--font-mono)' }}>Generation Lifecycle</p>
-          <div className="flex items-center gap-2 overflow-x-auto pb-2">
+          <div className="flex flex-wrap items-start gap-x-2 gap-y-5 pb-2">
             {[
               { stage: '01', label: 'Compose', sublabel: 'Model · prompt · refs', color: COLOR },
-              { stage: '02', label: 'Estimate', sublabel: 'Priced up front', color: '#C9A96E' },
-              { stage: '03', label: 'Reserve', sublabel: 'Against budget', color: '#E8432D' },
-              { stage: '04', label: 'Generate', sublabel: 'Queued dispatcher', color: '#60A5FA' },
-              { stage: '05', label: 'Store', sublabel: 'Private bucket', color: '#3FBF7F' },
+              { stage: '02', label: 'Estimate', sublabel: 'Priced up front', color: '#A86A00' },
+              { stage: '03', label: 'Reserve', sublabel: 'Against budget', color: '#D2361F' },
+              { stage: '04', label: 'Generate', sublabel: 'Queued dispatcher', color: '#2343F5' },
+              { stage: '05', label: 'Store', sublabel: 'Private bucket', color: '#0F8A5C' },
               { stage: '06', label: 'Approve', sublabel: 'Before clients see it', color: COLOR },
             ].map((s, i, arr) => (
               <div key={s.stage} className="flex items-center gap-2 flex-shrink-0">
@@ -94,29 +94,29 @@ export default function CreativeStudioPage() {
             icon="💰"
             title="Spend Controls"
             desc="Every request is priced before it runs — including token-metered video models whose provider returns a formula rather than a price. Costs reserve against a company budget, and anything above a threshold asks for confirmation."
-            color="#C9A96E"
-            bg="rgba(201,169,110,0.07)"
+            color="#A86A00"
+            bg="rgba(168,106,0,0.07)"
           />
           <FeatureCard
             icon="🔐"
             title="Roles and Access"
             desc="Google Workspace sign-in, invite-only. Admins, creatives and viewers, optionally scoped to named clients. Assets stay hidden from viewers until approved."
-            color="#3FBF7F"
-            bg="rgba(63,191,127,0.07)"
+            color="#0F8A5C"
+            bg="rgba(15,138,92,0.07)"
           />
           <FeatureCard
             icon="🎬"
             title="UGC Ad Workflow"
             desc="A playbook and script planner that breaks a UGC ad into clips: generate a consistent keyframe for each shot, then animate it — handing each prompt straight into the studio."
-            color="#E8432D"
-            bg="rgba(232,67,45,0.07)"
+            color="#D2361F"
+            bg="rgba(210,54,31,0.07)"
           />
           <FeatureCard
             icon="🧭"
             title="&lsquo;Which Model?&rsquo; Guide"
             desc="A public guide rendered from the same model catalogue the app runs on, so limits and parameters never go stale — only the judgement is hand-written."
-            color="#60A5FA"
-            bg="rgba(96,165,250,0.07)"
+            color="#2343F5"
+            bg="rgba(35,67,245,0.07)"
           />
           <FeatureCard
             icon="✏️"
@@ -142,10 +142,10 @@ export default function CreativeStudioPage() {
       <ProjectSection label="Tech Stack" title="Production-grade, one platform.">
         <div className="flex flex-wrap gap-2 mb-6">
           <TechBadge name="Next.js" color={COLOR} />
-          <TechBadge name="TypeScript" color="#60A5FA" />
-          <TechBadge name="PostgreSQL (Neon)" color="#3FBF7F" />
-          <TechBadge name="Better Auth + Google SSO" color="#C9A96E" />
-          <TechBadge name="Cloudflare R2" color="#E8432D" />
+          <TechBadge name="TypeScript" color="#2343F5" />
+          <TechBadge name="PostgreSQL (Neon)" color="#0F8A5C" />
+          <TechBadge name="Better Auth + Google SSO" color="#A86A00" />
+          <TechBadge name="Cloudflare R2" color="#D2361F" />
           <TechBadge name="Higgsfield API" />
           <TechBadge name="Vercel" />
           <TechBadge name="Claude AI" />
@@ -159,9 +159,9 @@ export default function CreativeStudioPage() {
       <ProjectSection label="Outcomes" title="What actually changed.">
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
           <StatCard value="7" label="AI models" sub="Image + video, one interface" color={COLOR} />
-          <StatCard value="30" label="Client workspaces" sub="Assets filed by client" color="#3FBF7F" />
-          <StatCard value="100%" label="Spend tracked" sub="Priced before it runs" color="#C9A96E" />
-          <StatCard value="~5s" label="Image turnaround" sub="Submit to stored asset" color="#60A5FA" />
+          <StatCard value="30" label="Client workspaces" sub="Assets filed by client" color="#0F8A5C" />
+          <StatCard value="100%" label="Spend tracked" sub="Priced before it runs" color="#A86A00" />
+          <StatCard value="~5s" label="Image turnaround" sub="Submit to stored asset" color="#2343F5" />
         </div>
         <BulletList color={COLOR} items={[
           'The creative team generates ad concepts in a company tool instead of personal accounts, with every rupee attributed to a client.',

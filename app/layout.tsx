@@ -1,33 +1,39 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, DM_Sans, JetBrains_Mono } from "next/font/google";
+import { Bricolage_Grotesque, IBM_Plex_Sans, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 
-const cormorant = Cormorant_Garamond({
-  variable: "--font-cormorant",
+const bricolage = Bricolage_Grotesque({
+  variable: "--font-bricolage",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  axes: ["wdth", "opsz"],
+  display: "swap",
+});
+
+const plexSans = IBM_Plex_Sans({
+  variable: "--font-plex-sans",
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
   style: ["normal", "italic"],
   display: "swap",
 });
 
-const dmSans = DM_Sans({
-  variable: "--font-dm-sans",
+const plexMono = IBM_Plex_Mono({
+  variable: "--font-plex-mono",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
-  display: "swap",
-});
-
-const jbMono = JetBrains_Mono({
-  variable: "--font-jb-mono",
-  subsets: ["latin"],
-  weight: ["300", "400", "500"],
+  weight: ["400", "500"],
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Dhruv Shricharan — Founders' Office Growth Analyst",
+  metadataBase: new URL("https://thecozycod3r.github.io"),
+  title: "Dhruv Shricharan — growth, data and operations",
   description:
-    "From data pipelines to deal rooms — I build systems that grow businesses. Founders' Office Growth Analyst at Digital Advantage Media, former Decision Scientist at Mars Inc.",
+    "Dhruv Shricharan builds the systems a growing business runs on: outbound, delivery ops, client reporting and finance. Founders' Office at Digital Advantage Media, formerly Decision Scientist for Mars Inc.",
+  openGraph: {
+    title: "Dhruv Shricharan",
+    description: "I build the systems a growing business runs on.",
+    images: ["/dp.jpeg"],
+  },
 };
 
 export default function RootLayout({
@@ -36,7 +42,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${cormorant.variable} ${dmSans.variable} ${jbMono.variable} h-full`}
+      className={`${bricolage.variable} ${plexSans.variable} ${plexMono.variable} h-full`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
