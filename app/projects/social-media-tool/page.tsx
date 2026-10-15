@@ -1,8 +1,8 @@
 import ProjectLayout from '@/components/projects/ProjectLayout';
 import { ProjectSection, StatCard, FeatureCard, TechBadge, BulletList, Screenshot } from '@/components/projects/ProjectSection';
 
-const COLOR = '#C9A96E';
-const BG = 'rgba(201,169,110,0.07)';
+const COLOR = '#A86A00';
+const BG = 'rgba(168,106,0,0.07)';
 
 export const metadata = {
   title: 'Social Media Planning Tool — Dhruv Shricharan',
@@ -20,8 +20,8 @@ export default function SocialMediaToolPage() {
       repos={[{ url: 'https://github.com/thecozycod3r/social-media-dash', private: true }]}
       tags={[
         { label: 'Product', color: COLOR, bg: BG },
-        { label: 'Full-Stack', color: '#60A5FA', bg: 'rgba(96,165,250,0.07)' },
-        { label: 'AI-Assisted', color: '#A78BFA', bg: 'rgba(167,139,250,0.07)' },
+        { label: 'Full-Stack', color: '#2343F5', bg: 'rgba(35,67,245,0.07)' },
+        { label: 'AI-Assisted', color: '#6A3FD6', bg: 'rgba(106,63,214,0.07)' },
       ]}
     >
       {/* The problem */}
@@ -87,9 +87,9 @@ export default function SocialMediaToolPage() {
         >
           {/* Browser chrome */}
           <div className="flex items-center gap-2 px-4 py-3" style={{ borderBottom: '1px solid var(--border)', background: 'var(--bg-card)' }}>
-            <div className="w-2.5 h-2.5 rounded-full" style={{ background: '#E8432D' }} />
-            <div className="w-2.5 h-2.5 rounded-full" style={{ background: '#C9A96E' }} />
-            <div className="w-2.5 h-2.5 rounded-full" style={{ background: '#3FBF7F' }} />
+            <div className="w-2.5 h-2.5 rounded-full" style={{ background: '#D2361F' }} />
+            <div className="w-2.5 h-2.5 rounded-full" style={{ background: '#A86A00' }} />
+            <div className="w-2.5 h-2.5 rounded-full" style={{ background: '#0F8A5C' }} />
             <div className="flex-1 mx-4 h-5 rounded" style={{ background: 'var(--bg-elevated)', border: '1px solid var(--border-subtle)' }}>
               <div className="h-full flex items-center px-2">
                 <span className="text-xs" style={{ color: 'var(--tertiary)', fontFamily: 'var(--font-mono)' }}>app.digitaladvantage.media/content</span>
@@ -138,7 +138,7 @@ export default function SocialMediaToolPage() {
                     <div key={i} className="aspect-square rounded flex flex-col items-center justify-center text-xs relative"
                       style={{ background: day < 0 || day > 29 ? 'transparent' : 'var(--bg-card)', color: 'var(--muted)' }}>
                       {day >= 0 && day <= 29 && <span>{day + 1}</span>}
-                      {hasPost && <div className="absolute bottom-0.5 w-1 h-1 rounded-full" style={{ background: isPending ? '#E8432D' : COLOR }} />}
+                      {hasPost && <div className="absolute bottom-0.5 w-1 h-1 rounded-full" style={{ background: isPending ? '#D2361F' : COLOR }} />}
                     </div>
                   );
                 })}
@@ -149,10 +149,10 @@ export default function SocialMediaToolPage() {
             <div className="w-48 p-3 flex flex-col gap-2" style={{ borderLeft: '1px solid var(--border)' }}>
               <p className="text-xs font-medium mb-1" style={{ color: 'var(--cream)' }}>In Pipeline</p>
               {[
-                { title: 'Real estate reel', stage: 'Designer', color: '#60A5FA' },
+                { title: 'Real estate reel', stage: 'Designer', color: '#2343F5' },
                 { title: 'Hotel campaign', stage: 'Client review', color: COLOR },
-                { title: 'Brand refresh', stage: 'Copywriter', color: '#A78BFA' },
-                { title: 'Q2 campaign', stage: 'Scheduled', color: '#3FBF7F' },
+                { title: 'Brand refresh', stage: 'Copywriter', color: '#6A3FD6' },
+                { title: 'Q2 campaign', stage: 'Scheduled', color: '#0F8A5C' },
               ].map(item => (
                 <div key={item.title} className="p-2 rounded-lg" style={{ background: 'var(--bg-elevated)', border: '1px solid var(--border-subtle)' }}>
                   <p className="text-xs font-medium mb-1" style={{ color: 'var(--cream)' }}>{item.title}</p>
@@ -179,36 +179,36 @@ export default function SocialMediaToolPage() {
             icon="🖼"
             title="In-App Mood Board"
             desc="Creatives can build mood boards directly in the tool instead of sending image dumps over WhatsApp. Everything stays attached to the content brief."
-            color="#60A5FA"
-            bg="rgba(96,165,250,0.07)"
+            color="#2343F5"
+            bg="rgba(35,67,245,0.07)"
           />
           <FeatureCard
             icon="✅"
             title="Multi-Stage Approval Flow"
             desc="Structured flow: Manager → Copywriter → Designer → Manager → Client. Each stage has a clear owner. Content can't skip stages or get lost in a thread."
-            color="#3FBF7F"
-            bg="rgba(63,191,127,0.07)"
+            color="#0F8A5C"
+            bg="rgba(15,138,92,0.07)"
           />
           <FeatureCard
             icon="📲"
             title="Automated Publishing"
             desc="Once approved, content posts automatically to Instagram and Facebook via the Meta API on the scheduled date. No manual posting, no missed slots."
-            color="#A78BFA"
-            bg="rgba(167,139,250,0.07)"
+            color="#6A3FD6"
+            bg="rgba(106,63,214,0.07)"
           />
         </div>
 
         {/* Approval flow diagram */}
         <div className="p-6 rounded-2xl mb-4" style={{ background: 'var(--bg-card)', border: '1px solid var(--border-subtle)' }}>
           <p className="text-xs tracking-widest uppercase mb-6" style={{ color: 'var(--tertiary)', fontFamily: 'var(--font-mono)' }}>Approval Flow</p>
-          <div className="flex items-center gap-2 overflow-x-auto pb-2">
+          <div className="flex flex-wrap items-start gap-x-2 gap-y-5 pb-2">
             {[
-              { stage: '01', label: 'Draft', sublabel: 'Social Manager', color: '#60A5FA' },
+              { stage: '01', label: 'Draft', sublabel: 'Social Manager', color: '#2343F5' },
               { stage: '02', label: 'Manager', sublabel: 'Internal sign-off', color: COLOR },
-              { stage: '03', label: 'Copywriter', sublabel: 'Copy review', color: '#A78BFA' },
-              { stage: '04', label: 'Designer', sublabel: 'Visual approval', color: '#3FBF7F' },
-              { stage: '05', label: 'Client', sublabel: 'Final sign-off', color: '#E8432D' },
-              { stage: '06', label: 'Published', sublabel: 'Auto via Meta API', color: '#3FBF7F' },
+              { stage: '03', label: 'Copywriter', sublabel: 'Copy review', color: '#6A3FD6' },
+              { stage: '04', label: 'Designer', sublabel: 'Visual approval', color: '#0F8A5C' },
+              { stage: '05', label: 'Client', sublabel: 'Final sign-off', color: '#D2361F' },
+              { stage: '06', label: 'Published', sublabel: 'Auto via Meta API', color: '#0F8A5C' },
             ].map((s, i, arr) => (
               <div key={s.stage} className="flex items-center gap-2 flex-shrink-0">
                 <div className="flex flex-col items-center">
@@ -231,11 +231,11 @@ export default function SocialMediaToolPage() {
       {/* Tech stack */}
       <ProjectSection label="Tech Stack" title="Lightweight, scalable, AI-assisted.">
         <div className="flex flex-wrap gap-2 mb-6">
-          <TechBadge name="Supabase" color="#3FBF7F" />
-          <TechBadge name="Vercel" color="#60A5FA" />
-          <TechBadge name="Next.js" color="#A78BFA" />
+          <TechBadge name="Supabase" color="#0F8A5C" />
+          <TechBadge name="Vercel" color="#2343F5" />
+          <TechBadge name="Next.js" color="#6A3FD6" />
           <TechBadge name="Meta API (Instagram + Facebook)" color={COLOR} />
-          <TechBadge name="Claude AI" color="#E8432D" />
+          <TechBadge name="Claude AI" color="#D2361F" />
           <TechBadge name="GitHub" />
           <TechBadge name="TypeScript" />
           <TechBadge name="PostgreSQL (via Supabase)" />
@@ -249,9 +249,9 @@ export default function SocialMediaToolPage() {
       <ProjectSection label="Outcomes" title="What actually changed.">
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
           <StatCard value="0" label="Lost briefs" sub="Single source of truth" color={COLOR} />
-          <StatCard value="100%" label="Automated posts" sub="No more manual publishing" color="#3FBF7F" />
-          <StatCard value="6" label="Approval stages" sub="Fully tracked and visible" color="#60A5FA" />
-          <StatCard value="↓" label="Missed deadlines" sub="Pipeline visibility eliminated delays" color="#A78BFA" />
+          <StatCard value="100%" label="Automated posts" sub="No more manual publishing" color="#0F8A5C" />
+          <StatCard value="6" label="Approval stages" sub="Fully tracked and visible" color="#2343F5" />
+          <StatCard value="↓" label="Missed deadlines" sub="Pipeline visibility eliminated delays" color="#6A3FD6" />
         </div>
         <BulletList color={COLOR} items={[
           'Eliminated fragmented Slack and WhatsApp approval chains — replaced with a single, tracked workflow.',

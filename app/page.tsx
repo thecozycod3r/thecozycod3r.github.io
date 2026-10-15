@@ -1,9 +1,7 @@
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
-import SkillsSection from '@/components/SkillsSection';
-import StickyExperience from '@/components/StickyExperience';
-import EducationExtras from '@/components/EducationExtras';
 import Footer from '@/components/Footer';
+import { Work, Websites, Experience, About, Contact } from '@/components/home/Sections';
 
 export default function Home() {
   return (
@@ -11,11 +9,13 @@ export default function Home() {
       <Navbar />
       <main className="flex flex-col">
         <Hero />
-        <SkillsSection />
-        <StickyExperience />
-        <EducationExtras />
-        <Footer />
+        <Work />
+        <Websites />
+        <Experience />
+        <About />
+        <Contact />
       </main>
+      <Footer />
     </>
   );
 }

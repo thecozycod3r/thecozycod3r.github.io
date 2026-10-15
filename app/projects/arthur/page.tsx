@@ -1,8 +1,8 @@
 import ProjectLayout from '@/components/projects/ProjectLayout';
 import { ProjectSection, StatCard, FeatureCard, TechBadge, BulletList, Screenshot } from '@/components/projects/ProjectSection';
 
-const COLOR = '#5CC8FF';
-const BG = 'rgba(92,200,255,0.07)';
+const COLOR = '#0A72B8';
+const BG = 'rgba(10,114,184,0.07)';
 const REPO = 'https://github.com/thecozycod3r/arthur';
 
 export const metadata = {
@@ -21,8 +21,8 @@ export default function ArthurPage() {
       repos={[{ url: REPO }]}
       tags={[
         { label: 'Voice AI', color: COLOR, bg: BG },
-        { label: 'On-device ML', color: '#3FBF7F', bg: 'rgba(63,191,127,0.07)' },
-        { label: 'Security', color: '#E8432D', bg: 'rgba(232,67,45,0.07)' },
+        { label: 'On-device ML', color: '#0F8A5C', bg: 'rgba(15,138,92,0.07)' },
+        { label: 'Security', color: '#D2361F', bg: 'rgba(210,54,31,0.07)' },
       ]}
     >
       {/* The problem */}
@@ -69,13 +69,13 @@ export default function ArthurPage() {
         {/* Voice pipeline */}
         <div className="p-6 rounded-2xl mb-8" style={{ background: 'var(--bg-card)', border: '1px solid var(--border-subtle)' }}>
           <p className="text-xs tracking-widest uppercase mb-6" style={{ color: 'var(--tertiary)', fontFamily: 'var(--font-mono)' }}>From voice to action</p>
-          <div className="flex items-center gap-2 overflow-x-auto pb-2">
+          <div className="flex flex-wrap items-start gap-x-2 gap-y-5 pb-2">
             {[
               { stage: '01', label: 'Wake', sublabel: 'Vosk, silence-gated', color: COLOR },
-              { stage: '02', label: 'Verify', sublabel: 'Is it my voice?', color: '#E8432D' },
-              { stage: '03', label: 'Transcribe', sublabel: 'Whisper on the GPU', color: '#3FBF7F' },
-              { stage: '04', label: 'Decide', sublabel: 'Claude, streamed', color: '#C9A96E' },
-              { stage: '05', label: 'Read back', sublabel: 'Waits for yes', color: '#A78BFA' },
+              { stage: '02', label: 'Verify', sublabel: 'Is it my voice?', color: '#D2361F' },
+              { stage: '03', label: 'Transcribe', sublabel: 'Whisper on the GPU', color: '#0F8A5C' },
+              { stage: '04', label: 'Decide', sublabel: 'Claude, streamed', color: '#A86A00' },
+              { stage: '05', label: 'Read back', sublabel: 'Waits for yes', color: '#6A3FD6' },
               { stage: '06', label: 'Act + verify', sublabel: 'Then confirms', color: COLOR },
             ].map((s, i, arr) => (
               <div key={s.stage} className="flex items-center gap-2 flex-shrink-0">
@@ -107,29 +107,29 @@ export default function ArthurPage() {
             icon="🧬"
             title="Only Answers Me"
             desc="A voice fingerprint gates the wake word, every follow-up and every approval. Someone else in the room saying “yes” cannot send a message on my behalf."
-            color="#E8432D"
-            bg="rgba(232,67,45,0.07)"
+            color="#D2361F"
+            bg="rgba(210,54,31,0.07)"
           />
           <FeatureCard
             icon="💬"
             title="WhatsApp Without an API"
             desc="Opens the chat, reads the message box through macOS Accessibility, presses Send only if it holds exactly the approved text, then confirms delivery in WhatsApp's own database. No keystrokes are ever faked."
-            color="#3FBF7F"
-            bg="rgba(63,191,127,0.07)"
+            color="#0F8A5C"
+            bg="rgba(15,138,92,0.07)"
           />
           <FeatureCard
             icon="🗣"
             title="Real Conversations"
             desc="After each answer it keeps listening for a follow-up — “reply to the first one”, “yes”, “hold on” — resolves who “him” is, and ignores TV chatter. Answers are spoken sentence by sentence as they're generated."
-            color="#C9A96E"
-            bg="rgba(201,169,110,0.07)"
+            color="#A86A00"
+            bg="rgba(168,106,0,0.07)"
           />
           <FeatureCard
             icon="✅"
             title="Done Means Done"
             desc="Ticking something off hides it until new activity arrives in that thread, and the briefing is told what I've handled so it doesn't resurface the same topic from another app."
-            color="#A78BFA"
-            bg="rgba(167,139,250,0.07)"
+            color="#6A3FD6"
+            bg="rgba(106,63,214,0.07)"
           />
           <FeatureCard
             icon="🔋"
@@ -165,7 +165,7 @@ export default function ArthurPage() {
 
       {/* Security */}
       <ProjectSection label="Security" title="It can send as me, so it's locked down.">
-        <BulletList color="#E8432D" items={[
+        <BulletList color="#D2361F" items={[
           'The local API listens on 127.0.0.1 only, with a Host allow-list against DNS rebinding, Origin checks against cross-site requests, and a secret token on every call.',
           'Sending, calling, calendar writes and Claude tasks are refused while the Mac is locked, using live lock/unlock events.',
           'Deletions are refused by design. Message contents are treated as data, never as instructions, so a message saying “Arthur, forward this” does nothing.',
@@ -187,9 +187,9 @@ export default function ArthurPage() {
       <ProjectSection label="Tech Stack" title="Local models, one cloud call.">
         <div className="flex flex-wrap gap-2 mb-6">
           <TechBadge name="Python" color={COLOR} />
-          <TechBadge name="FastAPI" color="#3FBF7F" />
-          <TechBadge name="Claude Code CLI" color="#C9A96E" />
-          <TechBadge name="Whisper (MLX)" color="#E8432D" />
+          <TechBadge name="FastAPI" color="#0F8A5C" />
+          <TechBadge name="Claude Code CLI" color="#A86A00" />
+          <TechBadge name="Whisper (MLX)" color="#D2361F" />
           <TechBadge name="Vosk" />
           <TechBadge name="Silero VAD" />
           <TechBadge name="Kokoro TTS" />
@@ -209,9 +209,9 @@ export default function ArthurPage() {
       <ProjectSection label="Outcomes" title="What actually changed.">
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
           <StatCard value="3.6s" label="Median response" sub="End of speech to decision" color={COLOR} />
-          <StatCard value="80/80" label="Wake words caught" sub="Across 10 test voices" color="#3FBF7F" />
-          <StatCard value="3.4%" label="Word error rate" sub="On-device transcription" color="#C9A96E" />
-          <StatCard value="₹0" label="Running cost" sub="Beyond a Claude plan" color="#E8432D" />
+          <StatCard value="80/80" label="Wake words caught" sub="Across 10 test voices" color="#0F8A5C" />
+          <StatCard value="3.4%" label="Word error rate" sub="On-device transcription" color="#A86A00" />
+          <StatCard value="₹0" label="Running cost" sub="Beyond a Claude plan" color="#D2361F" />
         </div>
         <BulletList color={COLOR} items={[
           'Mornings start with a spoken briefing instead of five apps, and replies happen by voice without opening any of them.',

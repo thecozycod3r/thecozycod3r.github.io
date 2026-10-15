@@ -1,8 +1,8 @@
 import ProjectLayout from '@/components/projects/ProjectLayout';
 import { ProjectSection, StatCard, FeatureCard, TechBadge, BulletList, Screenshot } from '@/components/projects/ProjectSection';
 
-const COLOR = '#3FBF7F';
-const BG = 'rgba(63,191,127,0.07)';
+const COLOR = '#0F8A5C';
+const BG = 'rgba(15,138,92,0.07)';
 
 export const metadata = {
   title: 'Financial P&L Dashboard — Dhruv Shricharan',
@@ -19,8 +19,8 @@ export default function PLDashboardPage() {
       accentBg={BG}
       tags={[
         { label: 'Analytics', color: COLOR, bg: BG },
-        { label: 'BigQuery', color: '#60A5FA', bg: 'rgba(96,165,250,0.07)' },
-        { label: 'Financial Modelling', color: '#C9A96E', bg: 'rgba(201,169,110,0.07)' },
+        { label: 'BigQuery', color: '#2343F5', bg: 'rgba(35,67,245,0.07)' },
+        { label: 'Financial Modelling', color: '#A86A00', bg: 'rgba(168,106,0,0.07)' },
       ]}
     >
       {/* The problem */}
@@ -98,9 +98,9 @@ export default function PLDashboardPage() {
         >
           {/* Chrome */}
           <div className="flex items-center gap-2 px-4 py-3" style={{ borderBottom: '1px solid var(--border)', background: 'var(--bg-card)' }}>
-            <div className="w-2.5 h-2.5 rounded-full" style={{ background: '#E8432D' }} />
-            <div className="w-2.5 h-2.5 rounded-full" style={{ background: '#C9A96E' }} />
-            <div className="w-2.5 h-2.5 rounded-full" style={{ background: '#3FBF7F' }} />
+            <div className="w-2.5 h-2.5 rounded-full" style={{ background: '#D2361F' }} />
+            <div className="w-2.5 h-2.5 rounded-full" style={{ background: '#A86A00' }} />
+            <div className="w-2.5 h-2.5 rounded-full" style={{ background: '#0F8A5C' }} />
             <div className="flex-1 mx-4 h-5 rounded flex items-center px-2" style={{ background: 'var(--bg-elevated)', border: '1px solid var(--border-subtle)' }}>
               <span className="text-xs" style={{ color: 'var(--tertiary)', fontFamily: 'var(--font-mono)' }}>lookerstudio.google.com · DAM P&L Dashboard</span>
             </div>
@@ -162,8 +162,8 @@ export default function PLDashboardPage() {
                 <div className="flex flex-col gap-2">
                   {[
                     { label: 'Payroll', pct: 52, color: COLOR },
-                    { label: 'Tools & SaaS', pct: 18, color: '#60A5FA' },
-                    { label: 'Ads spend', pct: 16, color: '#C9A96E' },
+                    { label: 'Tools & SaaS', pct: 18, color: '#2343F5' },
+                    { label: 'Ads spend', pct: 16, color: '#A86A00' },
                     { label: 'Other', pct: 14, color: 'var(--border)' },
                   ].map(item => (
                     <div key={item.label}>
@@ -198,22 +198,22 @@ export default function PLDashboardPage() {
             icon="💰"
             title="Revenue Stream Breakdown"
             desc="Revenue split by client, service type (Google Ads, Meta Ads, SEO, CRO), and geography — identifying which streams were growing and which were flat."
-            color="#C9A96E"
-            bg="rgba(201,169,110,0.07)"
+            color="#A86A00"
+            bg="rgba(168,106,0,0.07)"
           />
           <FeatureCard
             icon="📉"
             title="Opex Ratio Tracking"
             desc="Operating expense ratios tracked against revenue benchmarks — flagging when cost lines were growing faster than revenue."
-            color="#60A5FA"
-            bg="rgba(96,165,250,0.07)"
+            color="#2343F5"
+            bg="rgba(35,67,245,0.07)"
           />
           <FeatureCard
             icon="🔍"
             title="Cost-Sink Identification"
             desc="Drill-down analysis of individual cost lines identified two categories consuming disproportionate margin — informing a 10%+ cost optimisation initiative."
-            color="#E8432D"
-            bg="rgba(232,67,45,0.07)"
+            color="#D2361F"
+            bg="rgba(210,54,31,0.07)"
           />
         </div>
       </ProjectSection>
@@ -222,8 +222,8 @@ export default function PLDashboardPage() {
       <ProjectSection label="Tech Stack" title="Built on Google Cloud.">
         <div className="flex flex-wrap gap-2 mb-6">
           <TechBadge name="BigQuery" color={COLOR} />
-          <TechBadge name="Looker Studio" color="#60A5FA" />
-          <TechBadge name="SQL" color="#C9A96E" />
+          <TechBadge name="Looker Studio" color="#2343F5" />
+          <TechBadge name="SQL" color="#A86A00" />
           <TechBadge name="Google Cloud" />
           <TechBadge name="Scheduled Queries (auto-refresh)" />
         </div>
@@ -236,9 +236,9 @@ export default function PLDashboardPage() {
       <ProjectSection label="Outcomes" title="From monthly guesswork to weekly clarity.">
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
           <StatCard value="Monthly → Weekly" label="Reporting cycle" sub="4x more frequent insights" color={COLOR} />
-          <StatCard value="10%+" label="Cost optimisation" sub="Target identified via analysis" color="#C9A96E" />
-          <StatCard value="Live" label="P&L visibility" sub="Real-time actuals vs. forecast" color="#60A5FA" />
-          <StatCard value="0" label="Manual updates" sub="Fully automated refresh" color="#3FBF7F" />
+          <StatCard value="10%+" label="Cost optimisation" sub="Target identified via analysis" color="#A86A00" />
+          <StatCard value="Live" label="P&L visibility" sub="Real-time actuals vs. forecast" color="#2343F5" />
+          <StatCard value="0" label="Manual updates" sub="Fully automated refresh" color="#0F8A5C" />
         </div>
         <BulletList color={COLOR} items={[
           'Reporting cycle compressed from monthly to weekly — leadership now reviews financials every Friday.',
