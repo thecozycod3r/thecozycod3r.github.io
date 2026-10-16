@@ -86,8 +86,9 @@ export const websites: Website[] = [
       { name: 'Honey', hex: '#D9A441' },
     ],
     type: [
-      { role: 'Display', face: 'Fraunces', why: 'A soft, slightly wonky old-style serif — it reads as agricultural and handmade at large sizes, which suits a family estate better than a crisp luxury serif.' },
-      { role: 'Text', face: 'Instrument Sans', why: 'Narrow and technical, for the facts a buyer scans: altitude, certification, process, lot type.' },
+      { role: 'Display', face: 'Libre Caslon Display', why: 'Caslon was the everyday type of colonial-era print in India when the estate was founded in 1900. At headline size it reads like an estate ledger or a planters’ notice: sharp, high-contrast and rarely seen on modern sites.' },
+      { role: 'Italic & small heads', face: 'Libre Caslon Text', why: 'The Display cut has no italic and its hairlines thin out below about 24px, so quotes, press lines and small headings drop to the sturdier Text cut of the same family.' },
+      { role: 'Text', face: 'Libre Franklin', why: 'A plain American gothic of the same era, for the facts a buyer scans: altitude, certification, process, lot type.' },
     ],
     language: [
       'Dark, forest-floor palette taken from under the canopy: near-black ink, moss and a cream that reads like unbleached paper.',

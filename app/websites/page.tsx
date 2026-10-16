@@ -66,7 +66,7 @@ export default function WebsitesPage() {
                         ))}
                       </span>
                       <span className="text-[13px]" style={{ color: 'var(--ink-3)' }}>
-                        {[...new Set(w.type.map((t) => t.face.split(',')[0]))].join(' and ')}
+                        {new Intl.ListFormat('en-GB', { type: 'conjunction' }).format([...new Set(w.type.map((t) => t.face.split(',')[0]))])}
                       </span>
                     </div>
                   </div>
