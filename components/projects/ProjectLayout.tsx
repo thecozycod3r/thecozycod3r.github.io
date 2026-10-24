@@ -6,6 +6,7 @@ import { EMAIL } from '@/data/profile';
 
 interface Tag { label: string; color: string; bg: string }
 interface Repo { url: string; label?: string; private?: boolean }
+interface Live { url: string; label: string }
 
 interface Props {
   title: string;
@@ -16,11 +17,12 @@ interface Props {
   color: string;
   accentBg: string;
   repos?: Repo[];
+  live?: Live;
   back?: { href: string; label: string };
   children: React.ReactNode;
 }
 
-export default function ProjectLayout({ title, subtitle, period, company, tags, color, repos, back = { href: '/#work', label: 'All work' }, children }: Props) {
+export default function ProjectLayout({ title, subtitle, period, company, tags, color, repos, live, back = { href: '/#work', label: 'All work' }, children }: Props) {
   return (
     <>
       <Navbar />
@@ -53,6 +55,18 @@ export default function ProjectLayout({ title, subtitle, period, company, tags, 
                 </span>
               ))}
             </div>
+
+            {live && (
+              <a
+                href={live.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-8 inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-[15px] font-medium text-white transition-opacity hover:opacity-90"
+                style={{ background: 'var(--cobalt)' }}
+              >
+                {live.label} <ArrowUpRight size={15} />
+              </a>
+            )}
 
             {repos && repos.length > 0 && (
               <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 text-[14px]">

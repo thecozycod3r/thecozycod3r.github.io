@@ -20,7 +20,7 @@ export function Work() {
   return (
     <section className="pt-4 pb-16 md:pb-24">
       <div className="max-w-[1240px] mx-auto px-4 md:px-8">
-        <SectionHead id="work" title="Work" aside="Six things I designed and shipped. Each case study covers the problem, the build and what changed." />
+        <SectionHead id="work" title="Work" aside="Nine things I designed and shipped. Each case study covers the problem, the build and what changed. Company code is private; request access from any case study. Table Night is free to play." />
         <ul>
           {projects.map((p) => (
             <li key={p.slug} style={{ borderBottom: '1px solid var(--rule)' }}>

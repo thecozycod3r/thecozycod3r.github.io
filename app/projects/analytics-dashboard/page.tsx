@@ -5,19 +5,19 @@ const COLOR = '#2343F5';
 const BG = 'rgba(35,67,245,0.07)';
 
 export const metadata = {
-  title: 'Client Analytics Platform — Dhruv Shricharan',
+  title: 'Cerno — Dhruv Shricharan',
 };
 
 export default function AnalyticsDashboardPage() {
   return (
     <ProjectLayout
-      title="Client Analytics Platform"
-      subtitle="One place where every client's ad spend, leads and sales outcomes meet — a cloud data pipeline across Meta, Google and client CRMs, feeding a dashboard, AI insights, automated monthly reports and Slack alerts."
+      title="Cerno"
+      subtitle="One place where every client's ad spend, leads and sales outcomes meet. A cloud data pipeline across Meta, Google and client CRMs feeds a dashboard, AI insights, automated monthly reports and alerts. It began as DAM's internal analytics tool and is now one platform for staff, clients and self-serve businesses."
       period="2026"
       company="Digital Advantage Media"
       color={COLOR}
       accentBg={BG}
-      repos={[{ url: 'https://github.com/thecozycod3r/DAMClaude', private: true }, { url: 'https://github.com/thecozycod3r/Claude_Automations', label: 'thecozycod3r/Claude_Automations (pipeline)', private: true }]}
+      repos={[{ url: 'https://github.com/thecozycod3r/DAMClaude', label: 'thecozycod3r/DAMClaude (Cerno app)', private: true }, { url: 'https://github.com/thecozycod3r/Claude_Automations', label: 'thecozycod3r/Claude_Automations (pipeline)', private: true }]}
       tags={[
         { label: 'Analytics', color: COLOR, bg: BG },
         { label: 'Data Engineering', color: '#0F8A5C', bg: 'rgba(15,138,92,0.07)' },
@@ -124,6 +124,43 @@ export default function AnalyticsDashboardPage() {
             desc="Each client's strategy brief lives in the tool. AI drafts it from the website, call notes or an old deck; an account manager approves each section before anything downstream reads it."
             color="#0F8A5C"
             bg="rgba(15,138,92,0.07)"
+          />
+        </div>
+      </ProjectSection>
+
+      {/* Platform */}
+      <ProjectSection label="One Platform" title="From internal tool to product.">
+        <p className="text-base leading-relaxed mb-8" style={{ color: 'var(--muted)', maxWidth: 680 }}>
+          Clients kept asking for the view the account managers had, so Cerno became one platform with one login. Staff, client logins and businesses that sign up on their own all use the same site; what each person sees follows the email they have proven, not a separate deployment.
+        </p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <FeatureCard
+            icon="🔐"
+            title="Access Follows Identity"
+            desc="Any sign-in method works, but agency-level access needs a confirmed address. Each client login is scoped to its own accounts, checked server-side on every request."
+            color={COLOR}
+            bg={BG}
+          />
+          <FeatureCard
+            icon="🧭"
+            title="Self-Serve Onboarding"
+            desc="A business names itself, connects its own Google Ads and Meta accounts through OAuth, and gets the same dashboard the agency uses, filled by the same pipeline."
+            color="#0F8A5C"
+            bg="rgba(15,138,92,0.07)"
+          />
+          <FeatureCard
+            icon="📅"
+            title="Week on Week"
+            desc="Any campaign, ad set or ad as eight whole Monday-to-Sunday weeks side by side. A client asked for it; it shipped to staff and client views together."
+            color="#6A3FD6"
+            bg="rgba(106,63,214,0.07)"
+          />
+          <FeatureCard
+            icon="🔍"
+            title="SEO Next to Paid"
+            desc="Search Console and GA4 sit beside the ad data, and a panel matches paid search terms to organic rankings to show where SEO would lower the cost of paid."
+            color="#A86A00"
+            bg="rgba(168,106,0,0.07)"
           />
         </div>
       </ProjectSection>

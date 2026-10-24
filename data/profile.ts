@@ -19,16 +19,17 @@ export const systemMap: MapStage[] = [
     stage: 'Run the work',
     question: 'Who is doing what, and is it approved?',
     nodes: [
-      { name: 'Asana operations', note: 'Four teams on one system, auto-assigned', href: '/projects/asana-ops/' },
+      { name: 'Tempo', note: 'Own task manager, replaced Asana', href: '/projects/tempo/' },
       { name: 'Social media planner', note: 'Brief to approval to auto-post', href: '/projects/social-media-tool/' },
       { name: 'Creative Studio', note: 'Seven AI models, every rupee tracked', href: '/projects/creative-studio/' },
+      { name: 'Neo', note: 'SEO + GEO content, written and tracked', href: '/projects/neo/' },
     ],
   },
   {
     stage: 'Prove results',
     question: 'Did the ad spend turn into sales?',
     nodes: [
-      { name: 'Client analytics', note: '28 accounts, ads joined to CRM leads', href: '/projects/analytics-dashboard/' },
+      { name: 'Cerno', note: 'Ads joined to CRM leads, for staff and clients', href: '/projects/analytics-dashboard/' },
     ],
   },
   {
@@ -53,11 +54,35 @@ export interface Project {
 export const projects: Project[] = [
   {
     slug: 'analytics-dashboard',
-    title: 'Client Analytics Platform',
-    line: 'Meta, Google and client CRMs in one pipeline, feeding a dashboard, AI insights, monthly reports and overnight Slack alerts.',
+    title: 'Cerno',
+    line: 'Meta, Google and client CRMs in one pipeline, feeding a dashboard, AI insights and monthly reports. One platform for staff, clients and self-serve businesses.',
     context: 'Digital Advantage Media',
     year: '2026',
     stats: [{ v: '28', l: 'client accounts' }, { v: '21', l: 'reports a month, generated' }],
+  },
+  {
+    slug: 'neo',
+    title: 'Neo',
+    line: 'An SEO and GEO content platform: briefs to published drafts, rank and AI-visibility tracking, editable client reports. Replaced a paid tool.',
+    context: 'Digital Advantage Media',
+    year: '2026',
+    stats: [{ v: '4', l: 'AI engines tracked' }, { v: '₹0', l: 'per-seat cost' }],
+  },
+  {
+    slug: 'tempo',
+    title: 'Tempo',
+    line: 'The agency’s own task manager. Replaced Asana with the same routing rules, Slack approvals and late-work reports, on a free database tier.',
+    context: 'Digital Advantage Media',
+    year: '2026',
+    stats: [{ v: '29', l: 'client boards' }, { v: '$0', l: 'monthly database cost' }],
+  },
+  {
+    slug: 'table-night',
+    title: 'Table Night',
+    line: 'Fourteen multiplayer card and party games played on your own phone. No accounts, free, and the table survives the host leaving.',
+    context: 'Personal, free to play',
+    year: '2026',
+    stats: [{ v: '14', l: 'games' }, { v: '2–12', l: 'players' }],
   },
   {
     slug: 'creative-studio',
