@@ -113,9 +113,6 @@ function SystemMap() {
         ))}
       </ol>
 
-      <p className="mt-8 pt-5 text-[14px]" style={{ color: 'var(--ink-2)', borderTop: '1px solid var(--rule)' }}>
-        Off the map: <Link href="/projects/arthur/" className="ink-link">A.R.T.H.U.R.</Link>, a voice assistant I built to run my own inbox.
-      </p>
     </div>
   );
 }

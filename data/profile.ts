@@ -77,28 +77,12 @@ export const projects: Project[] = [
     stats: [{ v: '29', l: 'client boards' }, { v: '$0', l: 'monthly database cost' }],
   },
   {
-    slug: 'table-night',
-    title: 'Table Night',
-    line: 'Fourteen multiplayer card and party games played on your own phone. No accounts, free, and the table survives the host leaving.',
-    context: 'Personal, free to play',
-    year: '2026',
-    stats: [{ v: '14', l: 'games' }, { v: '2–12', l: 'players' }],
-  },
-  {
     slug: 'creative-studio',
     title: 'Creative Studio',
     line: 'An internal AI image and video studio with client workspaces, spend limits, approvals and a UGC ad workflow. Written from a PRD, shipped to production.',
     context: 'Digital Advantage Media',
     year: '2026',
     stats: [{ v: '7', l: 'generation models' }, { v: '30', l: 'client workspaces' }],
-  },
-  {
-    slug: 'arthur',
-    title: 'A.R.T.H.U.R.',
-    line: 'A voice assistant for my Mac that reads email, Slack, WhatsApp and the calendar, briefs me twice a day and replies only after I say yes.',
-    context: 'Personal, open source',
-    year: '2026',
-    stats: [{ v: '3.6s', l: 'median response' }, { v: '₹0', l: 'running cost' }],
   },
   {
     slug: 'social-media-tool',
@@ -239,7 +223,9 @@ export const education = [
   { school: "St. Joseph's Boys' High School, Bengaluru", what: 'ISC, Science', when: '2019' },
 ];
 
-export const offClock = [
+export const offClock: { what: string; detail: string; href?: string }[] = [
+  { what: 'Table Night', detail: 'Fourteen multiplayer card and party games for your phone. Free to play.', href: '/projects/table-night/' },
+  { what: 'A.R.T.H.U.R.', detail: 'A voice assistant for my Mac that runs my own inbox. Open source.', href: '/projects/arthur/' },
   { what: 'Basketball', detail: 'Represented CUHK; captained the team to a championship.' },
   { what: 'Tennis', detail: 'Club and university tournaments.' },
   { what: 'Travel', detail: '15+ countries across Asia and Europe.' },
