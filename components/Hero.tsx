@@ -9,11 +9,6 @@ export default function Hero() {
       <div className="max-w-[1240px] mx-auto px-4 md:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_280px] gap-10 lg:gap-16 items-end">
           <div>
-            <p className="flex items-center gap-2 text-[14px] mb-6" style={{ color: 'var(--ink-2)' }}>
-              <span className="w-2 h-2 rounded-full" style={{ background: 'var(--signal)', boxShadow: '0 0 0 3px rgba(255,194,26,0.3)' }} />
-              Bengaluru. Open to growth and founders&apos; office roles.
-            </p>
-
             <h1 className="display-tight font-extrabold" style={{ fontSize: 'clamp(76px, 15vw, 212px)', color: 'var(--ink)' }}>
               Dhruv
               <br />
