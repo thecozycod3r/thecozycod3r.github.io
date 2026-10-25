@@ -20,7 +20,7 @@ export function Work() {
   return (
     <section className="pt-4 pb-16 md:pb-24">
       <div className="max-w-[1240px] mx-auto px-4 md:px-8">
-        <SectionHead id="work" title="Work" aside="Nine things I designed and shipped. Each case study covers the problem, the build and what changed. Company code is private; request access from any case study. Table Night is free to play." />
+        <SectionHead id="work" title="Work" aside="Seven things I designed and shipped. Each case study covers the problem, the build and what changed. Company code is private; request access from any case study." />
         <ul>
           {projects.map((p) => (
             <li key={p.slug} style={{ borderBottom: '1px solid var(--rule)' }}>
@@ -203,7 +203,9 @@ export function About() {
             <ul>
               {offClock.map((o) => (
                 <li key={o.what} className="py-4 grid grid-cols-[140px_1fr] gap-4" style={{ borderBottom: '1px solid var(--rule)' }}>
-                  <p className="text-[16px] font-semibold" style={{ color: 'var(--ink)' }}>{o.what}</p>
+                  <p className="text-[16px] font-semibold" style={{ color: 'var(--ink)' }}>
+                    {o.href ? <Link href={o.href} className="ink-link">{o.what}</Link> : o.what}
+                  </p>
                   <p className="text-[15px]" style={{ color: 'var(--ink-2)' }}>{o.detail}</p>
                 </li>
               ))}
