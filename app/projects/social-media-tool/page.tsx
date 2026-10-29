@@ -41,7 +41,7 @@ export default function SocialMediaToolPage() {
             { icon: '📅', pain: 'Manual posting by the social media manager', result: 'Error-prone, time-wasting' },
           ].map(p => (
             <div key={p.icon} className="p-4 rounded-xl" style={{ background: 'var(--bg-card)', border: '1px solid var(--border-subtle)' }}>
-              <p className="text-2xl mb-3">{p.icon}</p>
+              <span aria-hidden className="block h-0.5 w-6 mb-4" style={{ background: 'var(--cobalt)' }} />
               <p className="text-sm font-medium mb-1.5" style={{ color: 'var(--cream)' }}>{p.pain}</p>
               <p className="text-xs" style={{ color: 'var(--tertiary)' }}>{p.result}</p>
             </div>

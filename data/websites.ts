@@ -73,7 +73,7 @@ export const websites: Website[] = [
     urlLabel: 'nandipuracoffee.com',
     role: 'Strategy, design and build',
     summary:
-      'A fifth-generation estate growing coffee under native shade since 1900. The site positions them as what they are — a producer selling green coffee to roasters — not another café brand.',
+      'A fifth-generation estate growing coffee under native shade since the late 1800s. The site positions them as what they are — a producer selling green coffee to roasters — not another café brand.',
     brief:
       'The estate’s old domain was dead and its story lived in Instagram images of certificates. Most coffee sites are written for people buying a bag; Nandipura sells Arabica micro-lots and Robusta parchment to roasters and exporters. The site had to earn a buyer’s trust in one scroll.',
     color: '#D9A441',
@@ -86,7 +86,7 @@ export const websites: Website[] = [
       { name: 'Honey', hex: '#D9A441' },
     ],
     type: [
-      { role: 'Display', face: 'Libre Caslon Display', why: 'Caslon was the everyday type of colonial-era print in India when the estate was founded in 1900. At headline size it reads like an estate ledger or a planters’ notice: sharp, high-contrast and rarely seen on modern sites.' },
+      { role: 'Display', face: 'Libre Caslon Display', why: 'Caslon was the everyday type of colonial-era print in India when the estate was founded, in the late 1800s. At headline size it reads like an estate ledger or a planters’ notice: sharp, high-contrast and rarely seen on modern sites.' },
       { role: 'Italic & small heads', face: 'Libre Caslon Text', why: 'The Display cut has no italic and its hairlines thin out below about 24px, so quotes, press lines and small headings drop to the sturdier Text cut of the same family.' },
       { role: 'Text', face: 'Libre Franklin', why: 'A plain American gothic of the same era, for the facts a buyer scans: altitude, certification, process, lot type.' },
     ],
@@ -94,7 +94,7 @@ export const websites: Website[] = [
       'Dark, forest-floor palette taken from under the canopy: near-black ink, moss and a cream that reads like unbleached paper.',
       'Two warm accents from the crop itself — cherry red for ripe coffee cherries, honey for the wild honey the estate also sells.',
       'Editorial layout with very large headlines and long, generous line lengths, closer to a magazine feature than a shop.',
-      'Small uppercase fact strip (SINCE 1900 · 3,400 FT MSL · RAINFOREST ALLIANCE) so proof sits next to the promise.',
+      'Small uppercase fact strip (SINCE THE 1800s · 3,400 FT MSL · RAINFOREST ALLIANCE) so proof sits next to the promise.',
     ],
     decisions: [
       { title: '“Enquire about lots”, not “Shop”', body: 'They sell green coffee in bulk. A cart would have been the wrong promise, so every call to action is an enquiry that lands in the estate’s inbox.' },

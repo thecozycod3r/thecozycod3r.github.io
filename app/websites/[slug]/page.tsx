@@ -1,10 +1,10 @@
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
-import Link from 'next/link';
-import { ArrowUpRight } from 'lucide-react';
 import ProjectLayout from '@/components/projects/ProjectLayout';
 import { ProjectSection, TechBadge, BulletList } from '@/components/projects/ProjectSection';
 import { websites, getWebsite } from '@/data/websites';
+
+const CLIP: Record<string, string> = { 'yercaud-club': 'site-yercaud', nandipura: 'site-nandipura', bhramari: 'site-bhramari', 'anti-labs': 'site-antilabs', 'unravel-experiences': 'site-unravel' };
 
 export function generateStaticParams() {
   return websites.map((w) => ({ slug: w.slug }));
@@ -35,22 +35,13 @@ export default async function WebsitePage({ params }: { params: Promise<{ slug: 
       accentBg={bg}
       back={{ href: '/websites/', label: 'All websites' }}
       tags={[{ label: 'Website', color, bg }, { label: site.role, color, bg }]}
+      live={{ url: site.url, label: `Visit ${site.urlLabel}` }}
+      media={CLIP[site.slug] ? { video: `/media/${CLIP[site.slug]}.mp4`, poster: `/media/posters/${CLIP[site.slug]}.jpg` } : undefined}
+      next={{ href: `/websites/${next.slug}/`, label: next.name, kicker: 'Next website' }}
     >
-      <div className="mb-14 -mt-4 flex flex-wrap items-center gap-3">
-        <a
-          href={site.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 text-[15px] px-5 py-2.5 rounded-full font-medium transition-colors hover:bg-[var(--ink)]"
-          style={{ color: '#fff', background: 'var(--cobalt)' }}
-        >
-          Visit {site.urlLabel} <ArrowUpRight size={15} />
-        </a>
-      </div>
-
-      <div className="grid grid-cols-[minmax(0,3fr)_minmax(0,1fr)] gap-4 md:gap-6 items-start mb-16">
+      <div className="grid grid-cols-1 sm:grid-cols-[minmax(0,3fr)_minmax(0,1fr)] gap-6 items-start mb-16">
         <Frame src={`/websites/${site.slug}-desktop.jpg`} alt={`${site.name} homepage on desktop`} ratio="1440 / 900" caption="Desktop" sizes="(min-width: 1080px) 760px, 75vw" />
-        <Frame src={`/websites/${site.slug}-mobile.jpg`} alt={`${site.name} homepage on a phone`} ratio="780 / 1688" caption="Phone" sizes="(min-width: 1080px) 250px, 25vw" />
+        <div className="w-full max-w-[280px] mx-auto sm:max-w-none"><Frame src={`/websites/${site.slug}-mobile.jpg`} alt={`${site.name} homepage on a phone`} ratio="780 / 1688" caption="Phone" sizes="(min-width: 1080px) 250px, (min-width: 640px) 25vw, 280px" /></div>
       </div>
 
       <ProjectSection label="The brief" title="What the site had to do.">
@@ -78,10 +69,13 @@ export default async function WebsitePage({ params }: { params: Promise<{ slug: 
         <h3 className="text-[16px] font-semibold mb-1" style={{ color: 'var(--ink)' }}>Typography</h3>
         <ul>
           {site.type.map((t) => (
-            <li key={t.face} className="py-5 grid grid-cols-1 sm:grid-cols-[180px_1fr] gap-2 sm:gap-6" style={{ borderBottom: '1px solid var(--rule)' }}>
+            <li key={t.face} className="py-5 grid grid-cols-1 sm:grid-cols-[220px_1fr] gap-2 sm:gap-6 border-b border-[var(--rule)] last:border-b-0">
               <div>
                 <p className="text-[13px]" style={{ color: 'var(--ink-3)' }}>{t.role}</p>
-                <p className="font-display font-bold text-[22px] leading-tight" style={{ color: 'var(--ink)' }}>{t.face}</p>
+                {/* Specimen in the real face: Google Fonts with text= loads only these glyphs. */}
+                <link rel="stylesheet" precedence="default" href={`https://fonts.googleapis.com/css2?family=${encodeURIComponent(t.face.split(',')[0].trim())}&text=${encodeURIComponent(t.face.split(',')[0].trim())}&display=swap`} />
+                <p className="text-[24px] leading-tight" style={{ color: 'var(--ink)', fontFamily: `'${t.face.split(',')[0].trim()}', var(--font-plex-sans), serif` }}>{t.face.split(',')[0].trim()}</p>
+                {t.face.includes(',') && <p className="text-[12px] mt-0.5" style={{ color: 'var(--ink-3)' }}>{t.face.split(',').slice(1).join(',').trim()}</p>}
               </div>
               <p className="text-[15px] leading-[1.6]" style={{ color: 'var(--ink-2)' }}>{t.why}</p>
             </li>
@@ -108,12 +102,6 @@ export default async function WebsitePage({ params }: { params: Promise<{ slug: 
         </div>
       </ProjectSection>
 
-      <Link href={`/websites/${next.slug}/`} className="group block py-6" style={{ borderTop: '2px solid var(--ink)' }}>
-        <p className="text-[14px] mb-1" style={{ color: 'var(--ink-3)' }}>Next website</p>
-        <p className="display-tight font-extrabold inline-flex items-start gap-2 group-hover:text-[var(--cobalt)] transition-colors" style={{ fontSize: 'clamp(40px, 7vw, 80px)', color: 'var(--ink)' }}>
-          {next.name} <ArrowUpRight size={32} className="mt-2" style={{ color: 'var(--cobalt)' }} />
-        </p>
-      </Link>
     </ProjectLayout>
   );
 }
@@ -121,7 +109,7 @@ export default async function WebsitePage({ params }: { params: Promise<{ slug: 
 function Frame({ src, alt, ratio, caption, sizes }: { src: string; alt: string; ratio: string; caption: string; sizes: string }) {
   return (
     <figure>
-      <div className="relative w-full overflow-hidden rounded-[4px]" style={{ aspectRatio: ratio, border: '1px solid var(--rule)', background: 'var(--paper-2)', boxShadow: '0 18px 40px -24px rgba(11,27,58,0.35)' }}>
+      <div data-clip className="relative w-full overflow-hidden rounded-[10px]" style={{ aspectRatio: ratio, border: '1px solid var(--rule)', background: 'var(--paper-2)', boxShadow: '0 18px 40px -24px rgba(11,27,58,0.35)' }}>
         <Image src={src} alt={alt} fill sizes={sizes} className="object-cover object-top" />
       </div>
       <figcaption className="text-[13px] mt-2" style={{ color: 'var(--ink-3)' }}>{caption}</figcaption>

@@ -39,7 +39,7 @@ export default function PLDashboardPage() {
             { icon: '💸', pain: 'No cost-sink visibility', result: 'Margin erosion went undetected' },
           ].map(p => (
             <div key={p.icon} className="p-4 rounded-xl" style={{ background: 'var(--bg-card)', border: '1px solid var(--border-subtle)' }}>
-              <p className="text-2xl mb-3">{p.icon}</p>
+              <span aria-hidden className="block h-0.5 w-6 mb-4" style={{ background: 'var(--cobalt)' }} />
               <p className="text-sm font-medium mb-1.5" style={{ color: 'var(--cream)' }}>{p.pain}</p>
               <p className="text-xs" style={{ color: 'var(--tertiary)' }}>{p.result}</p>
             </div>
@@ -87,10 +87,10 @@ export default function PLDashboardPage() {
         {/* Faux mockup retained for hero shape */}
         <details className="mb-3">
           <summary
-            className="text-xs cursor-pointer mb-3 select-none"
+            className="text-sm cursor-pointer mb-3 select-none min-h-11 py-3"
             style={{ color: 'var(--tertiary)', fontFamily: 'var(--font-mono)' }}
           >
-            ▾ View illustrative wireframe
+            View illustrative wireframe
           </summary>
         <div
           className="w-full rounded-2xl mb-3 overflow-hidden"
