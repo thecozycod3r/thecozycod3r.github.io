@@ -26,12 +26,11 @@ export default function Navbar() {
     <header
       className="fixed top-0 inset-x-0 z-50 transition-[border-color,background-color] duration-200"
       style={{
-        background: scrolled || open ? 'rgba(232,235,239,0.92)' : 'transparent',
-        backdropFilter: scrolled || open ? 'blur(10px)' : 'none',
+        background: scrolled || open ? 'var(--paper)' : 'transparent',
         borderBottom: `1px solid ${scrolled || open ? 'var(--rule)' : 'transparent'}`,
       }}
     >
-      <nav className="max-w-[1240px] mx-auto px-4 md:px-8 h-14 flex items-center justify-between">
+      <nav className="max-w-[1320px] mx-auto px-4 md:px-8 h-14 flex items-center justify-between">
         <Link href="/" className="font-display text-[17px] font-bold tracking-tight" style={{ color: 'var(--ink)' }}>
           Dhruv Shricharan
         </Link>
@@ -54,7 +53,7 @@ export default function Navbar() {
 
         <button
           type="button"
-          className="md:hidden text-[14px] font-medium px-3 py-1.5 rounded-full"
+          className="md:hidden min-h-11 min-w-11 text-[14px] font-medium px-4 rounded-full"
           style={{ border: '1px solid var(--rule)', color: 'var(--ink)' }}
           aria-expanded={open}
           aria-controls="mobile-menu"

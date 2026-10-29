@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { Words } from '@/components/night/text';
 
 interface Props {
   label: string;
@@ -12,13 +13,13 @@ const toSentence = (s: string) => s.charAt(0) + s.slice(1).toLowerCase();
 /* Two-column section: label and title on the left (sticky on desktop), content on the right */
 export function ProjectSection({ label, title, children }: Props) {
   return (
-    <section className="grid grid-cols-1 lg:grid-cols-[260px_minmax(0,1fr)] gap-x-12 gap-y-5 pb-16 mb-16" style={{ borderBottom: '1px solid var(--rule)' }}>
+    <section data-reveal className="grid grid-cols-1 lg:grid-cols-[260px_minmax(0,1fr)] gap-x-12 gap-y-5 pb-10 mb-10 md:pb-16 md:mb-16 border-b border-[var(--rule)] last:mb-0 last:pb-0 last:border-b-0">
       <div className="lg:sticky lg:top-20 self-start">
-        <p className="text-[14px] font-medium mb-2" style={{ color: 'var(--cobalt)' }}>
+        <p className="text-[14px] font-medium mb-2" style={{ color: 'var(--eyebrow, var(--cobalt))' }}>
           {toSentence(label)}
         </p>
-        <h2 className="font-display font-bold text-[28px] md:text-[32px] leading-[1.1] tracking-tight" style={{ color: 'var(--ink)' }}>
-          {title}
+        <h2 data-split className="font-display font-bold text-[28px] md:text-[32px] leading-[1.1] tracking-tight" style={{ color: 'var(--ink)', textWrap: 'balance' }}>
+          <Words text={title} />
         </h2>
       </div>
       <div className="min-w-0">{children}</div>
@@ -29,7 +30,7 @@ export function ProjectSection({ label, title, children }: Props) {
 export function StatCard({ value, label, sub }: { value: string; label: string; sub?: string; color: string }) {
   return (
     <div className="h-full pl-3 py-1" style={{ borderLeft: '2px solid var(--cobalt)' }}>
-      <p className="font-mono-custom text-[24px] leading-tight font-medium mb-1.5 break-words" style={{ color: 'var(--ink)' }}>
+      <p data-count className="font-mono-custom text-[24px] leading-tight font-medium mb-1.5 break-words" style={{ color: 'var(--ink)' }}>
         {value}
       </p>
       <p className="text-[14px] font-medium" style={{ color: 'var(--ink)' }}>
@@ -44,11 +45,13 @@ export function StatCard({ value, label, sub }: { value: string; label: string; 
   );
 }
 
-export function FeatureCard({ icon, title, desc, color }: { icon: string; title: string; desc: string; color: string; bg: string }) {
+/* One visual system for every case study: cobalt rule, no emoji, no per-card colours.
+   `icon`, `color` and `bg` are still accepted so the case-study pages need no edits. */
+export function FeatureCard({ title, desc }: { icon?: string; title: string; desc: string; color?: string; bg?: string }) {
   return (
-    <div className="h-full p-5 rounded-[4px]" style={{ background: 'var(--sheet)', border: '1px solid var(--rule)', borderTop: `3px solid ${color}` }}>
+    <div data-tilt className="h-full p-5 rounded-[10px] transition-shadow hover:shadow-[0_24px_60px_-30px_rgba(11,27,58,0.45)]" style={{ background: 'var(--sheet)', border: '1px solid var(--rule)', borderTop: '2px solid var(--cobalt)' }}>
       <div className="flex items-center gap-2.5 mb-2.5">
-        <span className="text-[17px] leading-none" aria-hidden>{icon}</span>
+        <span aria-hidden className="h-1.5 w-1.5 shrink-0 rounded-full" style={{ background: 'var(--cobalt)' }} />
         <h4 className="text-[16px] font-semibold leading-snug" style={{ color: 'var(--ink)' }}>
           {title}
         </h4>
@@ -89,7 +92,8 @@ export function Screenshot({
   return (
     <figure className="mb-3">
       <div
-        className="relative w-full overflow-hidden rounded-[4px]"
+        data-clip
+        className="relative w-full overflow-hidden rounded-[10px]"
         style={{
           border: '1px solid var(--rule)',
           background: light ? '#FFFFFF' : 'var(--paper-2)',

@@ -129,3 +129,117 @@ details.role[open] .chev { transform: rotate(45deg); }
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ════════════════════════════════════════════════════════════════════
+   Night blueprint — the home page's motion rebuild (29 Oct 2026).
+   Same "systems drawing" tokens, roles swapped: navy becomes the sheet,
+   paper becomes the ink. `.day` re-scopes a section back to paper.
+   ════════════════════════════════════════════════════════════════════ */
+.night {
+  --paper: #071226;
+  --paper-2: #0B1B3A;
+  --sheet: #0F2347;
+  --ink: #E8EBEF;
+  --ink-2: #B9C3D3;
+  --ink-3: #8D9AB1;
+  --rule: rgba(232, 235, 239, 0.16);
+  --rule-soft: rgba(232, 235, 239, 0.08);
+  --cobalt: #6F89FF;           /* lifted for 4.5:1 on navy */
+  --cobalt-tint: rgba(111, 137, 255, 0.12);
+  --eyebrow: var(--signal);
+  background: var(--paper);
+  color: var(--ink);
+}
+.day {
+  --paper: #E8EBEF; --paper-2: #DDE2E8; --sheet: #F8F9FB;
+  --ink: #0B1B3A; --ink-2: #3F4C65; --ink-3: #5B6780;
+  --rule: #BFC8D4; --rule-soft: #D3D9E1;
+  --cobalt: #2343F5; --cobalt-tint: rgba(35, 67, 245, 0.08);
+  --eyebrow: #2343F5;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+/* Hero name: characters rise once, in CSS, so it works before any JS. */
+.char-rise { display: inline-block; overflow: hidden; vertical-align: bottom; padding-bottom: 0.06em; margin-bottom: -0.06em; }
+.char-rise > span { display: inline-block; }
+@keyframes char-rise { from { transform: translateY(105%); } to { transform: none; } }
+@keyframes fade-up { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: no-preference) {
+  .char-rise > span { animation: char-rise 0.9s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: calc(var(--i) * 28ms + 120ms); }
+  .hero-fade { animation: fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: var(--d, 0.5s); }
+}
+
+/* The four-stage legend: one yellow pulse runs left to right, forever. */
+@keyframes stage-pulse { 0%, 100% { opacity: 0; transform: scale(.6); } 8%, 18% { opacity: 1; transform: scale(1); } }
+.stage-dot { position: relative; background: var(--rule); }
+.stage-dot::after { content: ''; position: absolute; inset: -5px; border-radius: 9999px; background: radial-gradient(circle, var(--signal) 35%, rgba(255,194,26,0) 70%); opacity: 0; will-change: opacity, transform; }
+@media (prefers-reduced-motion: no-preference) {
+  .stage-dot::after { animation: stage-pulse 4s ease-in-out infinite; animation-delay: calc(var(--i) * 0.9s); }
+}
+
+/* Marquee rows */
+@keyframes marquee-l { to { transform: translateX(-50%); } }
+@keyframes marquee-r { from { transform: translateX(-50%); } to { transform: none; } }
+.marquee { display: flex; width: max-content; will-change: transform; backface-visibility: hidden; contain: layout paint style; }
+@media (prefers-reduced-motion: no-preference) {
+  .marquee-l { animation: marquee-l 42s linear infinite; }
+  .marquee-r { animation: marquee-r 48s linear infinite; }
+  .marquee-wrap:hover .marquee { animation-play-state: paused; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee { flex-wrap: wrap; width: auto; }
+  .marquee > [aria-hidden] { display: none; }
+}
+
+/* Custom cursor (fine pointers only; added by JS) */
+#cursor-ring, #cursor-dot { position: fixed; left: 0; top: 0; pointer-events: none; z-index: 100; border-radius: 9999px; will-change: transform; }
+#cursor-ring { width: 38px; height: 38px; margin: -19px 0 0 -19px; border: 1.5px solid #FFC21A; transition: width .25s, height .25s, margin .25s, background-color .25s; }
+#cursor-ring.is-hover { width: 72px; height: 72px; margin: -36px 0 0 -36px; background: rgba(255,194,26,.12); }
+#cursor-dot { width: 6px; height: 6px; margin: -3px 0 0 -3px; background: #FFC21A; }
+@media (pointer: coarse), (prefers-reduced-motion: reduce) { #cursor-ring, #cursor-dot { display: none; } }
+
+/* Big contact word: letters lift on hover */
+.wave > span { display: inline-block; transition: transform .45s cubic-bezier(.16,1,.3,1), color .3s; }
+@media (prefers-reduced-motion: no-preference) {
+  .wave:hover > span, .group:hover .wave > span { transform: translateY(-0.12em); color: var(--signal); transition-delay: calc(var(--i) * 18ms); }
+}
+
+/* Scroll progress hairline */
+#progress { position: fixed; top: 0; left: 0; right: 0; height: 2px; z-index: 60; transform-origin: 0 50%; transform: scaleX(0); background: linear-gradient(90deg, var(--cobalt), var(--signal)); }
+
+@media print { .char-rise > span, .hero-fade, .stage-dot::after, .marquee { animation: none !important; } }
+
+/* Work reel: a grid by default (no JS, reduced motion, phones);
+   a horizontal pinned strip only while the desktop pin is live (.reel-on). */
+.reel-track { display: grid; gap: 1.5rem; }
+@media (min-width: 768px) { .reel-track { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+[data-reel].reel-on { height: 100svh; display: flex; flex-direction: column; justify-content: center; padding-block: 0; }
+[data-reel].reel-on .reel-track { display: flex; width: max-content; max-width: none; margin: 0; gap: 1.75rem; padding-left: max(2rem, calc((100vw - 1320px) / 2 + 2rem)); }
+[data-reel].reel-on .reel-track > a { width: min(480px, 36vw); flex-shrink: 0; }
+@media (prefers-reduced-motion: reduce) { .marquee > ul { flex-wrap: wrap; flex-shrink: 1; } .marquee-wrap { padding-inline: 1rem; } }
+
+[data-reel].reel-on .reel-track { will-change: transform; }
+
+/* Legacy aliases resolve where they are declared, so re-declare them per theme
+   (otherwise --muted inside .night would still be the light theme's ink). */
+.night, .day {
+  --bg: var(--paper); --bg-elevated: var(--paper-2); --bg-card: var(--sheet);
+  --border: var(--rule); --border-subtle: var(--rule-soft);
+  --cream: var(--ink); --muted: var(--ink-2); --tertiary: var(--ink-3); --gold: var(--cobalt);
+}
+
+/* Blueprint grid behind subpage heroes */
+.grid-night {
+  background-image: linear-gradient(var(--rule-soft) 1px, transparent 1px), linear-gradient(90deg, var(--rule-soft) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(70% 70% at 60% 30%, #000 30%, transparent 75%);
+}
+
+/* Big type: balanced lines, no stranded last word */
+.display-tight, h1, h2, h3 { text-wrap: balance; }
+.sw { white-space: nowrap; }
+[data-statement] { text-wrap: pretty; }
+
+/* Reel only goes horizontal when it fits under the nav (checked in JS) */
+[data-reel].reel-on { padding-top: 56px; }

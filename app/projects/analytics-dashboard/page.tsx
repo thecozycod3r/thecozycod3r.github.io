@@ -17,7 +17,7 @@ export default function AnalyticsDashboardPage() {
       company="Digital Advantage Media"
       color={COLOR}
       accentBg={BG}
-      repos={[{ url: 'https://github.com/thecozycod3r/DAMClaude', label: 'thecozycod3r/DAMClaude (Cerno app)', private: true }, { url: 'https://github.com/thecozycod3r/Claude_Automations', label: 'thecozycod3r/Claude_Automations (pipeline)', private: true }]}
+      repos={[{ url: 'https://github.com/thecozycod3r/DAMClaude', label: 'Cerno app', private: true }, { url: 'https://github.com/thecozycod3r/Claude_Automations', label: 'data pipeline', private: true }]}
       tags={[
         { label: 'Analytics', color: COLOR, bg: BG },
         { label: 'Data Engineering', color: '#0F8A5C', bg: 'rgba(15,138,92,0.07)' },
@@ -40,7 +40,7 @@ export default function AnalyticsDashboardPage() {
             { icon: '🔕', pain: 'Nobody watching accounts overnight', result: 'Broken campaigns found days late' },
           ].map(p => (
             <div key={p.icon} className="p-4 rounded-xl" style={{ background: 'var(--bg-card)', border: '1px solid var(--border-subtle)' }}>
-              <p className="text-2xl mb-3">{p.icon}</p>
+              <span aria-hidden className="block h-0.5 w-6 mb-4" style={{ background: 'var(--cobalt)' }} />
               <p className="text-sm font-medium mb-1.5" style={{ color: 'var(--cream)' }}>{p.pain}</p>
               <p className="text-xs" style={{ color: 'var(--tertiary)' }}>{p.result}</p>
             </div>
@@ -57,29 +57,31 @@ export default function AnalyticsDashboardPage() {
         {/* Pipeline diagram */}
         <div className="p-6 rounded-2xl mb-8" style={{ background: 'var(--bg-card)', border: '1px solid var(--border-subtle)' }}>
           <p className="text-xs tracking-widest uppercase mb-6" style={{ color: 'var(--tertiary)', fontFamily: 'var(--font-mono)' }}>Data Flow</p>
-          <div className="flex flex-wrap items-start gap-x-2 gap-y-5 pb-2">
+          <ol className="grid grid-cols-1 sm:grid-cols-5 gap-y-1 sm:gap-x-3 pb-2">
             {[
               { stage: '01', label: 'Extract', sublabel: 'Meta · Google · CRM sheets', color: COLOR },
-              { stage: '02', label: 'Clean', sublabel: 'Dates, statuses, columns', color: '#A86A00' },
-              { stage: '03', label: 'Join', sublabel: 'Spend × lead outcomes', color: '#6A3FD6' },
-              { stage: '04', label: 'Mart', sublabel: 'One per client', color: '#0F8A5C' },
-              { stage: '05', label: 'Serve', sublabel: 'Dashboard · reports · alerts', color: '#D2361F' },
+              { stage: '02', label: 'Clean', sublabel: 'Dates, statuses, columns', color: COLOR },
+              { stage: '03', label: 'Join', sublabel: 'Spend × lead outcomes', color: COLOR },
+              { stage: '04', label: 'Mart', sublabel: 'One per client', color: COLOR },
+              { stage: '05', label: 'Serve', sublabel: 'Dashboard · reports · alerts', color: COLOR },
             ].map((s, i, arr) => (
-              <div key={s.stage} className="flex items-center gap-2 flex-shrink-0">
-                <div className="flex flex-col items-center">
+              <li key={s.stage} className="relative flex sm:flex-col items-center gap-4 sm:gap-0 py-2 sm:py-0">
+                <div className="flex sm:flex-col items-center gap-4 sm:gap-0">
                   <div className="w-10 h-10 rounded-full flex items-center justify-center text-xs font-mono-custom font-medium mb-2"
                     style={{ background: s.color + '18', border: `1px solid ${s.color}44`, color: s.color }}>
                     {s.stage}
                   </div>
-                  <p className="text-xs font-medium text-center" style={{ color: 'var(--cream)' }}>{s.label}</p>
-                  <p className="text-xs text-center" style={{ color: 'var(--tertiary)' }}>{s.sublabel}</p>
+                  <div className="sm:text-center">
+                    <p className="text-xs font-medium" style={{ color: 'var(--cream)' }}>{s.label}</p>
+                    <p className="text-xs" style={{ color: 'var(--tertiary)' }}>{s.sublabel}</p>
+                  </div>
                 </div>
                 {i < arr.length - 1 && (
-                  <div className="w-6 h-px flex-shrink-0" style={{ background: 'var(--border)' }} />
+                  <span aria-hidden className="absolute hidden sm:block top-5 -right-3 w-6 h-px" style={{ background: 'var(--border)' }} />
                 )}
-              </div>
+              </li>
             ))}
-          </div>
+          </ol>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">

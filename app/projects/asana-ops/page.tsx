@@ -41,7 +41,7 @@ export default function AsanaOpsPage() {
             { icon: '📆', issue: 'No leave visibility', desc: 'Leave tracked via WhatsApp, not tied to project planning' },
           ].map(p => (
             <div key={p.icon} className="p-4 rounded-xl" style={{ background: 'var(--bg-card)', border: '1px solid var(--border-subtle)' }}>
-              <p className="text-2xl mb-3">{p.icon}</p>
+              <span aria-hidden className="block h-0.5 w-6 mb-4" style={{ background: 'var(--cobalt)' }} />
               <p className="text-sm font-medium mb-1.5" style={{ color: 'var(--cream)' }}>{p.issue}</p>
               <p className="text-xs leading-snug" style={{ color: 'var(--tertiary)' }}>{p.desc}</p>
             </div>
@@ -112,7 +112,7 @@ export default function AsanaOpsPage() {
         {/* User journey */}
         <div className="p-6 rounded-2xl mb-6" style={{ background: 'var(--bg-card)', border: '1px solid var(--border-subtle)' }}>
           <p className="text-xs tracking-widest uppercase mb-6" style={{ color: 'var(--tertiary)', fontFamily: 'var(--font-mono)' }}>The employee experience — five steps end-to-end</p>
-          <div className="flex flex-wrap items-start gap-x-3 gap-y-5 pb-2">
+          <ol className="grid grid-cols-1 sm:grid-cols-5 gap-y-1 sm:gap-x-3 pb-2">
             {[
               { step: '01', icon: '📝', label: 'Employee submits', detail: 'Zapier form with dates + reason' },
               { step: '02', icon: '📬', label: 'Manager notified', detail: 'Email + Slack message sent' },
@@ -120,22 +120,23 @@ export default function AsanaOpsPage() {
               { step: '04', icon: '📧', label: 'Employee notified', detail: 'Confirmation email sent' },
               { step: '05', icon: '📅', label: 'Calendar updated', detail: 'Leave visible to all managers' },
             ].map((s, i, arr) => (
-              <div key={s.step} className="flex items-start gap-3 flex-shrink-0">
-                <div className="flex flex-col items-center min-w-[100px]">
-                  <div className="w-10 h-10 rounded-full flex items-center justify-center text-xl mb-2"
-                    style={{ background: BG, border: `1px solid ${COLOR}44` }}>
-                    {s.icon}
+              <li key={s.step} className="relative flex sm:flex-col items-center gap-4 sm:gap-0 py-2 sm:py-0">
+                <div className="flex sm:flex-col items-center gap-4 sm:gap-0">
+                  <div className="w-10 h-10 shrink-0 rounded-full flex items-center justify-center text-xs font-mono-custom font-medium sm:mb-2"
+                    style={{ background: 'var(--cobalt-tint)', border: '1px solid var(--cobalt)', color: 'var(--cobalt)' }}>
+                    {s.step}
                   </div>
-                  <span className="text-xs font-mono-custom mb-1" style={{ color: COLOR }}>{s.step}</span>
-                  <p className="text-xs font-medium text-center mb-0.5" style={{ color: 'var(--cream)' }}>{s.label}</p>
-                  <p className="text-xs text-center" style={{ color: 'var(--tertiary)' }}>{s.detail}</p>
+                  <div className="sm:text-center">
+                    <p className="text-xs font-medium mb-0.5" style={{ color: 'var(--cream)' }}>{s.label}</p>
+                    <p className="text-xs" style={{ color: 'var(--tertiary)' }}>{s.detail}</p>
+                  </div>
                 </div>
                 {i < arr.length - 1 && (
-                  <div className="mt-5 w-6 h-px flex-shrink-0" style={{ background: 'var(--border)' }} />
+                  <span aria-hidden className="absolute hidden sm:block top-5 -right-3 w-6 h-px" style={{ background: 'var(--border)' }} />
                 )}
-              </div>
+              </li>
             ))}
-          </div>
+          </ol>
         </div>
 
         {/* Real Zapier wiring */}
