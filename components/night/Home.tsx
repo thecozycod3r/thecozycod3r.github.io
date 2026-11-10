@@ -332,7 +332,7 @@ export function About() {
         <figure className="lg:sticky lg:top-24">
           <div data-clip className="relative aspect-[9/11] overflow-hidden rounded-[18px]" style={{ background: 'var(--paper-2)' }}>
             <div data-parallax className="absolute -inset-y-[10%] inset-x-0">
-              <Image src="/dp.jpeg" alt="Dhruv Shricharan by the sea" fill sizes="(min-width:1024px) 520px, 100vw" className="object-cover object-left" />
+              <Image src="/portrait-beach.jpeg" alt="Dhruv Shricharan by the sea" fill sizes="(min-width:1024px) 520px, 100vw" className="object-cover object-left" />
             </div>
           </div>
           <figcaption className="mt-3 text-[13px]" style={{ color: 'var(--ink-3)' }}>

@@ -173,7 +173,7 @@
 
 /* Court card: the portrait, mirrored end to end the way a king is */
 .court-frame { position: absolute; inset: calc(var(--w) * 0.075) calc(var(--w) * 0.2); border-radius: calc(var(--w) * 0.02); overflow: hidden; background: var(--red); box-shadow: 0 0 0 calc(var(--w) * 0.007) var(--black); }
-.court-half { position: absolute; inset: 0; background: var(--stock-2) url(/dp.jpeg) no-repeat; background-size: 285% auto; background-position: 9.5% 20%; filter: grayscale(1) contrast(1.16) brightness(1.08); clip-path: polygon(0 0, 100% 0, 100% 38.6%, 0 59.6%); }
+.court-half { position: absolute; inset: 0; background: var(--stock-2) url(/portrait-beach.jpeg) no-repeat; background-size: 285% auto; background-position: 9.5% 20%; filter: grayscale(1) contrast(1.16) brightness(1.08); clip-path: polygon(0 0, 100% 0, 100% 38.6%, 0 59.6%); }
 .court-half.b { rotate: 180deg; }
 
 /* ── Navigation ───────────────────────────────────────────────────── */
