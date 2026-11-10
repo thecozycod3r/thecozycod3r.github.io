@@ -580,15 +580,17 @@ html.deal-pending [data-subhero] [data-late] { opacity: 0; }
 .shelf-media { position: relative; aspect-ratio: 16 / 10; border-radius: 20px; padding: 9px; background: var(--stock-hi); box-shadow: 0 0 0 1px rgba(23, 19, 15, 0.2), 0 26px 50px -30px rgba(0, 0, 0, 0.7); transition: rotate 0.45s cubic-bezier(.2,.9,.2,1); }
 .shelf-media > div { position: relative; height: 100%; border-radius: 12px; overflow: hidden; background: var(--site); }
 .shelf-media video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.shelf-item h2 { font-size: clamp(46px, 5.6vw, 84px); }
+.shelf-item h2 { font-size: clamp(46px, 5.6vw, 84px); text-wrap: balance; }
 .shelf-item:hover h2 { font-style: italic; }
-.shelf-phone { position: absolute; right: -3.5%; bottom: -11%; width: 21%; aspect-ratio: 780 / 1500; padding: 4.5px; border-radius: 13px; background: var(--stock-hi); box-shadow: 0 0 0 1px rgba(23, 19, 15, 0.2), 0 16px 28px -12px rgba(0, 0, 0, 0.6); rotate: 6deg; transition: rotate 0.45s cubic-bezier(.2,.9,.2,1), translate 0.45s cubic-bezier(.2,.9,.2,1); }
+.shelf-phone { position: absolute; right: 1%; bottom: -11%; width: 21%; aspect-ratio: 780 / 1500; padding: 4.5px; border-radius: 13px; background: var(--stock-hi); box-shadow: 0 0 0 1px rgba(23, 19, 15, 0.2), 0 16px 28px -12px rgba(0, 0, 0, 0.6); rotate: 6deg; transition: rotate 0.45s cubic-bezier(.2,.9,.2,1), translate 0.45s cubic-bezier(.2,.9,.2,1); }
 .shelf-phone img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top; border-radius: 9px; }
 .shelf-item:hover .shelf-phone { rotate: 2deg; translate: 0 -8px; }
 .swatches { display: flex; }
 .swatches i { width: 22px; height: 22px; border-radius: 50%; margin-left: -6px; box-shadow: 0 0 0 2px var(--paper); }
 .swatches i:first-child { margin-left: 0; }
 @media (min-width: 1000px) {
+  /* Only overhang the corner where the page gutter is wide enough to hold it. */
+  .shelf-phone { right: -3.5%; }
   .shelf-item { grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr); gap: 56px; }
   .shelf li:nth-child(even) .shelf-item { grid-template-columns: minmax(0, 1fr) minmax(0, 1.45fr); }
   .shelf li:nth-child(even) .shelf-media { order: 2; rotate: 1.6deg; }

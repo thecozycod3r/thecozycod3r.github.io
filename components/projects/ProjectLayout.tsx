@@ -195,7 +195,7 @@ export default function ProjectLayout({ title, subtitle, period, company, tags, 
             <Link href={n.href} className="next-link">
               <div>
                 <p className="next-kicker">{n.kicker}</p>
-                <p className="next-title display">{n.label}</p>
+                <p className="next-title display">{n.label.replace(' & ', ' &\u00a0')}</p>
               </div>
               <Card value={there.value} suit={there.suit} down />
             </Link>
