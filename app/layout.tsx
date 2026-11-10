@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Dhruv Shricharan",
     description: "I build the systems a growing business runs on.",
-    images: [{ url: "/og-dhruv-beach.jpeg", width: 900, height: 1100, alt: "Dhruv Shricharan" }],
+    images: [{ url: "/og-card.jpg", width: 1200, height: 630, alt: "Dhruv Shricharan — I build the systems a growing business runs on." }],
   },
 };
 
