@@ -257,6 +257,11 @@ html.deal-pending [data-hero] [data-late] { opacity: 0; }
 .band { padding-block: clamp(72px, 10vw, 148px); }
 .head { display: grid; gap: 18px; margin-bottom: clamp(36px, 5vw, 68px); }
 .head h2 { font-size: clamp(44px, 7.6vw, 116px); }
+/* A heading with no note beside it takes the whole row. */
+.head > :only-child { grid-column: 1 / -1; }
+/* inline-size containment: the wide mock-up must not stretch the page around it. */
+.wire-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; contain: inline-size; }
+.wire-scroll > .wire { min-width: 680px; }
 .head p { max-width: 40ch; color: var(--ink-2); font-size: 18px; }
 @media (min-width: 900px) { .head { grid-template-columns: minmax(0, 1fr) minmax(0, 23rem); align-items: end; gap: 48px; } .head p { padding-bottom: 0.5em; } }
 
@@ -553,7 +558,7 @@ html.deal-pending [data-subhero] [data-late] { opacity: 0; }
 /* The next card, then the rest of the hand */
 .next { position: relative; overflow: clip; padding-block: clamp(64px, 8vw, 120px) clamp(44px, 5.5vw, 76px); }
 .next-link { display: flex; align-items: center; justify-content: space-between; gap: 30px; }
-.next-kicker { font-size: 17px; font-weight: 500; color: var(--ink-2); margin-bottom: 14px; }
+.next-kicker { font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 14px; }
 .next-title { font-size: clamp(46px, 9.4vw, 150px); line-height: 0.86; letter-spacing: -0.028em; }
 .next-link > .pc { --w: clamp(84px, 12vw, 180px); rotate: 8deg; transition: rotate 0.5s cubic-bezier(.2,.9,.2,1), translate 0.5s cubic-bezier(.2,.9,.2,1); }
 .next-link .pc-flip { transition: transform 0.6s cubic-bezier(.3,.9,.3,1); }
@@ -561,7 +566,7 @@ html.deal-pending [data-subhero] [data-late] { opacity: 0; }
 .next-link:hover > .pc, .next-link:focus-visible > .pc { rotate: -4deg; translate: 0 -10px; }
 .next-link:hover .pc-flip, .next-link:focus-visible .pc-flip { transform: rotateY(0deg); }
 .more { margin-top: clamp(48px, 6.5vw, 92px); padding-top: 22px; border-top: 1px solid var(--rule); }
-.more-head { font-size: 16px; font-weight: 500; color: var(--ink-2); }
+.more-head { font-size: 16px; font-weight: 500; color: var(--ink); }
 .more-row { --w: clamp(112px, 10.6vw, 150px); display: flex; gap: 12px; overflow-x: auto; scrollbar-width: none; padding: 34px clamp(18px, 4vw, 52px) 20px; margin-inline: calc(clamp(18px, 4vw, 52px) * -1); }
 .more-row::-webkit-scrollbar { display: none; }
 .more-row li { flex-shrink: 0; }

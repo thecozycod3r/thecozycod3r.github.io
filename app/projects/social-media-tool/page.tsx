@@ -75,13 +75,15 @@ export default function SocialMediaToolPage() {
 
         <details className="mb-3">
           <summary
-            className="text-xs cursor-pointer mb-3 select-none"
+            className="text-sm cursor-pointer mb-3 select-none min-h-11 py-3"
             style={{ color: 'var(--tertiary)', fontFamily: 'var(--font-mono)' }}
           >
-            ▾ View illustrative wireframe
+            View illustrative wireframe
           </summary>
+        {/* A desktop mock-up: on a phone it keeps its width and scrolls sideways. */}
+        <div className="wire-scroll" tabIndex={0} role="group" aria-label="Illustrative wireframe, scrolls sideways on small screens">
         <div
-          className="w-full rounded-2xl mb-3 overflow-hidden"
+          className="wire w-full rounded-2xl mb-3 overflow-hidden"
           style={{ border: '1px solid var(--border)', background: 'var(--bg-elevated)' }}
         >
           {/* Browser chrome */}
@@ -160,6 +162,7 @@ export default function SocialMediaToolPage() {
               ))}
             </div>
           </div>
+        </div>
         </div>
         </details>
       </ProjectSection>

@@ -91,8 +91,10 @@ export default function PLDashboardPage() {
           >
             View illustrative wireframe
           </summary>
+        {/* A desktop mock-up: on a phone it keeps its width and scrolls sideways. */}
+        <div className="wire-scroll" tabIndex={0} role="group" aria-label="Illustrative wireframe, scrolls sideways on small screens">
         <div
-          className="w-full rounded-2xl mb-3 overflow-hidden"
+          className="wire w-full rounded-2xl mb-3 overflow-hidden"
           style={{ border: '1px solid var(--border)', background: 'var(--bg-elevated)' }}
         >
           {/* Chrome */}
@@ -137,7 +139,7 @@ export default function PLDashboardPage() {
                     { actual: 85, forecast: 80 },
                     { actual: 100, forecast: 88 },
                   ].map((bar, i) => (
-                    <div key={i} className="flex-1 flex items-end gap-0.5">
+                    <div key={i} className="flex-1 h-full flex items-end gap-0.5">
                       <div className="flex-1 rounded-t" style={{ height: `${bar.actual}%`, background: COLOR, opacity: 0.9 }} />
                       <div className="flex-1 rounded-t" style={{ height: `${bar.forecast}%`, background: 'var(--border)', opacity: 0.6 }} />
                     </div>
@@ -179,6 +181,7 @@ export default function PLDashboardPage() {
               </div>
             </div>
           </div>
+        </div>
         </div>
         </details>
       </ProjectSection>

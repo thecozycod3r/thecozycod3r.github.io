@@ -23,6 +23,13 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setOpen(false); };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [open]);
+
   return (
     <header className={`nav${stuck ? ' is-stuck' : ''}${open ? ' is-open' : ''}`}>
       <nav className="nav-in wrap" aria-label="Main">
