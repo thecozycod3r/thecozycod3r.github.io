@@ -66,7 +66,10 @@
 
 @layer base {
   * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+  /* The display face is drawn at its text optical size everywhere. At poster
+     optical sizes its thin strokes shrink to hairlines that vanish on ordinary
+     screens; this cut keeps the fat-face shape with strokes that hold. */
+  html { scroll-behavior: smooth; scroll-padding-top: 76px; font-optical-sizing: none; font-variation-settings: "opsz" 6; }
   body {
     background: var(--felt);
     color: var(--stock-hi);
@@ -190,7 +193,7 @@
 @media (min-width: 860px) { .nav-links { display: flex; } .nav-toggle, .nav-sheet { display: none; } }
 
 /* ── Hero ─────────────────────────────────────────────────────────── */
-.hero { position: relative; overflow: clip; --fs: clamp(60px, 16.4vw, 236px); --w: 88px; --R: 270px; --step: 7deg; }
+.hero { position: relative; overflow: clip; --fs: clamp(58px, 16vw, 236px); --w: 88px; --R: 270px; --step: 7deg; }
 .hero-in { position: relative; display: flex; flex-direction: column; min-height: 100svh; padding-top: 108px; padding-bottom: 22px; }
 .hero-top { position: relative; }
 .hero-name { font-size: var(--fs); line-height: 0.84; letter-spacing: -0.03em; margin-left: -0.035em; }
