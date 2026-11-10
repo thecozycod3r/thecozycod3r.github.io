@@ -5,4 +5,4 @@
 :HL["/_next/static/media/c31dbb76e36f1a9a-s.p.0~~5jj-nwn-w8.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["https://fonts.googleapis.com/css2?family=Cutive&text=Cutive&display=swap","style"]
 :HL["https://fonts.googleapis.com/css2?family=Manrope&text=Manrope&display=swap","style"]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"websites","param":null,"prefetchHints":0,"slots":{"children":{"name":"slug","param":{"type":"d","key":"yercaud-club","siblings":null},"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"couyjCyEdjAu1cpCZTq52"}
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"websites","param":null,"prefetchHints":0,"slots":{"children":{"name":"slug","param":{"type":"d","key":"yercaud-club","siblings":null},"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"4TdG9N9fCPkTJNFD7jdGU"}

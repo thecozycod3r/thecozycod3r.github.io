@@ -4,4 +4,4 @@
 :HL["/_next/static/media/31a9145ccb84606d-s.p.10_fo~wllb4ek.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/_next/static/media/c31dbb76e36f1a9a-s.p.0~~5jj-nwn-w8.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["https://fonts.googleapis.com/css2?family=Plus%20Jakarta%20Sans&text=Plus%20Jakarta%20Sans&display=swap","style"]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"websites","param":null,"prefetchHints":0,"slots":{"children":{"name":"slug","param":{"type":"d","key":"unravel-experiences","siblings":null},"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"couyjCyEdjAu1cpCZTq52"}
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"websites","param":null,"prefetchHints":0,"slots":{"children":{"name":"slug","param":{"type":"d","key":"unravel-experiences","siblings":null},"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"4TdG9N9fCPkTJNFD7jdGU"}
