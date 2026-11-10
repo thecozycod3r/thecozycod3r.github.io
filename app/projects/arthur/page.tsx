@@ -1,5 +1,5 @@
 import ProjectLayout from '@/components/projects/ProjectLayout';
-import { ProjectSection, StatCard, FeatureCard, TechBadge, BulletList, Screenshot } from '@/components/projects/ProjectSection';
+import { ProjectSection, StatCard, FeatureCard, TechBadge, BulletList, Screenshot, Flow } from '@/components/projects/ProjectSection';
 
 const COLOR = '#0A72B8';
 const BG = 'rgba(10,114,184,0.07)';
@@ -40,8 +40,7 @@ export default function ArthurPage() {
             { icon: '🔁', pain: 'Same item surfaces twice', result: 'Handled on Slack, nagged on email' },
             { icon: '🔒', pain: 'Assistants want everything', result: 'Cloud access to every message' },
           ].map(p => (
-            <div key={p.icon} className="p-4 rounded-xl" style={{ background: 'var(--bg-card)', border: '1px solid var(--border-subtle)' }}>
-              <span aria-hidden className="block h-0.5 w-6 mb-4" style={{ background: 'var(--cobalt)' }} />
+            <div key={p.icon} className="pain">
               <p className="text-sm font-medium mb-1.5" style={{ color: 'var(--cream)' }}>{p.pain}</p>
               <p className="text-xs" style={{ color: 'var(--tertiary)' }}>{p.result}</p>
             </div>
@@ -67,33 +66,17 @@ export default function ArthurPage() {
         </div>
 
         {/* Voice pipeline */}
-        <div className="p-6 rounded-2xl mb-8" style={{ background: 'var(--bg-card)', border: '1px solid var(--border-subtle)' }}>
-          <p className="text-xs tracking-widest uppercase mb-6" style={{ color: 'var(--tertiary)', fontFamily: 'var(--font-mono)' }}>From voice to action</p>
-          <div className="flex flex-wrap items-start gap-x-2 gap-y-5 pb-2">
-            {[
-              { stage: '01', label: 'Wake', sublabel: 'Vosk, silence-gated', color: COLOR },
-              { stage: '02', label: 'Verify', sublabel: 'Is it my voice?', color: '#D2361F' },
-              { stage: '03', label: 'Transcribe', sublabel: 'Whisper on the GPU', color: '#0F8A5C' },
-              { stage: '04', label: 'Decide', sublabel: 'Claude, streamed', color: '#A86A00' },
-              { stage: '05', label: 'Read back', sublabel: 'Waits for yes', color: '#6A3FD6' },
-              { stage: '06', label: 'Act + verify', sublabel: 'Then confirms', color: COLOR },
-            ].map((s, i, arr) => (
-              <div key={s.stage} className="flex items-center gap-2 flex-shrink-0">
-                <div className="flex flex-col items-center">
-                  <div className="w-10 h-10 rounded-full flex items-center justify-center text-xs font-mono-custom font-medium mb-2"
-                    style={{ background: s.color + '18', border: `1px solid ${s.color}44`, color: s.color }}>
-                    {s.stage}
-                  </div>
-                  <p className="text-xs font-medium text-center" style={{ color: 'var(--cream)' }}>{s.label}</p>
-                  <p className="text-xs text-center" style={{ color: 'var(--tertiary)' }}>{s.sublabel}</p>
-                </div>
-                {i < arr.length - 1 && (
-                  <div className="w-6 h-px flex-shrink-0" style={{ background: 'var(--border)' }} />
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
+        <Flow
+          title="From voice to action"
+          steps={[
+            { stage: '01', label: 'Wake', sublabel: 'Vosk, silence-gated', color: COLOR },
+            { stage: '02', label: 'Verify', sublabel: 'Is it my voice?', color: '#D2361F' },
+            { stage: '03', label: 'Transcribe', sublabel: 'Whisper on the GPU', color: '#0F8A5C' },
+            { stage: '04', label: 'Decide', sublabel: 'Claude, streamed', color: '#A86A00' },
+            { stage: '05', label: 'Read back', sublabel: 'Waits for yes', color: '#6A3FD6' },
+            { stage: '06', label: 'Act + verify', sublabel: 'Then confirms', color: COLOR },
+          ]}
+        />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
           <FeatureCard

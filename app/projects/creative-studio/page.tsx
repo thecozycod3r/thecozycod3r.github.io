@@ -1,5 +1,5 @@
 import ProjectLayout from '@/components/projects/ProjectLayout';
-import { ProjectSection, StatCard, FeatureCard, TechBadge, BulletList } from '@/components/projects/ProjectSection';
+import { ProjectSection, StatCard, FeatureCard, TechBadge, BulletList, Flow } from '@/components/projects/ProjectSection';
 
 const COLOR = '#6A3FD6';
 const BG = 'rgba(106,63,214,0.07)';
@@ -38,8 +38,7 @@ export default function CreativeStudioPage() {
             { icon: '📂', pain: 'Assets scattered across laptops', result: 'Nothing reusable, nothing findable' },
             { icon: '🤔', pain: 'Which model for which job?', result: 'Trial and error, paid per attempt' },
           ].map(p => (
-            <div key={p.icon} className="p-4 rounded-xl" style={{ background: 'var(--bg-card)', border: '1px solid var(--border-subtle)' }}>
-              <span aria-hidden className="block h-0.5 w-6 mb-4" style={{ background: 'var(--cobalt)' }} />
+            <div key={p.icon} className="pain">
               <p className="text-sm font-medium mb-1.5" style={{ color: 'var(--cream)' }}>{p.pain}</p>
               <p className="text-xs" style={{ color: 'var(--tertiary)' }}>{p.result}</p>
             </div>
@@ -54,33 +53,17 @@ export default function CreativeStudioPage() {
         </p>
 
         {/* Generation lifecycle */}
-        <div className="p-6 rounded-2xl mb-8" style={{ background: 'var(--bg-card)', border: '1px solid var(--border-subtle)' }}>
-          <p className="text-xs tracking-widest uppercase mb-6" style={{ color: 'var(--tertiary)', fontFamily: 'var(--font-mono)' }}>Generation Lifecycle</p>
-          <div className="flex flex-wrap items-start gap-x-2 gap-y-5 pb-2">
-            {[
-              { stage: '01', label: 'Compose', sublabel: 'Model · prompt · refs', color: COLOR },
-              { stage: '02', label: 'Estimate', sublabel: 'Priced up front', color: '#A86A00' },
-              { stage: '03', label: 'Reserve', sublabel: 'Against budget', color: '#D2361F' },
-              { stage: '04', label: 'Generate', sublabel: 'Queued dispatcher', color: '#2343F5' },
-              { stage: '05', label: 'Store', sublabel: 'Private bucket', color: '#0F8A5C' },
-              { stage: '06', label: 'Approve', sublabel: 'Before clients see it', color: COLOR },
-            ].map((s, i, arr) => (
-              <div key={s.stage} className="flex items-center gap-2 flex-shrink-0">
-                <div className="flex flex-col items-center">
-                  <div className="w-10 h-10 rounded-full flex items-center justify-center text-xs font-mono-custom font-medium mb-2"
-                    style={{ background: s.color + '18', border: `1px solid ${s.color}44`, color: s.color }}>
-                    {s.stage}
-                  </div>
-                  <p className="text-xs font-medium text-center" style={{ color: 'var(--cream)' }}>{s.label}</p>
-                  <p className="text-xs text-center" style={{ color: 'var(--tertiary)' }}>{s.sublabel}</p>
-                </div>
-                {i < arr.length - 1 && (
-                  <div className="w-6 h-px flex-shrink-0" style={{ background: 'var(--border)' }} />
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
+        <Flow
+          title="Generation Lifecycle"
+          steps={[
+            { stage: '01', label: 'Compose', sublabel: 'Model · prompt · refs', color: COLOR },
+            { stage: '02', label: 'Estimate', sublabel: 'Priced up front', color: '#A86A00' },
+            { stage: '03', label: 'Reserve', sublabel: 'Against budget', color: '#D2361F' },
+            { stage: '04', label: 'Generate', sublabel: 'Queued dispatcher', color: '#2343F5' },
+            { stage: '05', label: 'Store', sublabel: 'Private bucket', color: '#0F8A5C' },
+            { stage: '06', label: 'Approve', sublabel: 'Before clients see it', color: COLOR },
+          ]}
+        />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
           <FeatureCard

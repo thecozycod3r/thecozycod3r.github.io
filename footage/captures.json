@@ -1,0 +1,187 @@
+{
+  "site-yercaud": {
+    "still": "websites/yercaud-club-desktop.jpg",
+    "segments": [
+      {
+        "url": "https://yercaudclub.com/",
+        "dur": 9.8,
+        "scroll": [
+          [
+            0,
+            0
+          ],
+          [
+            1.4,
+            0
+          ],
+          [
+            9.2,
+            2500
+          ]
+        ]
+      }
+    ]
+  },
+  "site-nandipura": {
+    "still": "websites/nandipura-desktop.jpg",
+    "segments": [
+      {
+        "url": "https://nandipuracoffee.com/",
+        "dur": 9.8,
+        "scroll": [
+          [
+            0,
+            0
+          ],
+          [
+            1.4,
+            0
+          ],
+          [
+            9.2,
+            2500
+          ]
+        ]
+      }
+    ]
+  },
+  "site-bhramari": {
+    "still": "websites/bhramari-desktop.jpg",
+    "segments": [
+      {
+        "url": "https://bhramarisakleshpur.com/",
+        "dur": 9.8,
+        "scroll": [
+          [
+            0,
+            0
+          ],
+          [
+            1.4,
+            0
+          ],
+          [
+            9.2,
+            2500
+          ]
+        ]
+      }
+    ]
+  },
+  "site-antilabs": {
+    "still": "websites/anti-labs-desktop.jpg",
+    "segments": [
+      {
+        "url": "https://thecozycod3r.github.io/anti-labs-preview/anti-light.html",
+        "dur": 9.8,
+        "scroll": [
+          [
+            0,
+            0
+          ],
+          [
+            1.4,
+            0
+          ],
+          [
+            9.2,
+            2500
+          ]
+        ]
+      }
+    ]
+  },
+  "site-unravel": {
+    "still": "websites/unravel-experiences-desktop.jpg",
+    "segments": [
+      {
+        "url": "https://unravelexperiences.com/",
+        "dur": 9.8,
+        "scroll": [
+          [
+            0,
+            0
+          ],
+          [
+            1.4,
+            0
+          ],
+          [
+            9.2,
+            2500
+          ]
+        ]
+      }
+    ]
+  },
+  "tablenight": {
+    "segments": [
+      {
+        "url": "https://table-night-games.vercel.app/",
+        "dur": 11.8,
+        "scroll": [
+          [
+            0,
+            0
+          ],
+          [
+            1.6,
+            0
+          ],
+          [
+            6.2,
+            620
+          ],
+          [
+            7.0,
+            620
+          ],
+          [
+            11.4,
+            1500
+          ]
+        ]
+      }
+    ]
+  },
+  "studio": {
+    "segments": [
+      {
+        "url": "http://127.0.0.1:3007/guide",
+        "dur": 6.4,
+        "scroll": [
+          [
+            0,
+            0
+          ],
+          [
+            1.4,
+            0
+          ],
+          [
+            6.0,
+            1500
+          ]
+        ]
+      },
+      {
+        "url": "http://127.0.0.1:3007/ugc",
+        "dur": 6.0,
+        "scroll": [
+          [
+            0,
+            0
+          ],
+          [
+            1.2,
+            0
+          ],
+          [
+            5.6,
+            1400
+          ]
+        ]
+      }
+    ]
+  }
+}

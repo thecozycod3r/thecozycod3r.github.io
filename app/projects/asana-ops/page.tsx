@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import ProjectLayout from '@/components/projects/ProjectLayout';
-import { ProjectSection, StatCard, FeatureCard, TechBadge, BulletList, Screenshot } from '@/components/projects/ProjectSection';
+import { ProjectSection, StatCard, FeatureCard, TechBadge, BulletList, Screenshot, Flow } from '@/components/projects/ProjectSection';
 
 const COLOR = '#2343F5';
 const BG = 'rgba(35,67,245,0.07)';
@@ -40,8 +40,7 @@ export default function AsanaOpsPage() {
             { icon: '⚖️', issue: 'Unbalanced workloads', desc: 'No way to see who was overloaded or underutilised' },
             { icon: '📆', issue: 'No leave visibility', desc: 'Leave tracked via WhatsApp, not tied to project planning' },
           ].map(p => (
-            <div key={p.icon} className="p-4 rounded-xl" style={{ background: 'var(--bg-card)', border: '1px solid var(--border-subtle)' }}>
-              <span aria-hidden className="block h-0.5 w-6 mb-4" style={{ background: 'var(--cobalt)' }} />
+            <div key={p.icon} className="pain">
               <p className="text-sm font-medium mb-1.5" style={{ color: 'var(--cream)' }}>{p.issue}</p>
               <p className="text-xs leading-snug" style={{ color: 'var(--tertiary)' }}>{p.desc}</p>
             </div>
@@ -110,34 +109,16 @@ export default function AsanaOpsPage() {
         </div>
 
         {/* User journey */}
-        <div className="p-6 rounded-2xl mb-6" style={{ background: 'var(--bg-card)', border: '1px solid var(--border-subtle)' }}>
-          <p className="text-xs tracking-widest uppercase mb-6" style={{ color: 'var(--tertiary)', fontFamily: 'var(--font-mono)' }}>The employee experience — five steps end-to-end</p>
-          <ol className="grid grid-cols-1 sm:grid-cols-5 gap-y-1 sm:gap-x-3 pb-2">
-            {[
-              { step: '01', icon: '📝', label: 'Employee submits', detail: 'Zapier form with dates + reason' },
-              { step: '02', icon: '📬', label: 'Manager notified', detail: 'Email + Slack message sent' },
-              { step: '03', icon: '✅', label: 'Manager approves', detail: 'One-click approval in email' },
-              { step: '04', icon: '📧', label: 'Employee notified', detail: 'Confirmation email sent' },
-              { step: '05', icon: '📅', label: 'Calendar updated', detail: 'Leave visible to all managers' },
-            ].map((s, i, arr) => (
-              <li key={s.step} className="relative flex sm:flex-col items-center gap-4 sm:gap-0 py-2 sm:py-0">
-                <div className="flex sm:flex-col items-center gap-4 sm:gap-0">
-                  <div className="w-10 h-10 shrink-0 rounded-full flex items-center justify-center text-xs font-mono-custom font-medium sm:mb-2"
-                    style={{ background: 'var(--cobalt-tint)', border: '1px solid var(--cobalt)', color: 'var(--cobalt)' }}>
-                    {s.step}
-                  </div>
-                  <div className="sm:text-center">
-                    <p className="text-xs font-medium mb-0.5" style={{ color: 'var(--cream)' }}>{s.label}</p>
-                    <p className="text-xs" style={{ color: 'var(--tertiary)' }}>{s.detail}</p>
-                  </div>
-                </div>
-                {i < arr.length - 1 && (
-                  <span aria-hidden className="absolute hidden sm:block top-5 -right-3 w-6 h-px" style={{ background: 'var(--border)' }} />
-                )}
-              </li>
-            ))}
-          </ol>
-        </div>
+        <Flow
+          title="The employee experience — five steps end-to-end"
+          steps={[
+            { step: '01', icon: '📝', label: 'Employee submits', detail: 'Zapier form with dates + reason' },
+            { step: '02', icon: '📬', label: 'Manager notified', detail: 'Email + Slack message sent' },
+            { step: '03', icon: '✅', label: 'Manager approves', detail: 'One-click approval in email' },
+            { step: '04', icon: '📧', label: 'Employee notified', detail: 'Confirmation email sent' },
+            { step: '05', icon: '📅', label: 'Calendar updated', detail: 'Leave visible to all managers' },
+          ]}
+        />
 
         {/* Real Zapier wiring */}
         <div

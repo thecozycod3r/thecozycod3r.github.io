@@ -1,5 +1,5 @@
 import ProjectLayout from '@/components/projects/ProjectLayout';
-import { ProjectSection, StatCard, FeatureCard, TechBadge, BulletList } from '@/components/projects/ProjectSection';
+import { ProjectSection, StatCard, FeatureCard, TechBadge, BulletList, Flow } from '@/components/projects/ProjectSection';
 
 const COLOR = '#2343F5';
 const BG = 'rgba(35,67,245,0.07)';
@@ -39,8 +39,7 @@ export default function AnalyticsDashboardPage() {
             { icon: '📝', pain: 'Monthly reports assembled by hand', result: 'Hours per client, numbers that drifted' },
             { icon: '🔕', pain: 'Nobody watching accounts overnight', result: 'Broken campaigns found days late' },
           ].map(p => (
-            <div key={p.icon} className="p-4 rounded-xl" style={{ background: 'var(--bg-card)', border: '1px solid var(--border-subtle)' }}>
-              <span aria-hidden className="block h-0.5 w-6 mb-4" style={{ background: 'var(--cobalt)' }} />
+            <div key={p.icon} className="pain">
               <p className="text-sm font-medium mb-1.5" style={{ color: 'var(--cream)' }}>{p.pain}</p>
               <p className="text-xs" style={{ color: 'var(--tertiary)' }}>{p.result}</p>
             </div>
@@ -55,34 +54,16 @@ export default function AnalyticsDashboardPage() {
         </p>
 
         {/* Pipeline diagram */}
-        <div className="p-6 rounded-2xl mb-8" style={{ background: 'var(--bg-card)', border: '1px solid var(--border-subtle)' }}>
-          <p className="text-xs tracking-widest uppercase mb-6" style={{ color: 'var(--tertiary)', fontFamily: 'var(--font-mono)' }}>Data Flow</p>
-          <ol className="grid grid-cols-1 sm:grid-cols-5 gap-y-1 sm:gap-x-3 pb-2">
-            {[
-              { stage: '01', label: 'Extract', sublabel: 'Meta · Google · CRM sheets', color: COLOR },
-              { stage: '02', label: 'Clean', sublabel: 'Dates, statuses, columns', color: COLOR },
-              { stage: '03', label: 'Join', sublabel: 'Spend × lead outcomes', color: COLOR },
-              { stage: '04', label: 'Mart', sublabel: 'One per client', color: COLOR },
-              { stage: '05', label: 'Serve', sublabel: 'Dashboard · reports · alerts', color: COLOR },
-            ].map((s, i, arr) => (
-              <li key={s.stage} className="relative flex sm:flex-col items-center gap-4 sm:gap-0 py-2 sm:py-0">
-                <div className="flex sm:flex-col items-center gap-4 sm:gap-0">
-                  <div className="w-10 h-10 rounded-full flex items-center justify-center text-xs font-mono-custom font-medium mb-2"
-                    style={{ background: s.color + '18', border: `1px solid ${s.color}44`, color: s.color }}>
-                    {s.stage}
-                  </div>
-                  <div className="sm:text-center">
-                    <p className="text-xs font-medium" style={{ color: 'var(--cream)' }}>{s.label}</p>
-                    <p className="text-xs" style={{ color: 'var(--tertiary)' }}>{s.sublabel}</p>
-                  </div>
-                </div>
-                {i < arr.length - 1 && (
-                  <span aria-hidden className="absolute hidden sm:block top-5 -right-3 w-6 h-px" style={{ background: 'var(--border)' }} />
-                )}
-              </li>
-            ))}
-          </ol>
-        </div>
+        <Flow
+          title="Data Flow"
+          steps={[
+            { stage: '01', label: 'Extract', sublabel: 'Meta · Google · CRM sheets', color: COLOR },
+            { stage: '02', label: 'Clean', sublabel: 'Dates, statuses, columns', color: COLOR },
+            { stage: '03', label: 'Join', sublabel: 'Spend × lead outcomes', color: COLOR },
+            { stage: '04', label: 'Mart', sublabel: 'One per client', color: COLOR },
+            { stage: '05', label: 'Serve', sublabel: 'Dashboard · reports · alerts', color: COLOR },
+          ]}
+        />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
           <FeatureCard

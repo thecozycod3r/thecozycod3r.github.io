@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>P&L dashboard, sample data</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* Three stills of the P&L dashboard, drawn from invented figures.
+   pl.html?v=ratio | overview | breakdown. No real company number is here. */
+*{box-sizing:border-box;margin:0;padding:0}
+body{width:1280px;font-family:Roboto,Arial,sans-serif;background:#eef0f3;color:#202124;-webkit-font-smoothing:antialiased;overflow:hidden}
+.pg{padding:14px 18px 18px;display:none}
+.bar{display:flex;gap:12px;align-items:stretch;margin-bottom:12px}
+.tab{flex:1;background:#fff;border:1px solid #dadce0;border-radius:3px;box-shadow:0 1px 3px rgba(60,64,67,.18);display:grid;place-items:center;text-align:center;font-size:11.5px;font-weight:700;color:#673ab7;padding:8px 6px;line-height:1.25;min-height:42px}
+.dd{flex:1.9;background:#fff;border:1px solid #dadce0;border-radius:3px;box-shadow:0 1px 3px rgba(60,64,67,.18);display:flex;align-items:center;justify-content:space-between;padding:0 16px;font-size:13px;color:#5f6368}
+.hd{display:flex;gap:12px;align-items:stretch;margin-bottom:10px}
+.co{background:#fff;border:1px solid #dadce0;padding:8px 14px;display:flex;align-items:center;gap:10px;font-weight:700;font-size:15px;color:#3c2a8c;letter-spacing:.02em}
+.co i{width:30px;height:22px;background:linear-gradient(135deg,#e91e63,#3f51b5);clip-path:polygon(50% 0,100% 100%,0 100%)}
+.ttl{flex:1;background:#fff;border:1px solid #dadce0;display:flex;align-items:center;padding:0 16px;font-size:23px;font-weight:700;color:#5e35b1;text-decoration:underline;text-underline-offset:4px}
+.tag{background:#fff8e1;border:1px solid #f1d58a;color:#6b4e00;font-size:11.5px;font-weight:500;display:flex;align-items:center;padding:0 14px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pn{background:#fff;border:1px solid #dadce0;box-shadow:0 1px 3px rgba(60,64,67,.14);padding:10px 12px 8px}
+.pn h3{font-size:12.5px;font-weight:700;color:#3f51b5;text-align:center;margin-bottom:4px}
+.lg{display:flex;gap:16px;font-size:11px;color:#5f6368;padding-left:34px;margin-bottom:2px}.lg span{display:flex;align-items:center;gap:6px}
+.lg i{width:22px;height:0;border-top:2px solid #3f51b5}.lg i.f{border-top:1.5px dashed #9aa0a6}
+svg text{font-family:Roboto,Arial,sans-serif;font-size:10.5px;fill:#5f6368}
+.gt{font-size:17px;font-weight:700;color:#5e35b1;margin:6px 0 2px 4px}
+.gv{text-align:center;margin-top:-64px;padding-bottom:22px}.gv b{display:block;font-size:30px;color:#202124}.gv span{font-size:12px;color:#5f6368}
+.rt{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:10px}
+.r{background:#fff;border:1px solid #dadce0;box-shadow:0 1px 3px rgba(60,64,67,.14);text-align:center;padding:14px 8px 16px}
+.r h4{font-size:14px;font-weight:700;color:#3c4043;margin-bottom:12px}.r b{display:block;font-size:27px;color:#3f51b5}.r span{font-size:12px;font-weight:500}
+.up{color:#188038}.dn{color:#d93025}
+.act{text-align:center;font-size:13px;font-weight:700;color:#3f51b5;margin:12px 0 0}
+.net{width:44%;margin:12px auto 0;background:#fff;border:1px solid #dadce0;box-shadow:0 1px 3px rgba(60,64,67,.14);text-align:center;padding:16px}.net small{font-size:12.5px;color:#5f6368}.net b{display:block;font-size:30px;margin-top:6px}
+</style></head><body>
+<template id="nav"><div class="bar"><div class="tab">Ratio Trends</div><div class="tab">Company Income<br>and Expense</div><div class="tab">Company Income<br>Breakdown</div><div class="tab">Company Expense<br>Breakdown</div><div class="tab">Marketing + Misc</div><div class="dd"><span>Date</span><span>Apr 2025 – Mar 2026 ▾</span></div></div></template>
+
+<div class="pg" id="ratio" style="height:690px">
+  <div data-nav></div>
+  <div class="g2">
+    <div class="pn"><p class="gt">Revenue (Actuals vs Forecasted)</p><div id="g1"></div><div class="gv"><b>₹612 L</b><span>of ₹700 L forecast</span></div></div>
+    <div class="pn"><p class="gt">Expenses (Actual vs Forecasted)</p><div id="g2"></div><div class="gv"><b>₹498 L</b><span>of ₹520 L forecast</span></div></div>
+  </div>
+  <p class="act">Actuals</p>
+  <div class="rt"><div class="r"><h4>Salaries to revenue ratio</h4><b>41.2%</b><span class="up">▼ 1.8 pts</span></div><div class="r"><h4>Opex to revenue ratio</h4><b>14.6%</b><span class="dn">▲ 0.9 pts</span></div><div class="r"><h4>Marketing to revenue ratio</h4><b>9.8%</b><span class="up">▼ 0.4 pts</span></div><div class="r"><h4>Misc to revenue ratio</h4><b>3.1%</b><span class="up">▼ 0.2 pts</span></div><div class="r"><h4>Profit to revenue ratio</h4><b>18.6%</b><span class="up">▲ 2.3 pts</span></div></div>
+  <div class="net"><small>Net profit, year to date · sample figures</small><b>₹114 L</b></div>
+</div>
+
+<div class="pg" id="overview" style="height:958px">
+  <div class="hd"><div class="co"><i></i>SAMPLE CO.</div><div class="ttl">Company Income and Expenses Overview</div><div class="tag">Sample data</div></div>
+  <div class="g2"><div class="pn" id="o1"></div><div class="pn" id="o2"></div><div class="pn" id="o3"></div><div class="pn" id="o4"></div></div>
+</div>
+
+<div class="pg" id="breakdown" style="height:958px">
+  <div class="hd"><div class="co"><i></i>SAMPLE CO.</div><div class="ttl">Company Expense Breakdown</div><div class="tag">Sample data</div></div>
+  <div class="g2"><div class="pn" id="b1"></div><div class="pn" id="b2"></div><div class="pn" id="b3"></div><div class="pn" id="b4"></div></div>
+</div>
+
+<script>
+// Invented monthly series, in ₹ lakh. Nothing here is a real company figure.
+const M=['Apr 2025','Jun 2025','Aug 2025','Oct 2025','Dec 2025','Feb 2026'];
+function chart(el,title,act,fc,{max,h=372,band}={}){
+  const W=600,L=36,R=10,T=8,B=24,iw=W-L-R,ih=h-T-B,n=fc.length;
+  const x=i=>L+iw*i/(n-1),y=v=>T+ih*(1-v/max);
+  const path=a=>a.map((v,i)=>(i?'L':'M')+x(i).toFixed(1)+' '+y(v).toFixed(1)).join(' ');
+  let g='';for(let k=0;k<=5;k++){const v=max*k/5;g+=`<line x1="${L}" x2="${W-R}" y1="${y(v)}" y2="${y(v)}" stroke="#e8eaed"/><text x="${L-6}" y="${y(v)+3.5}" text-anchor="end">${Math.round(v)}</text>`;}
+  M.forEach((m,i)=>{g+=`<text x="${x(i*2)}" y="${h-6}" text-anchor="${i===M.length-1?'end':'middle'}">${m}</text>`;});
+  el.innerHTML=`<h3>${title}</h3><div class="lg"><span><i class="f"></i>Forecast</span><span><i></i>Actuals</span></div><svg viewBox="0 0 ${W} ${h}" width="100%">${band?`<rect x="${L}" y="${y(band)}" width="${iw}" height="${y(0)-y(band)}" fill="#f8c9c4"/>`:''}${g}<path d="${path(fc)}" fill="none" stroke="#9aa0a6" stroke-width="1.4" stroke-dasharray="5 4"/><path d="${path(act)}" fill="none" stroke="#3f51b5" stroke-width="2.2" stroke-linejoin="round"/></svg>`;
+}
+function bars(el,title,rows,max){
+  const W=600,h=372,L=36,T=8,B=44,ih=h-T-B,bw=(W-L-10)/rows.length;
+  const y=v=>T+ih*(1-v/max);let g='';
+  for(let k=0;k<=4;k++){const v=max*k/4;g+=`<line x1="${L}" x2="${W-10}" y1="${y(v)}" y2="${y(v)}" stroke="#e8eaed"/><text x="${L-6}" y="${y(v)+3.5}" text-anchor="end">${v}</text>`;}
+  rows.forEach((r,i)=>{const cx=L+bw*i+bw/2;g+=`<rect x="${cx-bw*.2}" y="${y(r[1])}" width="${bw*.2}" height="${y(0)-y(r[1])}" fill="#3f51b5"/><rect x="${cx+2}" y="${y(r[2])}" width="${bw*.2}" height="${y(0)-y(r[2])}" fill="#c5cae9"/><text x="${cx}" y="${h-26}" text-anchor="middle">${r[0]}</text>`;});
+  el.innerHTML=`<h3>${title}</h3><div class="lg"><span><i style="border-top:8px solid #3f51b5;width:10px"></i>Actual</span><span><i style="border-top:8px solid #c5cae9;width:10px"></i>Forecast</span><span style="margin-left:auto;padding-right:8px">₹ lakh, year to date</span></div><svg viewBox="0 0 ${W} ${h}" width="100%">${g}</svg>`;
+}
+function gauge(el,frac){
+  const cx=300,cy=250,r=210,a=Math.PI*(1-frac),ex=cx+r*Math.cos(a),ey=cy-r*Math.sin(a);
+  el.innerHTML=`<svg viewBox="0 0 600 270" width="100%"><path d="M${cx-r} ${cy} A${r} ${r} 0 0 1 ${cx+r} ${cy}" fill="none" stroke="#bdbdbd" stroke-width="26"/><path d="M${cx-r} ${cy} A${r} ${r} 0 0 1 ${ex.toFixed(1)} ${ey.toFixed(1)}" fill="none" stroke="#3f51b5" stroke-width="26"/><text x="${cx-r}" y="268" text-anchor="middle">0</text></svg>`;
+}
+document.querySelectorAll('[data-nav]').forEach(e=>e.replaceWith(document.getElementById('nav').content.cloneNode(true)));
+gauge(document.getElementById('g1'),612/700);gauge(document.getElementById('g2'),498/520);
+const q=id=>document.getElementById(id);
+chart(q('o1'),'Revenue Trend',[42,44,43,47,51,50,54,58,57,61,63],[40,43,46,48,51,54,56,59,62,65,68],{max:80});
+chart(q('o2'),'Expenses Trend',[36,37,39,38,42,45,43,44,47,46,48],[35,36,38,39,40,42,43,44,45,46,47],{max:60});
+chart(q('o3'),'Profitability Trend',[6,7,4,9,9,5,11,14,10,15,15],[5,7,8,9,11,12,13,15,17,19,21],{max:25,band:5});
+bars(q('o4'),'Expenses by Category',[['Employee',288,280],['Tech',61,55],['Marketing',60,64],['Rent',42,42],['Welfare',21,18],['Misc',26,24]],320);
+chart(q('b1'),'Employee Cost Trend',[24,24,25,25,26,27,27,26,27,28,28],[23,24,24,25,25,26,26,27,27,28,28],{max:35});
+chart(q('b2'),'Tech Expenses Trend',[4.2,4.6,4.4,5.1,6.8,6.2,5.4,5.6,5.9,5.5,5.8],[4,4.2,4.4,4.6,4.8,5,5.1,5.2,5.3,5.4,5.5],{max:8});
+chart(q('b3'),'Employee Welfare',[1.2,1.4,1.1,1.9,2.6,1.6,1.5,2.2,1.8,1.7,2.0],[1.2,1.3,1.3,1.4,1.5,1.5,1.6,1.6,1.7,1.7,1.8],{max:3});
+chart(q('b4'),'Rent Trend',[3.2,3.2,3.2,3.5,3.5,3.5,3.5,3.9,3.9,3.9,3.9],[3.2,3.2,3.2,3.4,3.4,3.4,3.6,3.6,3.8,3.8,3.8],{max:5});
+const v=new URLSearchParams(location.search).get('v')||'ratio';q(v).style.display='block';
+</script></body></html>

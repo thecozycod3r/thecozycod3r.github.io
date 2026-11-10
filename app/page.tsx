@@ -1,21 +1,21 @@
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import MotionRoot from '@/components/night/MotionRoot';
-import { Hero, Flow, Work, Sites, Statement, Experience, Toolkit, About, Contact } from '@/components/night/Home';
+import Motion from '@/components/deck/Motion';
+import HeroDeal from '@/components/deck/HeroDeal';
+import { Hero, System, Work, Sites, Record, About, Contact } from '@/components/deck/Home';
 
 export default function Home() {
   return (
-    <div className="night flex min-h-full flex-col">
-      <MotionRoot />
+    <div className="felt flex min-h-full flex-col">
+      <HeroDeal />
+      <Motion />
       <Navbar />
       <main>
         <Hero />
-        <Flow />
+        <System />
         <Work />
         <Sites />
-        <Statement />
-        <Experience />
-        <Toolkit />
+        <Record />
         <About />
         <Contact />
       </main>

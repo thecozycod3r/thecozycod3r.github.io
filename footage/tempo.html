@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Tempo, sample data</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0b0a11;--side:#0e0d15;--pan:#13121c;--pan2:#181724;--line:rgba(255,255,255,.07);--tx:#ecebf6;--mut:#8f8da3;--mut2:#6a687d;--vio:#6f5ef7;--pink:#f2457e;--amb:#f5a524;--grn:#2fbf8f}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1280px;height:800px;overflow:hidden}
+body{font-family:Inter,system-ui,sans-serif;color:var(--tx);font-size:12.5px;-webkit-font-smoothing:antialiased;background:var(--bg)}
+.scene{position:absolute;inset:0;overflow:hidden;background:var(--bg)}
+.side{position:absolute;left:0;top:0;bottom:0;width:222px;background:var(--side);border-right:1px solid var(--line);padding:16px 12px;z-index:5;display:flex;flex-direction:column}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:16px;letter-spacing:-.01em;padding:0 6px}
+.brand i{width:22px;height:22px;border-radius:6px;background:linear-gradient(150deg,#7c6cfa,#4b3bd6);position:relative}
+.brand i::after{content:'';position:absolute;left:8px;top:5px;width:6px;height:12px;border-radius:3px 3px 1px 1px;background:#fff}
+.brand em{margin-left:auto;font-style:normal;font-size:8.5px;font-weight:700;letter-spacing:.08em;color:var(--mut);box-shadow:inset 0 0 0 1px var(--line);padding:3px 6px;border-radius:5px}
+.search{margin:16px 0 14px;padding:8px 11px;border-radius:8px;background:var(--pan);box-shadow:inset 0 0 0 1px var(--line);color:var(--mut2);display:flex;justify-content:space-between;font-size:12px}
+.nv{display:flex;align-items:center;gap:11px;padding:7px 9px;border-radius:7px;color:#c9c7d8;font-size:12.5px;margin-bottom:1px}
+.nv svg{width:14px;height:14px;fill:none;stroke:#8f8da3;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+.nv b{margin-left:auto;font-weight:600;font-size:10.5px;color:var(--pink)}
+.nv.on{background:#1b1930;color:#fff;font-weight:600}.nv.on svg{stroke:#a79cff}
+.nv i{width:8px;height:8px;border-radius:2.5px;margin:0 3px}
+.cap{font-size:10px;color:var(--mut2);padding:14px 9px 7px}
+.me{margin-top:auto;display:flex;align-items:center;gap:9px;padding:8px 6px 0;border-top:1px solid var(--line);font-size:11.5px;font-weight:600;line-height:1.3}
+.me small{display:block;font-weight:400;color:var(--mut2);font-size:10px}
+.av{width:20px;height:20px;border-radius:50%;display:inline-grid;place-items:center;font-size:8px;font-weight:700;color:#fff;flex-shrink:0}
+.main{position:absolute;left:222px;right:0;top:0;bottom:0;overflow:hidden}
+[data-scroll]{padding:26px 28px 80px 32px;will-change:transform}
+h1{font-size:21px;font-weight:700;letter-spacing:-.015em}
+.sub{color:var(--mut);font-size:12px;margin-top:7px}
+.hd{display:flex;justify-content:space-between;align-items:flex-start}
+.cta{background:var(--vio);color:#fff;font-weight:600;font-size:12px;padding:8px 13px;border-radius:8px}
+.tiles{display:flex;gap:12px;margin:18px 0 22px}
+.tile{width:152px;padding:12px 14px 13px;border-radius:10px;background:var(--pan);box-shadow:inset 0 0 0 1px var(--line)}
+.tile small{font-size:10.5px;color:var(--mut)}.tile p{font-size:21px;font-weight:700;margin:5px 0 6px}.tile span{font-size:9.5px;color:var(--mut2)}
+.pk{color:var(--pink)}
+.grp{display:flex;align-items:center;gap:9px;font-weight:600;font-size:13px;margin:6px 0 11px}.grp em{font-style:normal;font-weight:400;font-size:10.5px;color:var(--mut2)}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:11px;margin-bottom:22px}
+.cl{position:relative;min-height:84px;padding:14px 14px 12px;border-radius:10px;background:var(--pan);box-shadow:inset 0 0 0 1px var(--line)}
+.cl.late{box-shadow:inset 0 0 0 1.5px rgba(242,69,126,.75)}
+.cl h3{font-size:13px;font-weight:600;margin-bottom:11px}
+.cl p{font-size:10.5px;color:var(--mut);line-height:1.75}.cl p b{color:var(--tx);font-weight:600}.cl p u{text-decoration:none;color:var(--pink)}
+.cl .av{position:absolute;right:11px;bottom:11px}
+/* board */
+.vt{display:flex;gap:6px;margin:16px 0 18px;font-size:11.5px;color:var(--mut)}
+.vt b,.vt span{padding:6px 11px;border-radius:7px;display:flex;align-items:center;gap:6px}.vt b{background:var(--pan2);color:#fff;font-weight:600;box-shadow:inset 0 0 0 1px var(--line)}
+.sect{display:flex;align-items:center;gap:9px;font-weight:600;font-size:12.5px;margin:18px 0 10px}.sect em{font-style:normal;font-weight:400;color:var(--mut2);font-size:10.5px}
+.sect i{width:11px;height:11px;border-radius:50%;box-shadow:inset 0 0 0 1.6px var(--c)}
+.list{border-radius:10px;background:var(--pan);box-shadow:inset 0 0 0 1px var(--line);overflow:hidden}
+.list table{width:100%;border-collapse:collapse;table-layout:fixed}.list th:nth-child(1){width:45%}.list th:nth-child(2){width:18%}.list th:nth-child(3){width:15%}.list th:nth-child(4){width:10%}
+.list th{text-align:left;font-size:10px;font-weight:500;color:var(--mut2);padding:9px 12px}
+.list td{padding:10px 12px;border-top:1px solid var(--line);font-size:12px;white-space:nowrap}
+.list td.t{font-weight:600;overflow:hidden;text-overflow:ellipsis}.list td.c{color:var(--mut);font-size:11px}
+.ck{display:inline-block;width:13px;height:13px;border-radius:50%;box-shadow:inset 0 0 0 1.4px #4a4860;margin-right:12px;vertical-align:-2px}
+.sp{display:inline-flex;align-items:center;gap:6px;font-size:10.5px;font-weight:600;padding:3px 9px;border-radius:6px;background:color-mix(in srgb,var(--c) 14%,transparent);color:var(--c)}
+.sp::before{content:'';width:8px;height:8px;border-radius:50%;box-shadow:inset 0 0 0 1.5px var(--c)}
+.due{font-size:11px;color:var(--mut)}.due.l{color:var(--pink);font-weight:600}
+.as{display:flex;align-items:center;gap:8px;font-size:11.5px}
+/* report */
+.rt{display:flex;gap:4px;margin:16px 0 16px;font-size:11.5px;color:var(--mut);align-items:center}
+.rt b,.rt span{padding:6px 11px;border-radius:7px}.rt b{background:var(--pan2);color:#fff;font-weight:600;box-shadow:inset 0 0 0 1px var(--line)}.rt u{width:1px;height:18px;background:var(--line);margin:0 8px}
+.t5{display:grid;grid-template-columns:repeat(5,1fr);gap:11px}
+.t5 .tile{width:auto}
+.ppl{margin-top:16px;padding:16px 16px 8px;border-radius:10px;background:var(--pan);box-shadow:inset 0 0 0 1px var(--line)}
+.ppl h4{font-size:13px;font-weight:600}.ppl>p{font-size:10px;color:var(--mut2);margin:6px 0 10px}
+.ppl table{width:100%;border-collapse:collapse}.ppl th{font-size:9.5px;font-weight:500;color:var(--mut2);text-align:right;padding:8px 8px}.ppl th:nth-child(-n+2){text-align:left}
+.ppl td{padding:9px 8px;border-top:1px solid var(--line);text-align:right;font-size:11.5px;font-variant-numeric:tabular-nums}.ppl td:nth-child(-n+2){text-align:left}
+.ld{display:block;height:5px;border-radius:3px;background:var(--vio);width:calc(var(--w) * var(--in,1))}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+.st{padding:16px;border-radius:10px;background:var(--pan);box-shadow:inset 0 0 0 1px var(--line)}.st h4{font-size:13px;font-weight:600}.st>p{font-size:10px;color:var(--mut2);margin:6px 0 12px}
+.sr{display:grid;grid-template-columns:120px 1fr 48px;align-items:center;gap:10px;font-size:11px;margin-bottom:9px}.sr span:last-child{text-align:right;color:var(--mut)}
+.sr u{display:block;height:5px;border-radius:3px;background:#22202f;position:relative}.sr u::after{content:'';position:absolute;inset:0 auto 0 0;border-radius:3px;background:var(--vio);width:calc(var(--w) * var(--in,1))}
+.tag{position:absolute;right:28px;bottom:16px;z-index:6;font-size:10.5px;font-weight:600;color:#d8d4ff;background:#1b1930;box-shadow:inset 0 0 0 1px rgba(167,156,255,.35);padding:5px 10px;border-radius:999px}
+</style></head><body>
+<template id="side">
+ <aside class="side"><div class="brand"><i></i>tempo<em>DEMO</em></div>
+  <div class="search"><span>⌕ &nbsp;Search</span><span>⌘K</span></div>
+  <div class="nv" data-k="My tasks"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="14" rx="2"/><path d="M8 10h8M8 14h5"/></svg>My tasks</div>
+  <div class="nv" data-k="Overdue"><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="7"/><path d="M12 9v4l2 2M9 3h6"/></svg>Overdue<b>18</b></div>
+  <div class="nv" data-k="Tidy up"><svg viewBox="0 0 24 24"><path d="M5 19l9-9M14 5l5 5M12 7l5 5"/></svg>Tidy up</div>
+  <div class="nv" data-k="Clients"><svg viewBox="0 0 24 24"><path d="M4 20V8l8-4 8 4v12M9 20v-6h6v6"/></svg>Clients</div>
+  <div class="nv" data-k="Team report"><svg viewBox="0 0 24 24"><path d="M6 20V11M12 20V5M18 20v-6"/></svg>Team report</div>
+  <p class="cap">Boards</p>
+  <div class="nv" data-k="Creative"><i style="background:#f2457e"></i>Creative</div>
+  <div class="nv"><i style="background:#f5a524"></i>Social Media</div>
+  <div class="nv"><i style="background:#8b7bff"></i>Meta Ads</div>
+  <div class="nv"><i style="background:#2fbf8f"></i>Google Ads</div>
+  <p class="cap">More</p>
+  <div class="nv"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg>Completed</div>
+  <div class="nv"><svg viewBox="0 0 24 24"><path d="M5 7h14M9 7V4h6v3M7 7l1 13h8l1-13"/></svg>Bin</div>
+  <div class="nv"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M6 6l2 2M16 16l2 2M18 6l-2 2M8 16l-2 2"/></svg>Settings</div>
+  <div class="me"><span class="av" style="background:#3b63e6">DS</span><div>Dhruv Shricharan<small>Founders Office</small></div></div>
+ </aside>
+</template>
+
+<section class="scene" id="s1" data-nav="Clients"><div class="main"><div data-scroll>
+  <div class="hd"><div><h1>Clients</h1><p class="sub">24 active · grouped by account manager</p></div><span class="cta">+ New client</span></div>
+  <div class="tiles"><div class="tile"><small>Open</small><p data-n>96</p><span>across active clients</span></div><div class="tile"><small>Overdue</small><p class="pk" data-n>18</p><span>not counting Out for Approval</span></div><div class="tile"><small>With the client</small><p class="pk" data-n>21</p><span>6 clients waiting 5+ wd</span></div><div class="tile"><small>Revisions</small><p data-n>3</p><span>open + finished in 30 days</span></div></div>
+  <div id="groups"></div>
+</div></div><span class="tag">Sample data</span></section>
+
+<section class="scene" id="s2" data-nav="Creative"><div class="main"><div data-scroll>
+  <div class="hd"><div><h1>Creative</h1><p class="sub">41 open · new requests go to each client's creative strategist</p></div><span class="cta">+ New task</span></div>
+  <div class="vt"><b>☰ List</b><span>▦ Board</span><span>◔ People</span><span>▤ Dashboard</span></div>
+  <div id="board"></div>
+</div></div><span class="tag">Sample data</span></section>
+
+<section class="scene" id="s3" data-nav="Team report"><div class="main"><div data-scroll>
+  <p style="font-size:10px;color:var(--mut2);margin-bottom:10px">Private · Founders Office and people given access in Settings</p>
+  <h1>Team report</h1><p class="sub">Last 30 days · times in working days (weekends and company holidays skipped)</p>
+  <div class="rt"><b>Creative</b><span>Social Media</span><span>Meta Ads</span><span>Google Ads</span><span>Account Managers</span><u></u><span>7 days</span><b>30 days</b><span>90 days</span></div>
+  <div class="t5"><div class="tile"><small>Completed</small><p data-n>64</p><span>in the last 30 days</span></div><div class="tile"><small>On time</small><p data-n>81%</p><span>of 58 with a due date</span></div><div class="tile"><small>Avg turnaround</small><p>3.4 wd</p><span>created → completed</span></div><div class="tile"><small>Time to client</small><p>1.8 wd</p><span>median, created → first sent</span></div><div class="tile"><small>Revision rate</small><p data-n>12%</p><span>8 of 64 came back</span></div></div>
+  <div class="ppl"><h4>People</h4><p>Bar = open work. Stuck = open work nobody has touched for 3+ working days (On Hold and Out for Approval left out).</p>
+   <table><thead><tr><th>Person</th><th style="width:230px">Load</th><th>Open</th><th>Overdue</th><th>Stuck</th><th>Done</th><th>On time</th><th>Avg turnaround</th><th>Revisions</th><th>Last active</th></tr></thead><tbody id="ppl"></tbody></table></div>
+  <div class="two"><div class="st"><h4>Where the time goes</h4><p>Working days tasks spent in each status during the period.</p>
+    <div class="sr"><span>New</span><u style="--w:14%"></u><span>22 wd</span></div><div class="sr"><span>In Progress</span><u style="--w:46%"></u><span>71 wd</span></div><div class="sr"><span>Under Review</span><u style="--w:21%"></u><span>33 wd</span></div><div class="sr"><span>Out for Approval</span><u style="--w:78%"></u><span>120 wd</span></div><div class="sr"><span>Minor Edit</span><u style="--w:9%"></u><span>14 wd</span></div><div class="sr"><span>On Hold</span><u style="--w:18%"></u><span>28 wd</span></div></div>
+   <div class="st"><h4>Time to client</h4><p>Working days from created to first sent for approval. Work created in Tempo only.</p>
+    <div class="sr"><span>Same day</span><u style="--w:28%"></u><span>11</span></div><div class="sr"><span>1 wd</span><u style="--w:52%"></u><span>21</span></div><div class="sr"><span>2 wd</span><u style="--w:38%"></u><span>15</span></div><div class="sr"><span>3–5 wd</span><u style="--w:24%"></u><span>10</span></div><div class="sr"><span>6+ wd</span><u style="--w:8%"></u><span>3</span></div></div></div>
+</div></div><span class="tag">Sample data</span></section>
+
+<script src="stage.js"></script>
+<script>
+// Every client, person, task and figure in this file is invented for the film.
+const AV={AN:'#8b5cf6',RU:'#ef6c3d',LE:'#3b82f6',KI:'#a855f7',ZO:'#ec4899',MI:'#10b981',NA:'#f59e0b',OM:'#6366f1',IR:'#14b8a6',VE:'#e11d48'};
+const av=k=>`<span class="av" style="background:${AV[k]}">${k}</span>`;
+document.querySelectorAll('.scene').forEach(s=>{s.prepend(document.getElementById('side').content.cloneNode(true));s.querySelector(`.nv[data-k="${s.dataset.nav}"]`).classList.add('on');});
+const G=[['AN','Anika',[['Saltwind Stays','9','4','5 with client · 12 wd','KI'],['Driftline Lodges','2','1','','MI'],['Northgate Homes','6','2','3 with client · 9 wd','KI'],['Coral Bay','1','1','','MI'],['Juniper Group','7','3','2 with client · 6 wd','ZO'],['Tansy Bakes','2','0','',''],['Harrow Realty','1','0','','KI'],['Lumen Hotels','3','2','1 with client · 2 wd','KI']]],
+ ['RU','Rustam',[['Fernhill','2','1','','NA'],['Aldergrove Living','1','0','1 with client','KI'],['Quillon Tech','8','0','2 with client · 14 wd','OM'],['Pebble & Vine','3','2','','ZO'],['Brightwater School','3','0','','MI'],['Larkmoor Health','4','0','3 with client · 7 wd','MI'],['Rosefield Atelier','0','0','',''],['Marrow & Rye','1','0','','KI']]],
+ ['LE','Leela',[['Kestrel Works','4','2','1 with client · 2 wd','IR'],['Granite Row','2','0','2 with client · 4 wd','']]]];
+document.getElementById('groups').innerHTML=G.map(g=>`<div class="grp">${av(g[0])}${g[1]} <em>${g[2].length}</em></div><div class="cards">${g[2].map(c=>`<div class="cl${+c[2]?' late':''}"><h3>${c[0]}</h3><p><b>${c[1]}</b> open${+c[2]?` &nbsp; <u>${c[2]} overdue</u>`:''}${c[3]?`<br><u>${c[3]}</u>`:''}</p>${c[4]?av(c[4]):''}</div>`).join('')}</div>`).join('');
+
+const ST={Unassigned:'#8f8da3',New:'#8b7bff','In Progress':'#4c8dff','Under Review':'#a78bfa'};
+const B=[['Unassigned',[['Refresh the winning carousel in two new sizes','Fernhill','Oct 23',1,''],['Add offer line to the hero banner','Driftline Lodges','Oct 22',1,'']]],
+ ['New',[['Festive statics, set of six','Saltwind Stays','Oct 21',1,'KI'],['Landing page for weekend villas','Northgate Homes','Wed',0,'ZO'],['Corporate offsite one-pager','Saltwind Stays','Wed',0,'ZO'],['Reel cutdowns from the estate shoot, 15s and 30s','Fernhill','Fri',0,'MI'],['Change the hook and end card on video 3','Brightwater School','Oct 22',1,'NA'],['Menu board for the new outlet','Tansy Bakes','Oct 24',0,'OM'],['Lead form header, three options','Juniper Group','Tomorrow',0,'ZO'],['Resize launch creatives for Demand Gen','Quillon Tech','Oct 23',1,'KI'],['Brochure cover, second round','Aldergrove Living','Tomorrow',0,'IR']]],
+ ['In Progress',[['October emailer','Rosefield Atelier','Oct 24',0,'VE'],['Clinic opening creatives','Larkmoor Health','Oct 25',0,'NA'],['New year and winter campaign concepts','Pebble & Vine','Nov 3',0,'MI'],['Site banner refresh','Kestrel Works','Oct 27',0,'OM']]],
+ ['Under Review',[['Landing page pass to bring the enquiry form up','Lumen Hotels','Oct 22',1,'OM'],['Creative concepts for the monsoon offer','Coral Bay','Oct 24',0,'KI'],['Statics for November','Driftline Lodges','Oct 23',1,'MI'],['Feedback round on the offer creative','Harrow Realty','Oct 24',0,'ZO']]]];
+const NM={KI:'Kiaan',ZO:'Zoya',MI:'Mihir',NA:'Nandini',OM:'Omkar',IR:'Irfan',VE:'Veda'};
+document.getElementById('board').innerHTML=B.map(g=>`<div class="sect"><span style="color:var(--mut2);font-size:9px">⌄</span><i style="--c:${ST[g[0]]}"></i>${g[0]} <em>${g[1].length}</em></div><div class="list"><table><thead><tr><th style="padding-left:37px">Task</th><th>Client</th><th>Status</th><th>Due</th><th>Assignee</th></tr></thead><tbody>${g[1].map(r=>`<tr><td class="t"><span class="ck"></span>${r[0]}</td><td class="c">${r[1]}</td><td><span class="sp" style="--c:${ST[g[0]]}">${g[0]}</span></td><td><span class="due${r[3]?' l':''}">${r[2]}</span></td><td><span class="as">${r[4]?av(r[4])+NM[r[4]]:'<span style="color:var(--mut2)">Unassigned</span>'}</span></td></tr>`).join('')}</tbody></table></div>`).join('');
+
+const P=[['KI','Kiaan','92%',9,2,'—',14,'86%','2.9 wd','2','Today'],['ZO','Zoya','78%',8,1,'—',12,'83%','3.1 wd','1','Today'],['MI','Mihir','64%',6,1,'1',11,'82%','3.6 wd','2','Today'],['OM','Omkar','52%',5,0,'—',9,'89%','3.0 wd','1','Today'],['NA','Nandini','44%',4,1,'—',8,'75%','4.2 wd','1','1 wd ago'],['IR','Irfan','36%',3,0,'—',6,'83%','3.8 wd','1','Today'],['VE','Veda','22%',2,0,'—',4,'75%','4.0 wd','0','2 wd ago']];
+document.getElementById('ppl').innerHTML=P.map(p=>`<tr><td><span class="as">${av(p[0])}${p[1]}</span></td><td><i class="ld" style="--w:${p[2]}"></i></td><td>${p[3]}</td><td class="${p[4]?'pk':''}">${p[4]||'—'}</td><td>${p[5]}</td><td>${p[6]}</td><td>${p[7]}</td><td>${p[8]}</td><td>${p[9]}</td><td style="color:var(--mut)">${p[10]}</td></tr>`).join('');
+Stage([
+ {id:'s1',dur:5.2,scroll:[[0,0],[2.0,0],[4.6,150]]},
+ {id:'s2',dur:6.6,scroll:[[0,0],[1.4,0],[6.0,560]]},
+ {id:'s3',dur:6.2,scroll:[[0,0],[2.2,0],[5.6,330]]},
+]);
+</script></body></html>

@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Cerno, sample data</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--ind:#2416A5;--ind4:#7A6BD0;--mag:#E90A79;--yel:#FFC969;--tx:#17202a;--mut:#5D6675;--mut2:#8a92a0;--line:rgba(17,24,39,.1);--tint:#EEECF9}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1280px;height:800px;overflow:hidden}
+body{font-family:Inter,system-ui,sans-serif;color:var(--tx);font-size:13px;-webkit-font-smoothing:antialiased;background:#f7f7fb}
+.scene{position:absolute;inset:0;overflow:hidden;background:
+ radial-gradient(720px 420px at 96% -6%,rgba(233,10,121,.13),transparent 70%),
+ radial-gradient(640px 380px at 52% -12%,rgba(255,201,105,.16),transparent 70%),
+ radial-gradient(700px 520px at 100% 60%,rgba(122,107,208,.10),transparent 70%),#f8f7fc}
+.rail{position:absolute;left:0;top:0;bottom:0;width:76px;background:rgba(255,255,255,.72);border-right:1px solid var(--line);display:flex;flex-direction:column;align-items:center;padding-top:20px;gap:6px;z-index:5}
+.logo{width:26px;height:26px;border-radius:50%;background:conic-gradient(from 210deg,#2416A5,#E90A79,#FFC969,#2416A5);-webkit-mask:radial-gradient(circle,transparent 7.5px,#000 8px);mask:radial-gradient(circle,transparent 7.5px,#000 8px);margin-bottom:34px;position:relative}
+.logo::after{content:'';position:absolute;right:-2px;top:7px;width:13px;height:12px;background:#fff}
+.ri{width:64px;display:grid;justify-items:center;gap:5px;padding:8px 0;font-size:9.5px;color:var(--mut);font-weight:500;text-align:center}
+.ri i{width:34px;height:34px;border-radius:10px;display:grid;place-items:center}
+.ri svg{width:17px;height:17px;stroke:#5D6675;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.ri.on{color:var(--ind);font-weight:600}.ri.on i{background:linear-gradient(160deg,#3D2CBB,#8a3fd0)}.ri.on svg{stroke:#fff}
+.ri.on::before{content:'';position:absolute;left:0;width:3px;height:26px;border-radius:0 3px 3px 0;background:var(--mag);margin-top:4px}
+.rsep{width:22px;height:1px;background:var(--line);margin:6px 0}
+.rfoot{margin-top:auto;padding-bottom:16px;display:grid;justify-items:center;gap:14px;font-size:12px;font-weight:500}
+.rfoot b{width:24px;height:24px;border-radius:50%;background:var(--tint);color:var(--ind);display:grid;place-items:center;font-size:11px}
+.main{position:absolute;left:76px;right:0;top:0;bottom:0;overflow:hidden}
+[data-scroll]{padding:26px 28px 80px 56px;will-change:transform}
+.card{background:rgba(255,255,255,.86);border:1px solid var(--line);border-radius:14px;box-shadow:0 14px 40px rgba(31,41,55,.06)}
+.eyebrow{font-size:10px;font-weight:700;letter-spacing:.09em;color:var(--ind);text-transform:uppercase}
+h1{font-size:27px;font-weight:700;letter-spacing:-.015em;margin:9px 0 7px}
+.sub{color:var(--mut);font-size:12.5px}
+.tabs{display:flex;gap:20px;font-size:13px;color:var(--mut);margin:22px 0 28px}
+.tabs b{color:var(--ind);font-weight:600;padding-bottom:6px;border-bottom:2px solid var(--ind)}
+.back{font-size:11.5px;color:var(--mut)}
+.head{padding:22px 24px;display:flex;justify-content:space-between;align-items:flex-end}
+.seg{display:flex;align-items:center;gap:22px;font-size:13px;font-weight:600;color:#4a5160}
+.seg b{padding:6px 15px;border-radius:999px;box-shadow:inset 0 0 0 1.5px var(--mag);color:var(--ind);background:#fff}
+.seg .meta{box-shadow:inset 0 0 0 1.5px #3b82f6;color:#1d4ed8;background:#eff5ff}
+.alert{margin-top:18px;padding:13px 16px;border-radius:10px;background:#fef2f2;border:1px solid #fbcaca;color:#b42318;font-size:12.5px}
+.alert b{font-weight:700}
+.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:18px}
+.tile{padding:14px 16px 16px}.tile small{font-size:10.5px;color:var(--mut)}.tile p{font-size:23px;font-weight:700;margin-top:5px}
+.tile.on{box-shadow:0 0 0 2px var(--ind4),0 14px 40px rgba(31,41,55,.06)}
+.r{color:#d92d20}.o{color:#d97706}.g{color:#079455}
+.filters{display:flex;align-items:center;gap:14px;margin:16px 0 14px;font-size:12.5px}
+.inp{width:206px;padding:9px 12px;border-radius:9px;background:#fff;border:1px solid var(--line);color:var(--mut2)}
+.filters .n{margin-left:auto;color:var(--mut);font-size:11.5px}
+table{width:100%;border-collapse:collapse}
+.tbl{overflow:hidden}
+.tbl th{font-size:12.5px;font-weight:600;color:#4a5160;text-align:right;padding:15px 12px;background:rgba(244,244,248,.9)}
+.tbl th.l,.tbl td.l{text-align:left}
+.tbl td{padding:15px 12px;text-align:right;vertical-align:middle;border-top:1px solid var(--line);font-size:12.5px;font-variant-numeric:tabular-nums}
+.acct{display:flex;align-items:center;gap:11px;font-weight:600;font-size:13px;line-height:1.25}
+.acct small{display:block;font-weight:400;color:var(--mut);font-size:10.5px;margin-top:3px}
+.dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.d{display:block;font-size:10px;margin-top:2px;font-weight:500}
+.u{font-size:10px;color:var(--mut);display:block}
+.chips{display:flex;flex-wrap:wrap;gap:5px 6px}
+.chip{font-size:10.5px;padding:3px 8px;border-radius:999px;white-space:nowrap}
+.chip.r{background:#fef3f2;box-shadow:inset 0 0 0 1px #fbcaca;color:#b42318}
+.chip.o{background:#fffaeb;box-shadow:inset 0 0 0 1px #fde0a3;color:#b45309}
+.note{font-size:10.5px;color:var(--mut);line-height:1.5;margin-top:14px;max-width:880px}
+.brand{position:absolute;left:50%;bottom:14px;translate:-50% 0;z-index:6;padding:7px 15px;border-radius:999px;background:#fff;font-size:12.5px;color:#4a5160;box-shadow:0 0 0 1.5px #c9a0e8,0 6px 18px rgba(36,22,165,.14)}
+.brand b{color:var(--ind);font-weight:700;letter-spacing:-.01em}
+.demo{position:absolute;right:28px;top:22px;z-index:6;font-size:10.5px;font-weight:600;color:#6b4e00;background:#fff4d6;box-shadow:inset 0 0 0 1px #f3d58a;padding:4px 10px;border-radius:999px}
+/* client dashboard */
+.clients .ri{font-size:9px}.clients .ri i{width:30px;height:30px}
+.range{display:flex;align-items:center;gap:8px;font-size:11.5px;color:var(--mut)}.range b{color:var(--tx);font-size:12.5px}
+.notes{display:inline-flex;gap:7px;align-items:center;margin:16px 0 18px;padding:5px 11px;border-radius:999px;background:#fff8e6;box-shadow:inset 0 0 0 1px #f5dc9c;font-size:10.5px;font-weight:600}
+.notes i{width:6px;height:6px;border-radius:50%;background:#f59e0b}.notes span{color:#b45309;font-weight:500}
+.sec{font-size:10px;font-weight:700;letter-spacing:.08em;color:var(--ind);text-transform:uppercase;margin-bottom:12px}.sec span{font-weight:400;letter-spacing:0;text-transform:none;color:var(--mut);margin-left:6px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.kpi{padding:13px 14px 0;height:132px;overflow:hidden;display:flex;flex-direction:column}
+.kpi small{font-size:10.5px;color:var(--mut)}.kpi p{font-size:19px;font-weight:700;margin:5px 0 6px;font-variant-numeric:tabular-nums}
+.dp{align-self:flex-start;font-size:9.5px;font-weight:600;padding:2px 7px;border-radius:999px}
+.dp.g{background:#ecfdf3;color:#067647;box-shadow:inset 0 0 0 1px #abefc6}.dp.b{background:#fef3f2;color:#b42318;box-shadow:inset 0 0 0 1px #fecdca}.dp.n{background:#f2f4f7;color:#667085;box-shadow:inset 0 0 0 1px #e4e7ec}
+.sp{width:100%;height:36px;margin-top:auto;display:block;clip-path:inset(0 calc((1 - var(--in,1)) * 100%) 0 0)}
+.pills{display:flex;gap:6px;margin:26px 0 12px;font-size:12.5px;font-weight:600;color:#4a5160}
+.pills span{padding:6px 13px}.pills b{padding:6px 13px;border-radius:999px;box-shadow:inset 0 0 0 1.5px var(--mag);color:var(--ind);background:#fff}
+.bars{padding:16px 18px 20px}.bars h4{font-size:11.5px;font-weight:600;margin-bottom:14px}
+.bar{display:grid;grid-template-columns:230px 1fr;align-items:center;gap:10px;font-size:10.5px;color:#4a5160;margin-bottom:7px}
+.bar span{text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar i{height:17px;border-radius:2px;background:#2563eb;width:calc(var(--w) * var(--in,1))}
+.axis{display:grid;grid-template-columns:230px 1fr;gap:10px;font-size:10px;color:var(--mut2)}.axis div{display:flex;justify-content:space-between;border-top:1px solid #9aa1ad;padding-top:4px}
+.tbl2 th{font-size:11.5px}.tbl2 td{font-size:12px;padding:12px}.tbl2 em{font-style:normal;color:var(--mut2);font-size:10px;margin-left:3px}
+.live{width:6px;height:6px;border-radius:50%;background:#12b76a;display:inline-block;margin-right:9px}
+</style></head><body>
+
+<!-- 1 · Leadership overview -->
+<section class="scene" id="s1">
+  <aside class="rail"><div class="logo"></div>
+    <div class="ri"><i><svg viewBox="0 0 24 24"><path d="M4 11l8-7 8 7v9H4z"/></svg></i>Home</div>
+    <div class="ri on"><i><svg viewBox="0 0 24 24"><path d="M6 20V10M12 20V4M18 20v-7"/></svg></i>Leadership</div>
+    <div class="ri"><i><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="14" rx="2"/><path d="M4 15l4-4 4 4 3-3 5 5"/></svg></i>Creative</div>
+    <div class="rfoot">Feedback<b>D</b></div>
+  </aside>
+  <div class="main"><div data-scroll>
+    <p class="back">← Home</p>
+    <div class="tabs"><b>Overview</b><span>Clients</span><span>Media Spend</span><span>Feedback</span><span>API keys</span><span>Insights usage</span><span>Sign-ups</span><span>Activity</span></div>
+    <div class="card head"><div><p class="eyebrow">Account triage</p><h1>Leadership Overview</h1><p class="sub">Last 7 days · as of 2026-10-24 · All spend ₹<span data-n>9,84,260</span></p></div>
+      <div class="seg"><b>All</b><span>Meta</span><span>Google Ads</span></div></div>
+    <div class="alert"><b>8 accounts need attention:</b> Northgate Homes, Juniper Group, Saltwind Stays, Harrow Realty, Lumen Hotels, Fernhill, +2 more — show only these →</div>
+    <div class="tiles"><div class="card tile on"><small>Accounts</small><p data-n>24</p></div><div class="card tile"><small>Needs attention</small><p class="r" data-n>8</p></div><div class="card tile"><small>Watch</small><p class="o" data-n>9</p></div><div class="card tile"><small>Healthy</small><p class="g" data-n>7</p></div></div>
+    <div class="filters"><span class="inp">Search account…</span><span>All managers &nbsp;⌄</span><span class="n">24 of 24 shown</span></div>
+    <div class="card tbl"><table><thead><tr><th class="l" style="padding-left:44px">Account</th><th>Spend 7d</th><th>Results</th><th>Cost /<br>result</th><th>ROAS</th><th>Live</th><th class="l">Last worked</th><th class="l">Flags</th></tr></thead><tbody id="rows"></tbody></table></div>
+    <p class="note">Results = leads or purchases depending on the client's objective (sales clients show ROAS). Deltas compare the last 7 days to the prior 7 days. Cost/result counts only conversion campaigns; awareness and traffic campaigns are judged on delivery, never flagged for “no results”. Click a row to drill into campaigns.</p>
+  </div></div>
+  <div class="brand"><b>cerno</b> · sample workspace</div>
+</section>
+
+<!-- 2 · Client dashboard -->
+<section class="scene" id="s2">
+  <aside class="rail clients"><div class="logo"></div>
+    <div class="ri"><i><svg viewBox="0 0 24 24"><path d="M4 11l8-7 8 7v9H4z"/></svg></i>Home</div>
+    <div class="ri"><i><svg viewBox="0 0 24 24"><path d="M6 20V10M12 20V4M18 20v-7"/></svg></i>Leadership</div>
+    <div class="ri"><i><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="14" rx="2"/><path d="M4 15l4-4 4 4 3-3 5 5"/></svg></i>Creative</div>
+    <div class="rsep"></div>
+    <div class="ri"><i><svg viewBox="0 0 24 24"><circle cx="9" cy="9" r="3"/><path d="M3 19c0-3 3-5 6-5s6 2 6 5M16 7a3 3 0 010 5M18 14c2 1 3 3 3 5"/></svg></i>Team book</div>
+    <div class="ri"><i><svg viewBox="0 0 24 24"><path d="M5 20V9l7-5 7 5v11M10 20v-5h4v5"/></svg></i>Juniper Gr…</div>
+    <div class="ri on"><i><svg viewBox="0 0 24 24"><path d="M5 20V9l7-5 7 5v11M10 20v-5h4v5"/></svg></i>Saltwind St…</div>
+    <div class="ri"><i><svg viewBox="0 0 24 24"><path d="M5 20V9l7-5 7 5v11M10 20v-5h4v5"/></svg></i>Coral Bay</div>
+    <div class="ri"><i><svg viewBox="0 0 24 24"><path d="M5 20V9l7-5 7 5v11M10 20v-5h4v5"/></svg></i>Tansy Bakes</div>
+    <div class="rfoot">Feedback<b>D</b></div>
+  </aside>
+  <div class="main"><div data-scroll>
+    <div class="card head"><div><p class="eyebrow">Client dashboard</p><h1>Saltwind Stays</h1><p class="sub">Updated 24 Oct 2026, 12:55 pm IST &nbsp;&nbsp;<b style="color:var(--ind);font-size:11px">Monthly report</b></p></div>
+      <div class="seg"><span class="range">▭ <b>7D</b> 17 Oct 26 → 23 Oct 26</span><b class="meta">Meta</b><span>Creative</span><span>Insights</span><span>Client brief</span></div></div>
+    <span class="notes"><i></i>Data notes · 1 <span>Show</span></span>
+    <p class="sec">Account total · Meta <span>change vs the previous 7 days</span></p>
+    <div class="grid" id="kpis"></div>
+    <div class="pills"><b>Campaign</b><span>Ad Set</span><span>Ad</span><span>Placement</span><span>Device</span><span>Age</span><span>Gender</span><span>Conversion action</span></div>
+    <div class="card bars"><h4>Spend by entity (top 5)</h4><div id="bars"></div><div class="axis"><span></span><div><i>₹0k</i><i>₹4k</i><i>₹8k</i><i>₹12k</i><i>₹16k</i></div></div></div>
+    <div class="card tbl tbl2" style="margin-top:14px"><table><thead><tr><th class="l">Name</th><th>Spend</th><th>Impressions</th><th>Reach</th><th>Frequency</th><th>Clicks</th><th>CTR</th><th>CPC</th><th>Leads</th></tr></thead><tbody id="camps"></tbody></table></div>
+  </div></div>
+  <div class="brand"><b>cerno</b> · sample workspace</div>
+</section>
+
+<script src="stage.js"></script>
+<script>
+// Every name and figure below is invented for this film.
+const A=[
+ ['r','Northgate Homes','Farid','₹2,84,310','g','▲ 6%','862','purchases','b','▼ 4%','₹330','b','▲ 11%','5.92×',17,'1d ago',['r:1 campaign(s) with 0 purchases','o:Cost/purchase rising on 2 campaign(s)']],
+ ['r','Juniper Group','Farid','₹71,460','b','▼ 22%','14','leads','b','▼ 38%','₹5,104','b','▲ 26%','—',7,'3d ago',['o:Cost/lead rising on 1 campaign(s)','r:2 campaign(s) with 0 leads']],
+ ['r','Saltwind Stays','Farid','₹64,925','b','▼ 31%','26','leads','g','▲ 18%','₹2,497','g','▼ 41%','—',8,'2d ago',['r:3 campaign(s) with 0 leads']],
+ ['r','Harrow Realty','Ishaan','₹48,270','b','▼ 7%','131','leads','b','▼ 19%','₹368','b','▲ 15%','—',12,'1d ago',['r:1 campaign(s) with 0 leads','o:Cost/lead rising on 1 campaign(s)']],
+ ['r','Lumen Hotels','Ishaan','₹39,180','g','▲ 12%','9','leads','b','▼ 44%','₹4,353','b','▲ 97%','—',6,'4d ago',['o:Untouched 8d','o:Cost/lead rising on 2 campaign(s)']],
+ ['r','Fernhill','Tara','₹36,740','g','▲ 21%','19','purchases','g','▲ 36%','₹1,934','g','▼ 12%','3.41×',5,'1d ago',['o:Untouched 8d','o:Cost/purchase rising on 1 campaign(s)']],
+ ['r','Tansy Bakes','Vihaan','₹24,615','b','▼ 3%','3','purchases','n','0%','₹8,205','n','—','0.14×',4,'3d ago',['r:1 campaign(s) with 0 purchases']],
+ ['o','Coral Bay','Ishaan','₹58,330','g','▲ 5%','41','leads','b','▼ 6%','₹1,423','b','▲ 9%','—',9,'1d ago',['o:Cost/lead rising on 1 campaign(s)']],
+ ['o','Aldergrove Living','Vihaan','₹41,905','b','▼ 2%','84','leads','b','▼ 5%','₹499','g','▼ 3%','—',8,'—',['o:Cost/lead rising on 1 campaign(s)']],
+ ['o','Quillon Tech','Farid','₹29,870','b','▼ 8%','72','leads','b','▼ 27%','₹415','b','▲ 31%','—',3,'—',['o:No active campaigns','o:Cost/lead rising on 1 campaign(s)']],
+ ['g','Pebble & Vine','Tara','₹22,440','g','▲ 14%','58','leads','g','▲ 22%','₹387','g','▼ 7%','—',4,'1d ago',[]],
+];
+const cls={g:'g',b:'r',n:''};
+document.getElementById('rows').innerHTML=A.map(a=>`<tr><td class="l"><div class="acct"><span style="color:#b9bfca;font-size:9px">▸</span><i class="dot" style="background:${a[0]==='r'?'#f04438':a[0]==='o'?'#f5b301':'#12b76a'}"></i><div>${a[1]}<small>${a[2]}</small></div></div></td>
+ <td>${a[3]}<span class="d ${cls[a[4]]}">${a[5]}</span></td><td>${a[6]}<span class="u">${a[7]}</span><span class="d ${cls[a[8]]}">${a[9]}</span></td><td>${a[10]}<span class="d ${cls[a[11]]}">${a[12]}</span></td><td>${a[13]}</td><td>${a[14]}</td><td class="l">${a[15]}</td>
+ <td class="l"><div class="chips">${a[16].map(c=>`<span class="chip ${c[0]}">${c.slice(2)}</span>`).join('')}</div></td></tr>`).join('');
+
+const K=[['Spend','₹64,925','b','▼ 31%'],['Impressions','4,18,260','b','▼ 9.4%'],['Reach','2,96,410','',''],['Frequency','1.41','',''],
+ ['Clicks','6,184','g','▲ 3.2%'],['CTR','1.48%','g','▲ 13.9%'],['CTR (link)','1.12%','',''],['CPC','₹10.50','g','▼ 33.2%'],
+ ['CPM','₹155','b','▼ 23.8%'],['Link Clicks','4,702','',''],['LP Views','3,655','',''],['Cost / LP View','₹17.76','',''],
+ ['Leads','26','g','▲ 18.2%'],['Cost / Lead','₹2,497','g','▼ 41.4%'],['CVR','0.71%','g','▲ 9.0%'],['Qualified leads','11','g','▲ 22%']];
+document.getElementById('kpis').innerHTML=K.map((k,i)=>`<div class="card kpi"><small>${k[0]}</small><p data-n>${k[1]}</p>${k[2]?`<span class="dp ${k[2]}">${k[3]}</span>`:''}${spark(101+i*7,i===12?{color:'#f0679e',fill:'rgba(233,10,121,.14)'}:{})}</div>`).join('');
+
+const C=[['SW-1026-Leads-Monsoon-Getaway','₹15,840','98%','1,02,410','71,266','1.44','1,611','1.57%','₹9.83','9'],
+ ['SW-1026-Leads-Weekend-Villas','₹13,275','82%','84,905','62,118','1.37','1,322','1.56%','₹10.04','7'],
+ ['SW-0926-Retarget-Site-Visitors','₹11,460','71%','58,330','33,904','1.72','1,104','1.89%','₹10.38','6'],
+ ['SW-1026-Reach-Diwali-Offer','₹9,820','61%','1,12,640','88,412','1.27','902','0.80%','₹10.89','0'],
+ ['Boosted post: “Three nights by the backwater”','₹7,930','49%','41,275','30,116','1.37','671','1.63%','₹11.82','3'],
+ ['SW-0826-Leads-Corporate-Offsite','₹6,600','41%','18,700','10,594','1.77','574','3.07%','₹11.50','1']];
+document.getElementById('bars').innerHTML=C.slice(0,5).map(c=>`<div class="bar"><span>${c[0]}</span><i style="--w:${c[2]}"></i></div>`).join('');
+document.getElementById('camps').innerHTML=`<tr><td class="l" style="font-size:10px;color:#667085;font-weight:600">TOTAL</td><td><b>₹64,925</b></td><td><b>4,18,260</b></td><td><b>2,96,410</b></td><td><b>1.41</b></td><td><b>6,184</b></td><td><b>1.48%</b></td><td><b>₹10.50</b></td><td><b>26</b></td></tr>`+
+ C.map(c=>`<tr><td class="l"><i class="live"></i><b>${c[0]}</b></td><td>${c[1]}</td><td>${c[3]}</td><td>${c[4]}</td><td>${c[5]}</td><td>${c[6]}</td><td>${c[7]}</td><td>${c[8]}</td><td>${c[9]}</td></tr>`).join('');
+
+Stage([
+ {id:'s1',dur:7.6,scroll:[[0,0],[1.9,0],[6.4,640],[7.6,650]]},
+ {id:'s2',dur:8.4,scroll:[[0,0],[2.4,0],[5.4,520],[6.2,520],[8.4,668]]},
+]);
+</script></body></html>

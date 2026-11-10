@@ -2,14 +2,17 @@ import Link from 'next/link';
 import { ArrowLeft, ArrowUpRight, Lock } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import MotionRoot from '@/components/night/MotionRoot';
-import { Chars } from '@/components/night/text';
+import Motion from '@/components/deck/Motion';
+import { Suit, isRed, type SuitName } from '@/components/deck/Suit';
+import { Card, Index, Back } from '@/components/deck/Card';
 import { EMAIL, projects, offClock } from '@/data/profile';
 
 interface Tag { label: string; color: string; bg: string }
 interface Repo { url: string; label?: string; private?: boolean }
 interface Live { url: string; label: string }
 interface Media { video?: string; poster: string }
+/** A small card in the row of other pages. `image` makes it a picture card. */
+export interface MoreCard { href: string; label: string; image?: string }
 
 interface Props {
   title: string;
@@ -26,6 +29,10 @@ interface Props {
   media?: Media;
   /** Override the "next" link (website pages pass the next website). */
   next?: { href: string; label: string; kicker: string };
+  /** Website pages: the site's own colours, printed as the card drawn in the hero. */
+  swatch?: { colors: string[]; caption: string };
+  /** Override the row of other pages under the "next" link. */
+  more?: { heading: string; cards: MoreCard[] };
   children: React.ReactNode;
 }
 
@@ -47,136 +54,185 @@ const ORDER = [
   ...offClock.filter((o) => o.href).map((o) => ({ href: o.href!, label: o.what })),
 ];
 
-function mediaFor(title: string, explicit?: Media): Media | undefined {
-  if (explicit) return explicit;
-  if (MEDIA[title]) return MEDIA[title];
-  if (/social media/i.test(title)) return { poster: '/screenshots/social-calendar.jpg' };
-  return undefined;
-}
-
 /* Case-study page titles that differ from their Work-list titles. */
 const ALIAS: Record<string, string> = { 'Social Media Planning Tool': 'Social Media Planner' };
+const norm = (s: string) => s.toLowerCase().replace(/[^a-z]/g, '');
+const matches = (a: string, b: string) => norm(a).includes(norm(b)) || norm(b).includes(norm(a));
 
-function nextFor(pageTitle: string) {
-  const title = ALIAS[pageTitle] ?? pageTitle;
-  const norm = (s: string) => s.toLowerCase().replace(/[^a-z]/g, '');
-  const i = ORDER.findIndex((o) => norm(title).includes(norm(o.label)) || norm(o.label).includes(norm(title)));
-  const n = ORDER[(i + 1) % ORDER.length];
-  return { ...n, kicker: 'Next case study' };
+function mediaFor(title: string, explicit?: Media): Media | undefined {
+  if (explicit) return explicit;
+  if (/social media/i.test(title)) return { poster: '/screenshots/social-calendar.jpg' };
+  // Page titles are sometimes longer than the names the footage is filed under.
+  const key = Object.keys(MEDIA).find((k) => k === title) ?? Object.keys(MEDIA).find((k) => matches(k, title));
+  return key ? MEDIA[key] : undefined;
 }
 
-export default function ProjectLayout({ title, subtitle, period, company, tags, color, repos, live, back = { href: '/#work', label: 'All work' }, media, next, children }: Props) {
+/* The card a page belongs to: its suit, the figure printed in the corner and
+   what that figure counts. Side projects are not in the hand, so they draw
+   the ace of spades. */
+function cardFor(href: string | undefined): { value: string; suit: SuitName; caption?: string } {
+  const p = projects.find((x) => href === `/projects/${x.slug}/`);
+  return p ? { value: p.stats[p.corner].v, suit: p.suit, caption: p.stats[p.corner].l } : { value: 'A', suit: 'spade' };
+}
+
+/* The title, a word at a time so it can rise on load. Whole words rather
+   than letters, so the pairs inside them keep their kerning. */
+function Rising({ text }: { text: string }) {
+  return (
+    <span aria-hidden="true">
+      {text.split(' ').map((word, w) => (
+        <span key={w} className="rise"><span>{word}</span></span>
+      ))}
+    </span>
+  );
+}
+
+export default function ProjectLayout({ title, subtitle, period, company, tags, repos, live, back = { href: '/#work', label: 'All work' }, media, next, swatch, more, children }: Props) {
   const m = mediaFor(title, media);
-  const n = next ?? nextFor(title);
+  const at = ORDER.findIndex((o) => matches(ALIAS[title] ?? title, o.label));
+  const n = next ?? { ...ORDER[(at + 1) % ORDER.length], kicker: 'Next case study' };
+  const here = cardFor(at >= 0 ? ORDER[at].href : undefined);
+  const there = cardFor(n.href);
+  const rest: { heading: string; cards: MoreCard[] } = more ?? {
+    heading: 'The rest of the work',
+    cards: ORDER.filter((o, i) => i !== at && o.href !== n.href),
+  };
 
   return (
-    <div className="night flex min-h-full flex-col">
-      <MotionRoot />
+    <div className="felt flex min-h-full flex-col">
+      <Motion />
       <Navbar />
       <main className="flex-1">
-        {/* ── Night hero ── */}
-        <header className="relative overflow-hidden pt-28 md:pt-36 pb-14 md:pb-20">
-          <div aria-hidden className="absolute inset-0" style={{ background: `radial-gradient(55% 60% at 80% 10%, ${color}40, transparent 70%), radial-gradient(40% 40% at 10% 90%, rgba(111,137,255,0.14), transparent 70%)` }} />
-          <div aria-hidden className="grid-night absolute inset-0 opacity-60" />
-          <div className="relative max-w-[1320px] mx-auto px-4 md:px-8">
-            <Link href={back.href} className="hero-fade inline-flex min-h-11 items-center gap-1.5 text-[14px] mb-8 hover:text-[var(--cobalt)] transition-colors" style={{ color: 'var(--ink-2)', ['--d' as string]: '0.1s' }}>
-              <ArrowLeft size={15} /> {back.label}
-            </Link>
+        <header className={`sub-hero felt${m ? '' : ' no-media'}`} data-subhero>
+          <div className="wrap">
+            <Link href={back.href} className="sub-back"><ArrowLeft size={17} /> {back.label}</Link>
+            <p className="sub-meta"><Suit s={here.suit} />{company}, {period}</p>
+            <h1 className="sub-title display" aria-label={title}><Rising text={title} /></h1>
 
-            <div className="hero-fade flex items-center gap-3 mb-6" style={{ ['--d' as string]: '0.15s' }}>
-              <span className="w-3 h-3 rounded-full shrink-0" style={{ background: color, boxShadow: `0 0 18px ${color}` }} aria-hidden />
-              <p className="font-mono-custom text-[13px] uppercase tracking-[0.16em]" style={{ color: 'var(--ink-2)' }}>
-                {company} · {period}
-              </p>
-            </div>
+            <div className="sub-row">
+              <div className="sub-lede" data-late>
+                <p>{subtitle}</p>
+                <ul className="sub-tags">
+                  {tags.map((t) => <li key={t.label} className="tag">{t.label}</li>)}
+                </ul>
 
-            <h1 className="display-tight font-extrabold" style={{ fontSize: 'clamp(56px, 11vw, 168px)' }}>
-              <Chars text={title} />
-            </h1>
-
-            <div className="mt-8 grid gap-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end">
-              <p className="hero-fade text-[18px] md:text-[22px] leading-[1.5] max-w-[50ch]" style={{ ['--d' as string]: '0.6s' }}>
-                {subtitle}
-              </p>
-              <div className="hero-fade flex flex-wrap items-center gap-2 lg:justify-end lg:max-w-[360px]" style={{ ['--d' as string]: '0.75s' }}>
-                {tags.map((t) => (
-                  <span key={t.label} className="text-[13px] px-3 py-1 rounded-full" style={{ border: '1px solid var(--rule)', color: 'var(--ink-2)', background: 'var(--sheet)' }}>
-                    {t.label}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            {(live || (repos && repos.length > 0)) && (
-              <div className="hero-fade mt-9 flex flex-wrap items-center gap-x-6 gap-y-3 text-[14px]" style={{ ['--d' as string]: '0.85s' }}>
-                {live && (
-                  <a data-magnetic href={live.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-[15px] font-medium" style={{ background: 'var(--signal)', color: '#0B1B3A' }}>
-                    {live.label} <ArrowUpRight size={15} />
-                  </a>
+                {(live || (repos && repos.length > 0)) && (
+                  <div className="sub-links">
+                    {live && (
+                      <a href={live.url} target="_blank" rel="noopener noreferrer" className="btn btn-solid">
+                        {live.label} <ArrowUpRight size={17} />
+                      </a>
+                    )}
+                    {repos?.map((r) => {
+                      const name = r.url.replace('https://github.com/', '');
+                      const href = r.private
+                        ? `mailto:${EMAIL}?subject=${encodeURIComponent(`Code access request: ${name}`)}&body=${encodeURIComponent(`Hi Dhruv,\n\nI saw ${title} on your portfolio and would like to look at the code (${name}). My GitHub username is: \n\nThanks!`)}`
+                        : r.url;
+                      return (
+                        <a key={r.url} href={href} {...(r.private ? {} : { target: '_blank', rel: 'noopener noreferrer' })} className="ink-link">
+                          {r.private ? <Lock size={14} className="shrink-0" /> : null}
+                          {r.private ? `Request access: ${r.label ?? name}` : `Source: ${r.label ?? name}`}
+                          {r.private ? null : <ArrowUpRight size={14} />}
+                        </a>
+                      );
+                    })}
+                  </div>
                 )}
-                {repos?.map((r) => {
-                  const name = r.url.replace('https://github.com/', '');
-                  const href = r.private
-                    ? `mailto:${EMAIL}?subject=${encodeURIComponent(`Code access request: ${name}`)}&body=${encodeURIComponent(`Hi Dhruv,\n\nI saw ${title} on your portfolio and would like to look at the code (${name}). My GitHub username is: \n\nThanks!`)}`
-                    : r.url;
-                  return (
-                    <a key={r.url} href={href} {...(r.private ? {} : { target: '_blank', rel: 'noopener noreferrer' })} className="inline-flex min-h-11 items-center gap-1.5 ink-link">
-                      {r.private ? <Lock size={13} className="shrink-0" /> : null}
-                      {r.private ? `Request access: ${r.label ?? name}` : `Source: ${r.label ?? name}`}
-                      {r.private ? null : <ArrowUpRight size={13} />}
-                    </a>
-                  );
-                })}
               </div>
-            )}
+
+              {/* The card this page was drawn as, on top of the pile it came from. */}
+              <div className="sub-draw" aria-hidden="true">
+                <span className="pc is-down sub-under"><span className="pc-flip"><span className="pc-face" /><Back /></span></span>
+                <span className="sub-drawn" data-draw>
+                  <span className="pc">
+                    <span className="pc-flip">
+                      {swatch ? (
+                        <span className="pc-face pc-swatch">
+                          <span className="sw-bands">{swatch.colors.map((c) => <i key={c} style={{ background: c }} />)}</span>
+                          <span className="sw-cap">{swatch.caption}</span>
+                        </span>
+                      ) : (
+                        <span className="pc-face">
+                          <Index value={here.value} suit={here.suit} />
+                          <Suit s={here.suit} className={`pc-pip${isRed(here.suit) ? ' red' : ''}`} />
+                          {here.caption && <span className="pc-cap">{here.caption}</span>}
+                        </span>
+                      )}
+                      <Back />
+                    </span>
+                  </span>
+                </span>
+              </div>
+            </div>
           </div>
 
           {m && (
-            <div className="relative max-w-[1320px] mx-auto px-4 md:px-8 mt-14 md:mt-20">
-              <div data-clip className="relative aspect-[16/10] overflow-hidden rounded-[20px] border" style={{ borderColor: 'var(--rule)', background: 'var(--paper-2)', boxShadow: `0 24px 56px -32px ${color}88` }}>
-                <div className="absolute inset-0">
-                  {m.video ? (
-                    <video data-src={m.video} poster={m.poster} muted loop playsInline preload="none" aria-hidden className="h-full w-full object-cover" />
-                  ) : (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img src={m.poster} alt={`${title}, screenshot`} className="h-full w-full object-cover object-top" />
-                  )}
+            <div className="sub-media-wrap">
+              <div className="wrap">
+                <div className="sub-media" data-setdown>
+                  <div>
+                    {m.video ? (
+                      <video data-src={m.video} poster={m.poster} muted loop playsInline preload="none" aria-hidden />
+                    ) : (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img src={m.poster} alt={`${title}, screenshot`} />
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
           )}
         </header>
 
-        {/* ── Light body for long reading ── */}
-        <div className="day">
-          <div className="max-w-[1080px] mx-auto px-4 md:px-8 py-16 md:py-24">{children}</div>
+        {/* Paper for the long read. Sections count up as a run in this page's suit. */}
+        <div className="stock">
+          <div className="reading" data-suit={here.suit}>{children}</div>
         </div>
 
-        {/* ── Next ── */}
-        <section className="relative overflow-hidden">
-          <div aria-hidden className="absolute inset-0" style={{ background: 'radial-gradient(50% 70% at 50% 100%, rgba(111,137,255,0.22), transparent 70%)' }} />
-          <Link href={n.href} className="group relative block max-w-[1320px] mx-auto px-4 md:px-8 py-20 md:py-28">
-            <p className="font-mono-custom text-[12px] tracking-[0.2em] uppercase mb-5" style={{ color: 'var(--signal)' }}>{n.kicker}</p>
-            <span className="display-tight font-extrabold flex items-start gap-3 min-w-0" style={{ fontSize: 'clamp(44px, 9vw, 140px)' }}>
-              <span className="sr-only">{n.label}</span>
-              <span aria-hidden className="min-w-0">
-                {n.label.split(' ').map((word, w, all) => {
-                  const offset = all.slice(0, w).join(' ').length + (w ? 1 : 0);
-                  return (
-                    <span key={w}>
-                      <span className="wave inline-block whitespace-nowrap">
-                        {[...word].map((c, i) => (
-                          <span key={i} style={{ ['--i' as string]: offset + i }}>{c}</span>
-                        ))}
-                      </span>
-                      {w < all.length - 1 ? ' ' : null}
-                    </span>
-                  );
-                })}
-              </span>
-              <ArrowUpRight aria-hidden className="mt-[0.12em] h-[0.5em] w-[0.5em] shrink-0 transition-transform duration-500 group-hover:translate-x-2 group-hover:-translate-y-2" style={{ color: 'var(--cobalt)' }} />
-            </span>
-          </Link>
+        {/* Next card, then the rest of the hand */}
+        <section className="next flood">
+          <div className="wrap">
+            <Link href={n.href} className="next-link">
+              <div>
+                <p className="next-kicker">{n.kicker}</p>
+                <p className="next-title display">{n.label}</p>
+              </div>
+              <Card value={there.value} suit={there.suit} down />
+            </Link>
+
+            {rest.cards.length > 0 && (
+              <nav className="more" aria-label={rest.heading}>
+                <p className="more-head">{rest.heading}</p>
+                <ul className="more-row">
+                  {rest.cards.map((c) => {
+                    const k = cardFor(c.href);
+                    return (
+                      <li key={c.href}>
+                        <Link href={c.href} className="more-card">
+                          <span className="pc">
+                            <span className="pc-flip">
+                              {c.image ? (
+                                <span className="pc-face pc-pic">
+                                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                                  <img src={c.image} alt="" loading="lazy" />
+                                  <span className="mc-title">{c.label}</span>
+                                </span>
+                              ) : (
+                                <span className="pc-face">
+                                  <Index value={k.value} suit={k.suit} />
+                                  <span className="mc-title">{c.label}</span>
+                                </span>
+                              )}
+                            </span>
+                          </span>
+                        </Link>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </nav>
+            )}
+          </div>
         </section>
       </main>
       <Footer />

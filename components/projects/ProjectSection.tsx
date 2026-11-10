@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { Words } from '@/components/night/text';
+import { Suit } from '@/components/deck/Suit';
 
 interface Props {
   label: string;
@@ -10,65 +10,72 @@ interface Props {
 
 const toSentence = (s: string) => s.charAt(0) + s.slice(1).toLowerCase();
 
-/* Two-column section: label and title on the left (sticky on desktop), content on the right */
+/* One section of a case study. Sections are a sequence (problem, build,
+   outcome), so each is marked with the next card of the page's suit: the rank
+   comes from a CSS counter and the pip from the suit set on `.reading`.
+   The outcomes are laid out on the table rather than on paper. */
 export function ProjectSection({ label, title, children }: Props) {
+  const table = /^outcomes?$/i.test(label.trim());
   return (
-    <section data-reveal className="grid grid-cols-1 lg:grid-cols-[260px_minmax(0,1fr)] gap-x-12 gap-y-5 pb-10 mb-10 md:pb-16 md:mb-16 border-b border-[var(--rule)] last:mb-0 last:pb-0 last:border-b-0">
-      <div className="lg:sticky lg:top-20 self-start">
-        <p className="text-[14px] font-medium mb-2" style={{ color: 'var(--eyebrow, var(--cobalt))' }}>
-          {toSentence(label)}
-        </p>
-        <h2 data-split className="font-display font-bold text-[28px] md:text-[32px] leading-[1.1] tracking-tight" style={{ color: 'var(--ink)', textWrap: 'balance' }}>
-          <Words text={title} />
-        </h2>
+    <section className={`sec${table ? ' sec-felt felt' : ''}`}>
+      <div className="sec-in">
+        <div className="sec-rail"><span className="rank" aria-hidden="true" /></div>
+        <div className="sec-main">
+          <p className="sec-label">{toSentence(label)}</p>
+          <h2 className="sec-title">{title}</h2>
+          <div className="sec-body">{children}</div>
+        </div>
       </div>
-      <div className="min-w-0">{children}</div>
     </section>
   );
 }
 
+/* A result, printed as a card: the figure where the index goes. */
 export function StatCard({ value, label, sub }: { value: string; label: string; sub?: string; color: string }) {
+  // Words too long for a card's width are set smaller rather than broken.
+  const long = value.split(/\s+/).some((w) => w.length > 6);
   return (
-    <div className="h-full pl-3 py-1" style={{ borderLeft: '2px solid var(--cobalt)' }}>
-      <p data-count className="font-mono-custom text-[24px] leading-tight font-medium mb-1.5 break-words" style={{ color: 'var(--ink)' }}>
-        {value}
-      </p>
-      <p className="text-[14px] font-medium" style={{ color: 'var(--ink)' }}>
-        {label}
-      </p>
-      {sub && (
-        <p className="text-[13px] leading-snug mt-0.5" style={{ color: 'var(--ink-3)' }}>
-          {sub}
-        </p>
-      )}
+    <div className="stat">
+      <p className={`num${long ? ' long' : ''}`}>{value}</p>
+      <div className="stat-foot">
+        <p className="stat-label">{label}</p>
+        {sub && <p className="stat-sub">{sub}</p>}
+      </div>
     </div>
   );
 }
 
-/* One visual system for every case study: cobalt rule, no emoji, no per-card colours.
+/* One visual system for every case study: no emoji, no per-card colours.
    `icon`, `color` and `bg` are still accepted so the case-study pages need no edits. */
 export function FeatureCard({ title, desc }: { icon?: string; title: string; desc: string; color?: string; bg?: string }) {
   return (
-    <div data-tilt className="h-full p-5 rounded-[10px] transition-shadow hover:shadow-[0_24px_60px_-30px_rgba(11,27,58,0.45)]" style={{ background: 'var(--sheet)', border: '1px solid var(--rule)', borderTop: '2px solid var(--cobalt)' }}>
-      <div className="flex items-center gap-2.5 mb-2.5">
-        <span aria-hidden className="h-1.5 w-1.5 shrink-0 rounded-full" style={{ background: 'var(--cobalt)' }} />
-        <h4 className="text-[16px] font-semibold leading-snug" style={{ color: 'var(--ink)' }}>
-          {title}
-        </h4>
-      </div>
-      <p className="text-[15px] leading-[1.6]" style={{ color: 'var(--ink-2)' }}>
-        {desc}
-      </p>
+    <div className="feature">
+      <h4>{title}</h4>
+      <p>{desc}</p>
+    </div>
+  );
+}
+
+/* A process, as a run of cards on a strip of felt: ace first. */
+export function Flow({ title, steps }: { title?: string; steps: { label: string; sublabel?: string; detail?: string; [k: string]: unknown }[] }) {
+  return (
+    <div className="flow felt">
+      {title && <p className="flow-title">{toSentence(title)}</p>}
+      <ol className="flow-row">
+        {steps.map((s) => (
+          <li key={s.label} className="flow-card">
+            <span className="rank-sm" aria-hidden="true" />
+            <strong>{s.label}</strong>
+            {(s.sublabel ?? s.detail) && <span>{s.sublabel ?? s.detail}</span>}
+          </li>
+        ))}
+      </ol>
     </div>
   );
 }
 
 export function TechBadge({ name }: { name: string; color?: string }) {
-  return (
-    <span className="text-[13px] px-3 py-1 rounded-full inline-block font-mono-custom" style={{ color: 'var(--ink-2)', border: '1px solid var(--rule)', background: 'var(--sheet)' }}>
-      {name}
-    </span>
-  );
+  return <span className="tag inline-block">{name}</span>;
 }
 
 export function Screenshot({
@@ -91,26 +98,11 @@ export function Screenshot({
 }) {
   return (
     <figure className="mb-3">
-      <div
-        data-clip
-        className="relative w-full overflow-hidden rounded-[10px]"
-        style={{
-          border: '1px solid var(--rule)',
-          background: light ? '#FFFFFF' : 'var(--paper-2)',
-          aspectRatio: `${width} / ${height}`,
-          boxShadow: '0 1px 0 var(--rule), 0 18px 40px -24px rgba(11,27,58,0.35)',
-        }}
-      >
-        <Image
-          src={src}
-          alt={alt}
-          fill
-          sizes="(max-width: 1024px) 100vw, 760px"
-          className={fit === 'cover' ? 'object-cover object-top' : 'object-contain'}
-        />
+      <div className="shot" style={{ background: light ? '#FFFFFF' : 'var(--paper-2)', aspectRatio: `${width} / ${height}` }}>
+        <Image src={src} alt={alt} fill sizes="(max-width: 1024px) 100vw, 960px" className={fit === 'cover' ? 'object-cover object-top' : 'object-contain'} />
       </div>
       {caption && (
-        <figcaption className="text-[13px] leading-snug mt-2.5 max-w-[70ch]" style={{ color: 'var(--ink-3)' }}>
+        <figcaption className="text-[14px] leading-snug mt-2.5 max-w-[70ch]" style={{ color: 'var(--ink-3)' }}>
           {caption}
         </figcaption>
       )}
@@ -120,10 +112,10 @@ export function Screenshot({
 
 export function BulletList({ items }: { items: string[]; color: string }) {
   return (
-    <ul className="space-y-3">
+    <ul className="bullets">
       {items.map((item, i) => (
-        <li key={i} className="text-[16px] leading-[1.6] pl-5 relative max-w-[68ch]" style={{ color: 'var(--ink-2)' }}>
-          <span className="absolute left-0 top-[12px] w-2.5 h-[2px]" style={{ background: 'var(--cobalt)' }} />
+        <li key={i}>
+          <Suit s="diamond" />
           {item}
         </li>
       ))}

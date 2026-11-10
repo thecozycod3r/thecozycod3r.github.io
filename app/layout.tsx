@@ -1,26 +1,19 @@
 import type { Metadata } from "next";
-import { Bricolage_Grotesque, IBM_Plex_Sans, IBM_Plex_Mono } from "next/font/google";
+import { Bodoni_Moda, Schibsted_Grotesk } from "next/font/google";
 import "./globals.css";
 
-const bricolage = Bricolage_Grotesque({
-  variable: "--font-bricolage",
+const bodoni = Bodoni_Moda({
+  variable: "--font-bodoni",
   subsets: ["latin"],
-  axes: ["wdth", "opsz"],
-  display: "swap",
-});
-
-const plexSans = IBM_Plex_Sans({
-  variable: "--font-plex-sans",
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
   style: ["normal", "italic"],
+  axes: ["opsz"],
   display: "swap",
 });
 
-const plexMono = IBM_Plex_Mono({
-  variable: "--font-plex-mono",
+const schibsted = Schibsted_Grotesk({
+  variable: "--font-schibsted",
   subsets: ["latin"],
-  weight: ["400", "500"],
+  style: ["normal", "italic"],
   display: "swap",
 });
 
@@ -36,15 +29,20 @@ export const metadata: Metadata = {
   },
 };
 
+/* Runs before first paint: if motion is welcome, hold the hero cards back so
+   the deal can start from the deck instead of flashing the finished layout.
+   A timer releases the hold if the page script never arrives. */
+const holdTheDeal = `(function(){try{if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;var d=document.documentElement;d.classList.add('deal-pending');setTimeout(function(){d.classList.remove('deal-pending')},6000)}catch(e){}})()`;
+
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html
-      lang="en"
-      className={`${bricolage.variable} ${plexSans.variable} ${plexMono.variable} h-full`}
-    >
-      <body className="min-h-full flex flex-col">{children}</body>
+    <html lang="en" className={`${bodoni.variable} ${schibsted.variable} h-full`} suppressHydrationWarning>
+      <body className="min-h-full flex flex-col">
+        <script dangerouslySetInnerHTML={{ __html: holdTheDeal }} />
+        {children}
+      </body>
     </html>
   );
 }

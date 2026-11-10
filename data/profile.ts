@@ -5,11 +5,15 @@ export const RESUME = '/Dhruv_Shricharan_Resume.pdf';
 
 /* ── System map: the business, left to right, with what I built at each stage ── */
 export interface MapNode { name: string; note: string; href?: string }
-export interface MapStage { stage: string; question: string; nodes: MapNode[] }
+export type SuitName = 'spade' | 'club' | 'heart' | 'diamond';
+/* Each stage of the business is a suit. The lineage is real: spades were swords,
+   clubs were batons, hearts were cups and diamonds were coins. */
+export interface MapStage { stage: string; suit: SuitName; question: string; nodes: MapNode[] }
 
 export const systemMap: MapStage[] = [
   {
     stage: 'Win clients',
+    suit: 'spade',
     question: 'Where does the next client come from?',
     nodes: [
       { name: 'Outbound engine', note: '1,000+ emails a day, ₹5L+ a month in new retainers' },
@@ -17,6 +21,7 @@ export const systemMap: MapStage[] = [
   },
   {
     stage: 'Run the work',
+    suit: 'club',
     question: 'Who is doing what, and is it approved?',
     nodes: [
       { name: 'Tempo', note: 'Own task manager, replaced Asana', href: '/projects/tempo/' },
@@ -27,6 +32,7 @@ export const systemMap: MapStage[] = [
   },
   {
     stage: 'Prove results',
+    suit: 'heart',
     question: 'Did the ad spend turn into sales?',
     nodes: [
       { name: 'Cerno', note: 'Ads joined to CRM leads, for staff and clients', href: '/projects/analytics-dashboard/' },
@@ -34,6 +40,7 @@ export const systemMap: MapStage[] = [
   },
   {
     stage: 'Watch the money',
+    suit: 'diamond',
     question: 'Are we making money this week?',
     nodes: [
       { name: 'P&L dashboard', note: 'Monthly close became a weekly view', href: '/projects/pl-dashboard/' },
@@ -49,6 +56,10 @@ export interface Project {
   context: string;
   year: string;
   stats: { v: string; l: string }[];
+  /** Suit = the stage of the business this tool serves. */
+  suit: SuitName;
+  /** Which stat is printed in the card's corner (index into stats). */
+  corner: number;
 }
 
 export const projects: Project[] = [
@@ -59,6 +70,8 @@ export const projects: Project[] = [
     context: 'Digital Advantage Media',
     year: '2026',
     stats: [{ v: '28', l: 'client accounts' }, { v: '21', l: 'reports a month, generated' }],
+    suit: 'heart',
+    corner: 0,
   },
   {
     slug: 'neo',
@@ -67,6 +80,8 @@ export const projects: Project[] = [
     context: 'Digital Advantage Media',
     year: '2026',
     stats: [{ v: '4', l: 'AI engines tracked' }, { v: '₹0', l: 'per-seat cost' }],
+    suit: 'club',
+    corner: 1,
   },
   {
     slug: 'tempo',
@@ -75,6 +90,8 @@ export const projects: Project[] = [
     context: 'Digital Advantage Media',
     year: '2026',
     stats: [{ v: '29', l: 'client boards' }, { v: '$0', l: 'monthly database cost' }],
+    suit: 'club',
+    corner: 0,
   },
   {
     slug: 'creative-studio',
@@ -83,6 +100,8 @@ export const projects: Project[] = [
     context: 'Digital Advantage Media',
     year: '2026',
     stats: [{ v: '7', l: 'generation models' }, { v: '30', l: 'client workspaces' }],
+    suit: 'club',
+    corner: 0,
   },
   {
     slug: 'social-media-tool',
@@ -91,6 +110,8 @@ export const projects: Project[] = [
     context: 'Digital Advantage Media',
     year: '2025',
     stats: [{ v: '6', l: 'approval stages' }, { v: '100%', l: 'posts published automatically' }],
+    suit: 'club',
+    corner: 0,
   },
   {
     slug: 'pl-dashboard',
@@ -99,6 +120,8 @@ export const projects: Project[] = [
     context: 'Digital Advantage Media',
     year: '2025',
     stats: [{ v: 'Weekly', l: 'reporting, was monthly' }, { v: '10%+', l: 'costs found and cut' }],
+    suit: 'diamond',
+    corner: 1,
   },
   {
     slug: 'asana-ops',
@@ -107,6 +130,8 @@ export const projects: Project[] = [
     context: 'Digital Advantage Media',
     year: '2025',
     stats: [{ v: '4', l: 'teams on one system' }, { v: '0', l: 'missed requirements' }],
+    suit: 'club',
+    corner: 0,
   },
 ];
 

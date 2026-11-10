@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { RESUME, EMAIL } from '@/data/profile';
+import { Suit } from '@/components/deck/Suit';
 
 const links = [
   { href: '/#work', label: 'Work' },
@@ -13,74 +14,49 @@ const links = [
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  const [stuck, setStuck] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
+    const onScroll = () => setStuck(window.scrollY > 12);
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   return (
-    <header
-      className="fixed top-0 inset-x-0 z-50 transition-[border-color,background-color] duration-200"
-      style={{
-        background: scrolled || open ? 'var(--paper)' : 'transparent',
-        borderBottom: `1px solid ${scrolled || open ? 'var(--rule)' : 'transparent'}`,
-      }}
-    >
-      <nav className="max-w-[1320px] mx-auto px-4 md:px-8 h-14 flex items-center justify-between">
-        <Link href="/" className="font-display text-[17px] font-bold tracking-tight" style={{ color: 'var(--ink)' }}>
+    <header className={`nav${stuck ? ' is-stuck' : ''}${open ? ' is-open' : ''}`}>
+      <nav className="nav-in wrap" aria-label="Main">
+        <Link href="/" className="nav-mark" onClick={() => setOpen(false)}>
+          <Suit s="spade" />
           Dhruv Shricharan
         </Link>
 
-        <div className="hidden md:flex items-center gap-7 text-[14px]">
+        <div className="nav-links">
           {links.map((l) => (
-            <Link key={l.href} href={l.href} className="hover:text-[var(--cobalt)] transition-colors" style={{ color: 'var(--ink-2)' }}>
-              {l.label}
-            </Link>
+            <Link key={l.href} href={l.href}>{l.label}</Link>
           ))}
-          <a
-            href={RESUME}
-            download
-            className="px-3.5 py-1.5 rounded-full text-[13px] font-medium transition-colors hover:bg-[var(--cobalt)]"
-            style={{ background: 'var(--ink)', color: 'var(--sheet)' }}
-          >
+          <a href={RESUME} download className="btn" style={{ background: 'var(--stock-hi)', color: 'var(--felt-deep)' }}>
             Download résumé
           </a>
         </div>
 
-        <button
-          type="button"
-          className="md:hidden min-h-11 min-w-11 text-[14px] font-medium px-4 rounded-full"
-          style={{ border: '1px solid var(--rule)', color: 'var(--ink)' }}
-          aria-expanded={open}
-          aria-controls="mobile-menu"
-          onClick={() => setOpen((o) => !o)}
-        >
+        <button type="button" className="nav-toggle" aria-expanded={open} aria-controls="nav-sheet" onClick={() => setOpen((o) => !o)}>
           {open ? 'Close' : 'Menu'}
         </button>
       </nav>
 
       {open && (
-        <div id="mobile-menu" className="md:hidden px-4 pb-5 pt-1">
-          <ul className="flex flex-col">
+        <div id="nav-sheet" className="nav-sheet">
+          <ul>
             {links.map((l) => (
-              <li key={l.href} style={{ borderTop: '1px solid var(--rule-soft)' }}>
-                <Link href={l.href} onClick={() => setOpen(false)} className="block py-3 font-display text-2xl font-semibold" style={{ color: 'var(--ink)' }}>
-                  {l.label}
-                </Link>
+              <li key={l.href}>
+                <Link href={l.href} onClick={() => setOpen(false)}>{l.label}</Link>
               </li>
             ))}
           </ul>
-          <div className="flex gap-2 mt-3">
-            <a href={RESUME} download className="px-4 py-2 rounded-full text-sm font-medium" style={{ background: 'var(--ink)', color: 'var(--sheet)' }}>
-              Download résumé
-            </a>
-            <a href={`mailto:${EMAIL}`} className="px-4 py-2 rounded-full text-sm font-medium" style={{ border: '1px solid var(--rule)', color: 'var(--ink)' }}>
-              Email me
-            </a>
+          <div className="flex flex-wrap gap-3 mt-4">
+            <a href={RESUME} download className="btn" style={{ background: 'var(--stock-hi)', color: 'var(--felt-deep)' }}>Download résumé</a>
+            <a href={`mailto:${EMAIL}`} className="btn" style={{ boxShadow: 'inset 0 0 0 1.5px currentColor' }}>Email me</a>
           </div>
         </div>
       )}

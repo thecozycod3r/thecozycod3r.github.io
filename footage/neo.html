@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Neo, sample data</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--ind:#2416A5;--ind2:#1B1079;--mag:#E90A79;--yel:#FFC969;--pur:#7A3FD6;--tx:#12131a;--mut:#667085;--mut2:#98a2b3;--line:#e9eaf0}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1280px;height:800px;overflow:hidden}
+body{font-family:Inter,system-ui,sans-serif;color:var(--tx);font-size:13px;-webkit-font-smoothing:antialiased;background:#fff}
+.scene{position:absolute;inset:0;overflow:hidden;background:#fff}
+.scene::before{content:'';position:absolute;left:92px;right:0;top:9px;height:2.5px;background:linear-gradient(90deg,var(--ind),var(--mag) 70%,var(--yel));z-index:7}
+.rail{position:absolute;left:9px;top:9px;bottom:0;width:70px;border-radius:14px 14px 0 0;background:linear-gradient(180deg,#2a1bb8,#1d1296);display:flex;flex-direction:column;align-items:center;padding-top:13px;z-index:6;color:#cfcaf5}
+.nlogo{width:35px;height:35px;border-radius:10px;background:var(--mag);color:#fff;font-family:Syne;font-weight:800;font-size:19px;display:grid;place-items:center;margin-bottom:26px}
+.ni{position:relative;width:70px;display:grid;justify-items:center;gap:4px;font-size:9.5px;font-weight:500;margin-bottom:17px}
+.ni i{width:32px;height:28px;border-radius:9px;display:grid;place-items:center}
+.ni svg{width:16px;height:16px;fill:none;stroke:#d9d5fa;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.ni.on{color:#fff}.ni.on i{background:#fff}.ni.on svg{stroke:var(--ind)}
+.ni.on::before{content:'';position:absolute;left:-5px;top:3px;width:3px;height:22px;border-radius:2px;background:var(--mag)}
+.rfoot{margin-top:auto;padding-bottom:12px;display:grid;gap:9px;font-size:9.5px;text-align:center}
+.top{position:absolute;left:92px;right:0;top:12px;height:56px;display:flex;align-items:center;gap:16px;padding:0 20px 0 12px;border-bottom:1px solid var(--line);background:#fff;z-index:5}
+.ws{display:flex;align-items:center;gap:10px;font-weight:600;font-size:13px;padding:6px 12px 6px 8px;border-radius:9px;box-shadow:inset 0 0 0 1px var(--line)}
+.ws i{width:22px;height:22px;border-radius:6px;background:linear-gradient(140deg,#dfe8d6,#b8cba6)}
+.ws span{color:var(--mut2);font-size:10px}
+.top h2{font-family:Syne;font-weight:700;font-size:16.5px;letter-spacing:-.005em;padding-left:16px;border-left:1px solid var(--line)}
+.top .sp{margin-left:auto}.tag{font-size:10.5px;font-weight:600;color:#6b4e00;background:#fff4d6;box-shadow:inset 0 0 0 1px #f3d58a;padding:3px 9px;border-radius:999px}
+.run{font-size:11.5px;color:#475467;display:flex;align-items:center;gap:6px}.run::before{content:'';width:6px;height:6px;border-radius:50%;background:#12b76a}
+.btn{display:flex;align-items:center;gap:7px;font-weight:600;font-size:12.5px;padding:8px 13px;border-radius:9px;box-shadow:inset 0 0 0 1px var(--line)}
+.btn.p{background:var(--ind);color:#fff;box-shadow:none}
+.main{position:absolute;left:92px;right:0;top:68px;bottom:0;overflow:hidden}
+[data-scroll]{will-change:transform}
+.home{width:860px;margin:0 auto;padding:30px 0 90px}
+.hi{font-size:12.5px;color:var(--mut)}
+.home h1{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:9px 0 9px}
+.row{display:flex;justify-content:space-between;align-items:baseline;margin:24px 0 10px;font-size:12.5px}
+.row b{font-weight:600}.row span{color:var(--mut);font-size:11.5px;margin-left:8px}.row a{color:var(--ind);font-weight:600;font-size:11.5px}
+.k5{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.k{border-radius:11px;box-shadow:inset 0 0 0 1px var(--line);padding:15px 15px 14px;border-top:2.5px solid var(--c)}
+.k small{font-weight:600;font-size:12px}.k p{font-size:25px;font-weight:700;color:var(--ind);margin:12px 0 8px;font-variant-numeric:tabular-nums}
+.up{color:#079455;font-size:11px;font-weight:600}.dn{color:#d92d20;font-size:11px;font-weight:600}.mu{color:var(--mut);font-size:11px}
+.ai{border-radius:14px;background:linear-gradient(135deg,#2a1bb8,#1b1088 70%,#241a9c);color:#fff;padding:22px 24px;display:flex;gap:28px;align-items:center;box-shadow:0 16px 36px -14px rgba(36,22,165,.55)}
+.ring{width:104px;height:104px;border-radius:50%;flex-shrink:0;display:grid;place-items:center;background:conic-gradient(#fff calc(var(--in,1) * 38%),rgba(255,255,255,.16) 0);position:relative}
+.ring::before{content:'';position:absolute;inset:9px;border-radius:50%;background:#2416A5}
+.ring div{position:relative;text-align:center}.ring b{font-size:23px;display:block}.ring small{font-size:9.5px;color:#cfcaf5}
+.ai h3{font-size:14.5px;font-weight:500;line-height:1.4;margin-bottom:16px}.ai h3 b{font-weight:700}
+.a4{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.a4 small{font-size:10.5px;color:#cfcaf5}.a4 p{font-size:20px;font-weight:700;margin:5px 0 6px}.a4 span{font-size:10.5px;color:#cfcaf5;line-height:1.4;display:block}
+.e5{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:14px}
+.e{border-radius:11px;box-shadow:inset 0 0 0 1px var(--line);padding:14px 15px}
+.e b{font-size:12.5px;font-weight:600}.e span{display:block;font-size:11px;color:var(--mut);margin-top:9px}
+.e u{display:block;height:3px;border-radius:2px;background:#eef0f5;margin-top:10px;position:relative;text-decoration:none}.e u::after{content:'';position:absolute;inset:0 auto 0 0;width:calc(var(--p) * var(--in,1));background:var(--ind);border-radius:2px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+.box{border-radius:11px;box-shadow:inset 0 0 0 1px var(--line);padding:16px 16px 8px}.box h4{font-size:12.5px;font-weight:600;margin-bottom:10px}
+.li{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-top:1px solid var(--line);font-size:11.5px}.li span{color:var(--mut);white-space:nowrap}
+/* insights */
+.ins{padding:0 20px 80px}
+.itabs{display:flex;gap:26px;font-size:12.5px;color:#475467;padding:18px 0 0;border-bottom:1px solid var(--line)}
+.itabs span,.itabs b{padding-bottom:11px}.itabs b{color:var(--ind);font-weight:600;border-bottom:2px solid var(--mag)}.itabs em{font-style:normal;font-size:10px;color:var(--mut2);margin-left:4px}
+.tog{display:flex;gap:2px;padding:3px;border-radius:9px;background:#f2f3f7;font-size:12px;color:#475467}.tog b{background:#fff;color:var(--ind);padding:6px 12px;border-radius:7px;box-shadow:0 1px 2px rgba(16,24,40,.08);font-weight:600}.tog span{padding:6px 12px}
+.g3{display:grid;grid-template-columns:1.9fr 1fr 1fr;gap:12px;margin-top:8px}
+.dist{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-top:14px}
+.dist small{display:flex;align-items:center;gap:5px;font-size:10.5px;color:var(--mut)}.dist small i{width:6px;height:6px;border-radius:2px}
+.dist p{font-size:17px;font-weight:700;margin:6px 0 2px}.dist span{font-size:10px;color:var(--mut2)}
+.stack{display:flex;height:9px;border-radius:3px;overflow:hidden;margin-top:12px;width:calc(100% * var(--in,1))}.stack i{height:100%}
+.mv{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:10px}.mv p{font-size:21px;font-weight:700}.mv span{font-size:10px;color:var(--mut)}
+.kw{margin-top:14px}.kw table{width:100%;border-collapse:collapse}.kw th{text-align:left;font-size:10.5px;font-weight:500;color:var(--mut);padding:9px 0}
+.kw td{padding:11px 0;border-top:1px solid var(--line);font-size:12px}.kw td:first-child{color:var(--ind);font-weight:500}.kw td:nth-child(2){color:var(--mut)}
+.rk{display:inline-grid;place-items:center;min-width:22px;height:20px;padding:0 6px;border-radius:5px;background:var(--ind);color:#fff;font-size:10.5px;font-weight:700}
+/* articles */
+.art{padding:0 16px 60px}
+.ft{display:flex;align-items:center;gap:4px;padding:16px 0 14px;font-size:12px;color:#475467}
+.ft b,.ft span{padding:6px 11px;border-radius:8px}.ft b{background:#f0eefb;color:var(--ind);font-weight:600}.ft em{font-style:normal;font-size:10px;margin-left:4px;opacity:.7}
+.ft .se{margin-left:auto;width:230px;box-shadow:inset 0 0 0 1px var(--line);color:var(--mut2)}
+.at{width:100%;border-collapse:collapse}.at th{text-align:left;font-size:10.5px;font-weight:500;color:var(--mut);padding:10px 10px;background:#fafafc;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.at td{padding:15px 10px;border-bottom:1px solid var(--line);font-size:12.5px;white-space:nowrap}
+.at td.n{color:var(--mut2);font-size:10.5px;width:30px}.at td.kwd{font-weight:600}.at td.an{color:var(--mut);max-width:300px;overflow:hidden;text-overflow:ellipsis}
+.st{font-size:10.5px;font-weight:600;padding:3px 9px;border-radius:999px}
+.st.ok{background:#ecfdf3;color:#067647}.st.pub{background:#f0eefb;color:#2416A5}.st.rv{background:#fff6e0;color:#a15c00}.st.go{background:#eef0ff;color:#3538cd}
+.pg{display:flex;gap:3px}.pg i{width:14px;height:3px;border-radius:2px;background:#e4e7ec}.pg i.f{background:var(--ind)}
+.pgs{font-size:10px;color:var(--mut);display:block;margin-top:5px}.wf{color:var(--ind);font-weight:600;font-size:11.5px}
+</style></head><body>
+<template id="rail">
+  <aside class="rail"><div class="nlogo">N</div>
+   <div class="ni" data-k="Home"><i><svg viewBox="0 0 24 24"><path d="M4 11l8-7 8 7v9h-5v-6H9v6H4z"/></svg></i>Home</div>
+   <div class="ni" data-k="Articles"><i><svg viewBox="0 0 24 24"><path d="M7 3h7l4 4v14H7zM10 12h5M10 16h5"/></svg></i>Articles</div>
+   <div class="ni" data-k="Refresh"><i><svg viewBox="0 0 24 24"><path d="M4 9a8 8 0 0114-3l2 2M20 15a8 8 0 01-14 3l-2-2M20 4v4h-4M4 20v-4h4"/></svg></i>Refresh</div>
+   <div class="ni" data-k="Insights"><i><svg viewBox="0 0 24 24"><path d="M4 17l5-5 4 3 7-8M15 7h5v5"/></svg></i>Insights</div>
+   <div class="ni" data-k="Work"><i><svg viewBox="0 0 24 24"><path d="M5 12l4 4 10-10"/></svg></i>Work</div>
+   <div class="ni" data-k="Docs"><i><svg viewBox="0 0 24 24"><path d="M6 4h12v16H6zM9 8h6M9 12h6"/></svg></i>Docs</div>
+   <div class="ni" data-k="Reports"><i><svg viewBox="0 0 24 24"><path d="M6 20V11M12 20V5M18 20v-6M4 20h16"/></svg></i>Reports</div>
+   <div class="ni" data-k="Workflows"><i><svg viewBox="0 0 24 24"><rect x="4" y="4" width="6" height="6" rx="1"/><rect x="14" y="14" width="6" height="6" rx="1"/><path d="M7 10v4a3 3 0 003 3h4"/></svg></i>Workflows</div>
+   <div class="ni" data-k="Brand Kit"><i><svg viewBox="0 0 24 24"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9zM4 7.5l8 4.5 8-4.5M12 12v9"/></svg></i>Brand Kit</div>
+   <div class="rfoot"><span>Guide</span><span>Dhruv</span><span>Sign out</span></div>
+  </aside>
+</template>
+<template id="top">
+  <header class="top"><div class="ws"><i></i>Aldergrove Living<span>⌄</span></div><h2></h2><span class="tag">Sample workspace</span><span class="sp"></span><span class="run">Studio Mac 1</span><span class="run">Studio Mac 2</span></header>
+</template>
+
+<section class="scene" id="s1" data-nav="Home" data-title="Home">
+  <div class="main"><div data-scroll><div class="home">
+    <p class="hi">Good evening, Dhruv</p><h1>3 things worth a look</h1><p class="hi">Here's where Aldergrove Living stands right now.</p>
+    <div class="row"><div><b>Last 30 days</b><span>vs the previous 30 · Sep 24 – Oct 23</span></div><a>Open Insights →</a></div>
+    <div class="k5">
+      <div class="k" style="--c:#2416A5"><small>Organic clicks</small><p data-n>2,846</p><span class="up">▲ 18%</span></div>
+      <div class="k" style="--c:#E90A79"><small>Impressions</small><p data-n>61,420</p><span class="up">▲ 11%</span></div>
+      <div class="k" style="--c:#FFC969"><small>Website sessions</small><p data-n>7,905</p><span class="up">▲ 9%</span></div>
+      <div class="k" style="--c:#7A3FD6"><small>Key events</small><p data-n>312</p><span class="dn">▼ 4%</span></div>
+      <div class="k" style="--c:#2416A5"><small>Named by AI</small><p data-n>38%</p><span class="mu">of AI answers</span></div>
+    </div>
+    <div class="row"><div><b>How AI answers treat Aldergrove Living</b><span>940 answers in the last 30 days</span></div><a>Open AI report →</a></div>
+    <div class="ai"><div class="ring"><div><b data-n>38%</b><small>AI visibility</small></div></div>
+      <div style="flex:1"><h3>Biggest room to grow: <b>Gemini</b>, where AI names a competitor in 41% of answers and Aldergrove Living in 22%.</h3>
+        <div class="a4"><div><small>Named</small><p data-n>38%</p><span>357 of 940</span></div><div><small>Position when named</small><p>2.1</p><span>average place in the answer</span></div><div><small>Citation share</small><p data-n>14%</p><span>128 of 914 cited sources are aldergrove.example</span></div><div><small>Tone</small><p>Positive</p><span>71% positive, 26% neutral</span></div></div></div></div>
+    <div class="e5"><div class="e"><b>ChatGPT</b><u style="--p:46%"></u><span>46% of 250 answers</span></div><div class="e"><b>Perplexity</b><u style="--p:41%"></u><span>41% of 210 answers</span></div><div class="e"><b>Google AI Mode</b><u style="--p:37%"></u><span>37% of 215 answers</span></div><div class="e"><b>Google AI Overview</b><u style="--p:35%"></u><span>35% of 185 answers</span></div><div class="e"><b>Gemini</b><u style="--p:22%"></u><span>22% of 80 answers</span></div></div>
+    <div class="two"><div class="box"><h4>Prompts that name Aldergrove Living</h4>
+        <div class="li">best gated villa communities near the lake<span>4 of 4 engines</span></div><div class="li">low-density villa plots with clubhouse<span>3 of 4 engines</span></div><div class="li">which builders deliver villas on time<span>3 of 4 engines</span></div><div class="li">weekend homes within two hours of the city<span>2 of 4 engines</span></div></div>
+      <div class="box"><h4>Where AI gets its facts</h4>
+        <div class="li">aldergrove.example<span>14% of citations</span></div><div class="li">property-portal.example<span>11% of citations</span></div><div class="li">homes-review.example<span>8% of citations</span></div><div class="li">city-journal.example<span>5% of citations</span></div></div></div>
+  </div></div></div>
+</section>
+
+<section class="scene" id="s2" data-nav="Insights" data-title="Insights">
+  <div class="main"><div data-scroll><div class="ins">
+    <div class="itabs"><b>Overview</b><span>Keywords<em>24</em></span><span>Competitors</span><span>Alerts<em>6</em></span><span>Pages<em>52</em></span></div>
+    <div class="row" style="margin-top:16px"><span style="margin:0">Last 30 days vs the 30 before · last check Oct 25</span><span class="btn" style="font-size:11.5px;padding:6px 11px">Last 30 days ⌄</span></div>
+    <div class="g3">
+      <div class="box" style="padding-bottom:16px"><h4>How your keywords rank</h4>
+        <div class="stack"><i style="width:29%;background:#2416A5"></i><i style="width:25%;background:#7A3FD6"></i><i style="width:17%;background:#E90A79"></i><i style="width:13%;background:#FFC969"></i><i style="width:8%;background:#d0d5dd"></i><i style="width:8%;background:#eef0f5"></i></div>
+        <div class="dist"><div><small><i style="background:#2416A5"></i>Top 3</small><p data-n>7</p><span>29%</span></div><div><small><i style="background:#7A3FD6"></i>4–10</small><p data-n>6</p><span>25%</span></div><div><small><i style="background:#E90A79"></i>11–20</small><p data-n>4</p><span>17%</span></div><div><small><i style="background:#FFC969"></i>21–50</small><p data-n>3</p><span>13%</span></div><div><small><i style="background:#d0d5dd"></i>51–100</small><p data-n>2</p><span>8%</span></div><div><small><i style="background:#eef0f5"></i>Not ranked</small><p data-n>2</p><span>8%</span></div></div></div>
+      <div class="box"><h4>Wrong page</h4><p style="font-size:21px;font-weight:700;color:#c11574">2</p><span class="mu" style="display:block;margin:4px 0 8px">keywords</span><span class="mu" style="font-size:10.5px;line-height:1.45;display:block">Another of your pages ranks instead of the primary page · <b style="color:var(--ind)">View</b></span></div>
+      <div class="box"><h4>Movement</h4><div class="mv"><div><p style="color:#079455" data-n>9</p><span>Improved</span></div><div><p style="color:#d92d20" data-n>3</p><span>Declined</span></div><div><p style="color:#079455" data-n>4</p><span>Newly ranked</span></div><div><p style="color:#d92d20">0</p><span>Lost</span></div></div><span class="mu" style="font-size:10.5px;display:block;margin:10px 0 10px">Average rank, this period vs the one before</span></div>
+    </div>
+    <div class="box" style="margin-top:12px;width:330px;padding-bottom:14px"><h4>Traffic impact</h4><div class="mv" style="grid-template-columns:repeat(4,auto);gap:16px"><div><p data-n>2,846</p><span>Clicks <b class="up">▲ 18%</b></span></div><div><p data-n>61,420</p><span>Impressions</span></div><div><p>4.6%</p><span>CTR <b class="up">▲ 6%</b></span></div><div><p>11.3</p><span>Avg position</span></div></div></div>
+    <div class="box kw"><h4>Your best-ranking keywords</h4><table><tr><th>Keyword</th><th>Page</th><th>Rank</th><th>Change</th></tr>
+      <tr><td>gated villa community lakeside</td><td>aldergrove.example/lakeside</td><td><span class="rk">1</span></td><td>—</td></tr>
+      <tr><td>villa plots with clubhouse</td><td>aldergrove.example/plots</td><td><span class="rk">2</span></td><td><b class="up">▲ 3</b></td></tr>
+      <tr><td>weekend homes near the city</td><td>aldergrove.example/weekend-homes</td><td><span class="rk">3</span></td><td><b class="up">▲ 1</b></td></tr>
+      <tr><td>low density villa projects</td><td>aldergrove.example/journal/low-density</td><td><span class="rk">5</span></td><td><b class="up">▲ 6</b></td></tr>
+      <tr><td>how to check a builder's delivery record</td><td>aldergrove.example/journal/delivery-record</td><td><span class="rk">7</span></td><td><b class="dn">▼ 1</b></td></tr></table></div>
+  </div></div></div>
+</section>
+
+<section class="scene" id="s3" data-nav="Articles" data-title="Articles">
+  <div class="main"><div data-scroll><div class="art">
+    <div class="ft"><b>All<em>9</em></b><span>Needs review<em>2</em></span><span>In progress<em>2</em></span><span>Done<em>5</em></span><span>Failed<em>0</em></span><span class="se">⌕ &nbsp;Search keywords</span></div>
+    <table class="at"><thead><tr><th>#</th><th>Keyword</th><th>Angle</th><th>Status</th><th>Progress</th><th>Started by</th><th>Updated</th><th></th></tr></thead><tbody id="arts"></tbody></table>
+  </div></div></div>
+</section>
+
+<script src="stage.js"></script>
+<script>
+// Every name and figure in this file is invented for the film.
+document.querySelectorAll('.scene').forEach(s=>{
+  s.prepend(document.getElementById('top').content.cloneNode(true));
+  s.prepend(document.getElementById('rail').content.cloneNode(true));
+  s.querySelector(`.ni[data-k="${s.dataset.nav}"]`).classList.add('on');
+  s.querySelector('.top h2').textContent=s.dataset.title;
+  const top=s.querySelector('.top');
+  top.insertAdjacentHTML('beforeend', s.id==='s3'?'<span class="btn p">＋ New article</span><span class="btn">⌕ Ask Neo</span>':s.id==='s2'?'<span class="tog"><b>Google Search</b><span>LLM Search</span><span>Opportunities</span></span><span class="btn">⌕ Ask Neo</span>':'<span class="btn">↻ Refresh</span><span class="btn">⌕ Ask Neo</span>');
+});
+const R=[['low density villa projects','Why fewer homes per acre changes daily life, with a worked site plan','ok',6,'Saved to Webflow as draft','Meher','Oct 23'],
+ ['how to check a builder’s delivery record','A five-step check any buyer can run before paying a booking amount','ok',6,'Saved to Webflow as draft','Kavin','Oct 22'],
+ ['weekend homes near the city','Three drive-time bands and what each one really costs to keep','rv',4,'Outline waiting for review','Meher','Oct 22'],
+ ['villa plots with clubhouse','What a clubhouse adds to resale value, and when it does not','go',3,'Writing section 3 of 7','Kavin','Oct 21'],
+ ['gated community maintenance charges','A plain breakdown of where the monthly charge goes','ok',6,'Saved to Webflow as draft','Meher','Oct 19'],
+ ['lakeside villa monsoon care','A seasonal checklist written with the site team','ok',6,'Published','Kavin','Oct 16'],
+ ['plot vs built villa','The cost, time and risk of each, side by side','rv',4,'Outline waiting for review','Meher','Oct 15'],
+ ['home loan for villa plots','How plot loans differ from home loans, with two examples','go',2,'Researching sources','Kavin','Oct 14'],
+ ['vastu for villa layouts','What buyers ask most, answered by the design lead','ok',6,'Published','Meher','Oct 11']];
+const L={ok:'Draft ready',rv:'Needs review',go:'In progress',pub:'Published'};R.forEach(r=>{if(r[4]==='Published')r[2]='pub'});
+document.getElementById('arts').innerHTML=R.map((r,i)=>`<tr><td class="n">${i+1}</td><td class="kwd">${r[0]}</td><td class="an">${r[1]}</td><td><span class="st ${r[2]}">● ${L[r[2]]}</span></td><td><span class="pg">${[0,1,2,3,4,5].map(j=>`<i class="${j<r[3]?'f':''}"></i>`).join('')}</span><span class="pgs">${r[4]}</span></td><td>${r[5]}</td><td>${r[6]}</td><td><span class="wf">Webflow ↗</span></td></tr>`).join('');
+Stage([
+ {id:'s1',dur:6.4,scroll:[[0,0],[1.8,0],[5.4,330],[6.4,340]]},
+ {id:'s2',dur:4.6,scroll:[[0,0],[2.0,0],[4.2,170]]},
+ {id:'s3',dur:3.6},
+]);
+</script></body></html>

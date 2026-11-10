@@ -1,5 +1,5 @@
 import ProjectLayout from '@/components/projects/ProjectLayout';
-import { ProjectSection, StatCard, FeatureCard, TechBadge, BulletList, Screenshot } from '@/components/projects/ProjectSection';
+import { ProjectSection, StatCard, FeatureCard, TechBadge, BulletList, Screenshot, Flow } from '@/components/projects/ProjectSection';
 
 const COLOR = '#A86A00';
 const BG = 'rgba(168,106,0,0.07)';
@@ -40,8 +40,7 @@ export default function SocialMediaToolPage() {
             { icon: '⏳', pain: 'No visibility into pipeline status', result: 'Missed deadlines, duplicated work' },
             { icon: '📅', pain: 'Manual posting by the social media manager', result: 'Error-prone, time-wasting' },
           ].map(p => (
-            <div key={p.icon} className="p-4 rounded-xl" style={{ background: 'var(--bg-card)', border: '1px solid var(--border-subtle)' }}>
-              <span aria-hidden className="block h-0.5 w-6 mb-4" style={{ background: 'var(--cobalt)' }} />
+            <div key={p.icon} className="pain">
               <p className="text-sm font-medium mb-1.5" style={{ color: 'var(--cream)' }}>{p.pain}</p>
               <p className="text-xs" style={{ color: 'var(--tertiary)' }}>{p.result}</p>
             </div>
@@ -62,7 +61,7 @@ export default function SocialMediaToolPage() {
             alt="Social media planning tool — calendar view with multi-client switcher"
             caption="Calendar view at app.digitaladvantagemedia.com — left sidebar lists every client, the calendar shows scheduled posts per day, and the bottom pill confirms a live Meta API connection. Client names blurred."
             width={1800}
-            height={1169}
+            height={1046}
           />
           <Screenshot
             src="/screenshots/social-post.jpg"
@@ -127,8 +126,8 @@ export default function SocialMediaToolPage() {
                 </div>
               </div>
               <div className="grid grid-cols-7 gap-1">
-                {['M', 'T', 'W', 'T', 'F', 'S', 'S'].map(d => (
-                  <div key={d} className="text-center text-xs py-1" style={{ color: 'var(--tertiary)', fontFamily: 'var(--font-mono)' }}>{d}</div>
+                {['M', 'T', 'W', 'T', 'F', 'S', 'S'].map((d, di) => (
+                  <div key={di} className="text-center text-xs py-1" style={{ color: 'var(--tertiary)', fontFamily: 'var(--font-mono)' }}>{d}</div>
                 ))}
                 {Array.from({ length: 35 }, (_, i) => {
                   const day = i - 1;
@@ -199,33 +198,17 @@ export default function SocialMediaToolPage() {
         </div>
 
         {/* Approval flow diagram */}
-        <div className="p-6 rounded-2xl mb-4" style={{ background: 'var(--bg-card)', border: '1px solid var(--border-subtle)' }}>
-          <p className="text-xs tracking-widest uppercase mb-6" style={{ color: 'var(--tertiary)', fontFamily: 'var(--font-mono)' }}>Approval Flow</p>
-          <div className="flex flex-wrap items-start gap-x-2 gap-y-5 pb-2">
-            {[
-              { stage: '01', label: 'Draft', sublabel: 'Social Manager', color: '#2343F5' },
-              { stage: '02', label: 'Manager', sublabel: 'Internal sign-off', color: COLOR },
-              { stage: '03', label: 'Copywriter', sublabel: 'Copy review', color: '#6A3FD6' },
-              { stage: '04', label: 'Designer', sublabel: 'Visual approval', color: '#0F8A5C' },
-              { stage: '05', label: 'Client', sublabel: 'Final sign-off', color: '#D2361F' },
-              { stage: '06', label: 'Published', sublabel: 'Auto via Meta API', color: '#0F8A5C' },
-            ].map((s, i, arr) => (
-              <div key={s.stage} className="flex items-center gap-2 flex-shrink-0">
-                <div className="flex flex-col items-center">
-                  <div className="w-10 h-10 rounded-full flex items-center justify-center text-xs font-mono-custom font-medium mb-2"
-                    style={{ background: s.color + '18', border: `1px solid ${s.color}44`, color: s.color }}>
-                    {s.stage}
-                  </div>
-                  <p className="text-xs font-medium text-center" style={{ color: 'var(--cream)' }}>{s.label}</p>
-                  <p className="text-xs text-center" style={{ color: 'var(--tertiary)' }}>{s.sublabel}</p>
-                </div>
-                {i < arr.length - 1 && (
-                  <div className="w-6 h-px flex-shrink-0" style={{ background: 'var(--border)' }} />
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
+        <Flow
+          title="Approval Flow"
+          steps={[
+            { stage: '01', label: 'Draft', sublabel: 'Social Manager', color: '#2343F5' },
+            { stage: '02', label: 'Manager', sublabel: 'Internal sign-off', color: COLOR },
+            { stage: '03', label: 'Copywriter', sublabel: 'Copy review', color: '#6A3FD6' },
+            { stage: '04', label: 'Designer', sublabel: 'Visual approval', color: '#0F8A5C' },
+            { stage: '05', label: 'Client', sublabel: 'Final sign-off', color: '#D2361F' },
+            { stage: '06', label: 'Published', sublabel: 'Auto via Meta API', color: '#0F8A5C' },
+          ]}
+        />
       </ProjectSection>
 
       {/* Tech stack */}

@@ -38,8 +38,15 @@ export default async function WebsitePage({ params }: { params: Promise<{ slug: 
       live={{ url: site.url, label: `Visit ${site.urlLabel}` }}
       media={CLIP[site.slug] ? { video: `/media/${CLIP[site.slug]}.mp4`, poster: `/media/posters/${CLIP[site.slug]}.jpg` } : undefined}
       next={{ href: `/websites/${next.slug}/`, label: next.name, kicker: 'Next website' }}
+      swatch={{ colors: site.palette.map((s) => s.hex), caption: site.type[0].face.split(',')[0].trim() }}
+      more={{
+        heading: 'The other sites',
+        cards: websites
+          .filter((w) => w.slug !== site.slug && w.slug !== next.slug)
+          .map((w) => ({ href: `/websites/${w.slug}/`, label: w.name, image: `/websites/${w.slug}-mobile.jpg` })),
+      }}
     >
-      <div className="grid grid-cols-1 sm:grid-cols-[minmax(0,3fr)_minmax(0,1fr)] gap-6 items-start mb-16">
+      <div className="grid grid-cols-1 sm:grid-cols-[minmax(0,3fr)_minmax(0,1fr)] gap-6 items-start">
         <Frame src={`/websites/${site.slug}-desktop.jpg`} alt={`${site.name} homepage on desktop`} ratio="1440 / 900" caption="Desktop" sizes="(min-width: 1080px) 760px, 75vw" />
         <div className="w-full max-w-[280px] mx-auto sm:max-w-none"><Frame src={`/websites/${site.slug}-mobile.jpg`} alt={`${site.name} homepage on a phone`} ratio="780 / 1688" caption="Phone" sizes="(min-width: 1080px) 250px, (min-width: 640px) 25vw, 280px" /></div>
       </div>
@@ -74,7 +81,7 @@ export default async function WebsitePage({ params }: { params: Promise<{ slug: 
                 <p className="text-[13px]" style={{ color: 'var(--ink-3)' }}>{t.role}</p>
                 {/* Specimen in the real face: Google Fonts with text= loads only these glyphs. */}
                 <link rel="stylesheet" precedence="default" href={`https://fonts.googleapis.com/css2?family=${encodeURIComponent(t.face.split(',')[0].trim())}&text=${encodeURIComponent(t.face.split(',')[0].trim())}&display=swap`} />
-                <p className="text-[24px] leading-tight" style={{ color: 'var(--ink)', fontFamily: `'${t.face.split(',')[0].trim()}', var(--font-plex-sans), serif` }}>{t.face.split(',')[0].trim()}</p>
+                <p className="text-[24px] leading-tight" style={{ color: 'var(--ink)', fontFamily: `'${t.face.split(',')[0].trim()}', var(--font-schibsted), serif` }}>{t.face.split(',')[0].trim()}</p>
                 {t.face.includes(',') && <p className="text-[12px] mt-0.5" style={{ color: 'var(--ink-3)' }}>{t.face.split(',').slice(1).join(',').trim()}</p>}
               </div>
               <p className="text-[15px] leading-[1.6]" style={{ color: 'var(--ink-2)' }}>{t.why}</p>
@@ -109,7 +116,7 @@ export default async function WebsitePage({ params }: { params: Promise<{ slug: 
 function Frame({ src, alt, ratio, caption, sizes }: { src: string; alt: string; ratio: string; caption: string; sizes: string }) {
   return (
     <figure>
-      <div data-clip className="relative w-full overflow-hidden rounded-[10px]" style={{ aspectRatio: ratio, border: '1px solid var(--rule)', background: 'var(--paper-2)', boxShadow: '0 18px 40px -24px rgba(11,27,58,0.35)' }}>
+      <div className="relative w-full overflow-hidden rounded-[10px]" style={{ aspectRatio: ratio, border: '1px solid var(--rule)', background: 'var(--paper-2)', boxShadow: '0 18px 40px -24px rgba(11,27,58,0.35)' }}>
         <Image src={src} alt={alt} fill sizes={sizes} className="object-cover object-top" />
       </div>
       <figcaption className="text-[13px] mt-2" style={{ color: 'var(--ink-3)' }}>{caption}</figcaption>

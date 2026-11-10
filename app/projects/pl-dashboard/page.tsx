@@ -38,8 +38,7 @@ export default function PLDashboardPage() {
             { icon: '🔍', pain: 'No actuals vs. forecast view', result: "Couldn't tell if performance was on track" },
             { icon: '💸', pain: 'No cost-sink visibility', result: 'Margin erosion went undetected' },
           ].map(p => (
-            <div key={p.icon} className="p-4 rounded-xl" style={{ background: 'var(--bg-card)', border: '1px solid var(--border-subtle)' }}>
-              <span aria-hidden className="block h-0.5 w-6 mb-4" style={{ background: 'var(--cobalt)' }} />
+            <div key={p.icon} className="pain">
               <p className="text-sm font-medium mb-1.5" style={{ color: 'var(--cream)' }}>{p.pain}</p>
               <p className="text-xs" style={{ color: 'var(--tertiary)' }}>{p.result}</p>
             </div>
@@ -58,27 +57,27 @@ export default function PLDashboardPage() {
           <Screenshot
             src="/screenshots/pl-ratio-trends.jpg"
             alt="Looker Studio P&L ratio trends — actuals vs forecasted gauges and key efficiency ratios"
-            caption="Ratio Trends — gauge dials show revenue and expense actuals against forecast caps, with five live efficiency ratios (Salaries-, Opex-, Marketing-, Misc-, Profit-to-revenue). Headline rupee values blurred."
-            width={1800}
-            height={1107}
+            caption="Ratio Trends — gauge dials show revenue and expense actuals against forecast caps, with five live efficiency ratios (Salaries-, Opex-, Marketing-, Misc-, Profit-to-revenue). Recreated with sample figures."
+            width={3840}
+            height={2070}
             light
             fit="contain"
           />
           <Screenshot
             src="/screenshots/pl-overview.jpg"
             alt="Income and expenses overview with revenue, expense, profitability trends and category breakdown"
-            caption="Income & Expense Overview — actuals (solid) vs forecast (dashed) for revenue, expenses, profitability, and an Expenses-by-Category bar chart. Y-axis values blurred; trend shapes intact."
-            width={1800}
-            height={1348}
+            caption="Income & Expense Overview — actuals (solid) vs forecast (dashed) for revenue, expenses, profitability, and an Expenses-by-Category bar chart. Recreated with sample figures."
+            width={3840}
+            height={2874}
             light
             fit="contain"
           />
           <Screenshot
             src="/screenshots/pl-breakdown.jpg"
             alt="Drill-down by expense category — employee cost, tech, welfare, rent"
-            caption="Expense Breakdown — drill-down trends per cost line: Employee Cost, Tech, Welfare, Rent. The two cost-sink categories that drove the 10%+ optimisation target are visible here."
-            width={1800}
-            height={1346}
+            caption="Expense Breakdown — drill-down trends per cost line: Employee Cost, Tech, Welfare, Rent. Recreated with sample figures."
+            width={3840}
+            height={2874}
             light
             fit="contain"
           />
