@@ -42,9 +42,7 @@ export default function Navbar() {
           {links.map((l) => (
             <Link key={l.href} href={l.href}>{l.label}</Link>
           ))}
-          <a href={RESUME} download className="btn" style={{ background: 'var(--stock-hi)', color: 'var(--felt-deep)' }}>
-            Download résumé
-          </a>
+          <a href={RESUME} download className="quiet-link">Résumé</a>
         </div>
 
         <button type="button" className="nav-toggle" aria-expanded={open} aria-controls="nav-sheet" onClick={() => setOpen((o) => !o)}>

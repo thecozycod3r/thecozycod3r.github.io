@@ -52,6 +52,8 @@ export const systemMap: MapStage[] = [
 export interface Project {
   slug: string;
   title: string;
+  /** Shorter name for the hero hand, where a card face only fits one word. */
+  short?: string;
   line: string;
   context: string;
   year: string;
@@ -96,6 +98,7 @@ export const projects: Project[] = [
   {
     slug: 'creative-studio',
     title: 'Creative Studio',
+    short: 'Studio',
     line: 'An internal AI image and video studio with client workspaces, spend limits, approvals and a UGC ad workflow. Written from a PRD, shipped to production.',
     context: 'Digital Advantage Media',
     year: '2026',
@@ -106,6 +109,7 @@ export const projects: Project[] = [
   {
     slug: 'social-media-tool',
     title: 'Social Media Planner',
+    short: 'Planner',
     line: 'Replaced a Slack-and-WhatsApp approval chain with one platform: calendar, mood boards, six approval stages and automatic posting.',
     context: 'Digital Advantage Media',
     year: '2025',
@@ -116,6 +120,7 @@ export const projects: Project[] = [
   {
     slug: 'pl-dashboard',
     title: 'P&L Dashboard',
+    short: 'P&L',
     line: 'A live BigQuery and Looker Studio view of revenue, costs and margin that replaced the monthly spreadsheet.',
     context: 'Digital Advantage Media',
     year: '2025',
@@ -126,6 +131,7 @@ export const projects: Project[] = [
   {
     slug: 'asana-ops',
     title: 'Asana Operations',
+    short: 'Asana',
     line: 'Company-wide project management with auto-assignment, workload dashboards, Slack alerts and a leave tracker.',
     context: 'Digital Advantage Media',
     year: '2025',
@@ -249,7 +255,7 @@ export const education = [
 ];
 
 export const offClock: { what: string; detail: string; href?: string }[] = [
-  { what: 'Table Night', detail: 'Fourteen multiplayer card and party games for your phone. Free to play.', href: '/projects/table-night/' },
+  { what: 'Table Night', detail: 'Twenty multiplayer card, board and party games for your phone. Free to play.', href: '/projects/table-night/' },
   { what: 'A.R.T.H.U.R.', detail: 'A voice assistant for my Mac that runs my own inbox. Open source.', href: '/projects/arthur/' },
   { what: 'Basketball', detail: 'Represented CUHK; captained the team to a championship.' },
   { what: 'Tennis', detail: 'Club and university tournaments.' },

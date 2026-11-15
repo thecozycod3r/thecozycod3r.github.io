@@ -13,7 +13,7 @@ export default function TableNightPage() {
   return (
     <ProjectLayout
       title="Table Night"
-      subtitle="Fourteen multiplayer card and party games for a room full of friends. Everyone plays on their own phone, no accounts, no app store, free. Open a table, share the code, deal."
+      subtitle="Twenty multiplayer card, board and party games for a room full of friends. Everyone plays on their own phone, no accounts, no app store, free. Open a table, share the code, deal."
       period="2026"
       company="Personal"
       color={COLOR}
@@ -32,7 +32,7 @@ export default function TableNightPage() {
         </p>
       </ProjectSection>
 
-      <ProjectSection label="The Games" title="Fourteen tables, one shared engine.">
+      <ProjectSection label="The Games" title="Twenty tables, one shared engine.">
         <Screenshot
           src="/screenshots/table-night-hub.jpg"
           alt="Table Night hub with a poster for each game"
@@ -41,7 +41,7 @@ export default function TableNightPage() {
           height={1000}
         />
         <p className="text-base leading-relaxed mt-8 mb-6" style={{ color: 'var(--muted)', maxWidth: 680 }}>
-          Wizard, Splendor, Seven Marvels, Avalon, Incan Gold, UNO Flip, UNO No Mercy, 6 Nimmt!, Skull King, Coup, Spyfall, Codenames, Kings Cup and Ride the Bus. Each has its own rules engine, its own art and a Rules button on every screen; the lobby, seats, rejoin, timers and podium are shared.
+          Wizard, Splendor, Seven Marvels, Avalon, Incan Gold, UNO Flip, UNO No Mercy, 6 Nimmt!, Skull King, Coup, Bluff, Show, Risk, Catan, Power Grid, Cards Against Humanity, Spyfall, Codenames, Kings Cup and Ride the Bus. Each has its own rules engine, its own art and a Rules button on every screen; the lobby, seats, rejoin, timers and podium are shared.
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <FeatureCard icon="📱" title="Your Phone Is Your Hand" desc="Private cards on your screen, the shared table on everyone's. Works on any phone browser, sideways or upright." color={COLOR} bg={BG} />
@@ -71,7 +71,7 @@ export default function TableNightPage() {
 
       <ProjectSection label="Outcomes" title="What actually changed.">
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-          <StatCard value="14" label="Games" sub="Card, strategy and party" color={COLOR} />
+          <StatCard value="20" label="Games" sub="Card, strategy and party" color={COLOR} />
           <StatCard value="2–12" label="Players" sub="Depending on the game" color="#2343F5" />
           <StatCard value="7s" label="Host failover" sub="Table keeps going" color="#A86A00" />
           <StatCard value="Free" label="To play" sub="No sign-up" color="#D2361F" />

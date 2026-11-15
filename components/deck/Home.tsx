@@ -57,7 +57,7 @@ export function Hero() {
               </span>
             ))}
             <span className="hc" data-role="court" style={{ '--k': REST.length } as Vars}>
-              <span className="hc-move"><span className="hc-tilt"><Court twoSided /></span></span>
+              <span className="hc-move"><span className="hc-tilt"><Card value="A" suit="spade" /></span></span>
             </span>
           </div>
         </div>
@@ -89,7 +89,7 @@ export function Hero() {
                               <img src={projectMedia[p.slug].poster.replace(/(\/media\/posters\/[^.]+)\.jpg$/, '$1-sm.jpg')} alt="" width={320} height={200} />
                             </span>
                             <span className="hf-title">
-                              {p.title}
+                              {p.short ?? p.title}
                               <span className="hf-label">{c.l}</span>
                             </span>
                           </span>
@@ -389,8 +389,8 @@ export function Contact() {
           </p>
           <div className="contact-cta">
             <a href={`mailto:${EMAIL}`} className="btn btn-solid">{EMAIL}</a>
-            <a href={LINKEDIN} target="_blank" rel="noopener noreferrer" className="btn btn-line">LinkedIn</a>
-            <a href={GITHUB} target="_blank" rel="noopener noreferrer" className="btn btn-line">GitHub</a>
+            <a href={LINKEDIN} target="_blank" rel="noopener noreferrer" className="quiet-link">LinkedIn</a>
+            <a href={GITHUB} target="_blank" rel="noopener noreferrer" className="quiet-link">GitHub</a>
           </div>
         </div>
       </div>
